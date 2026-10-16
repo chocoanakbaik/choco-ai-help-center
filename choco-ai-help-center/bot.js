@@ -24,7 +24,7 @@ if (
  !elements.input ||
  !elements.send
 ) {
- console.error("Bot Bantuan: elemen HTML tidak ditemukan.");
+ console.error("Sara: elemen antarmuka tidak ditemukan.");
  return;
 }
 
@@ -300,7 +300,7 @@ function renderAnswer(question, articles) {
  if (matches.length === 0) {
    addParagraph(
      message,
-     "Gw belum menemukan jawaban yang cukup cocok untuk pertanyaan itu."
+     "Maaf, saya belum menemukan jawaban yang cukup sesuai untuk pertanyaan tersebut."
    );
 
    addParagraph(
@@ -317,7 +317,7 @@ function renderAnswer(question, articles) {
  if (bestMatch.redirect) {
    addParagraph(
      message,
-     `Topik yang paling mendekati pertanyaan lu adalah "${bestMatch.title}", tetapi panduan ini belum tersedia di Pusat Bantuan.`
+     `Topik yang paling mendekati pertanyaan Anda adalah "${bestMatch.title}", tetapi panduan ini belum tersedia di Pusat Bantuan.`
    );
 
    addParagraph(
@@ -410,7 +410,7 @@ async function handleQuestion(question) {
  }
 
  const loadingMessage = addMessage("bot");
- addParagraph(loadingMessage, "Sara sedang mencari panduan yang relevan...");
+ addParagraph(loadingMessage, "Saya sedang mencari panduan yang sesuai...");
  elements.send.disabled = true;
 
  try {
@@ -434,7 +434,7 @@ async function handleQuestion(question) {
    if (!response.ok) throw new Error(result.error || "Permintaan ke Sara gagal.");
 
    loadingMessage.replaceChildren();
-   addParagraph(loadingMessage, result.answer || "Sara belum menemukan jawaban yang sesuai.");
+   addParagraph(loadingMessage, result.answer || "Maaf, saya belum menemukan jawaban yang sesuai.");
 
    if (Array.isArray(result.sources) && result.sources.length) {
      const heading = createElement("h3", "", "Panduan terkait");
@@ -452,7 +452,7 @@ async function handleQuestion(question) {
    }
  } catch (error) {
    loadingMessage.replaceChildren();
-   addParagraph(loadingMessage, "Sara belum bisa terhubung ke layanan AI. Coba lagi sebentar. Jika masalah berlanjut, periksa konfigurasi GROQ_API_KEY di Netlify.");
+   addParagraph(loadingMessage, "Maaf, saat ini Sara belum dapat memproses pertanyaan Anda. Silakan coba kembali beberapa saat lagi.");
    console.error("Sara API error:", error);
  } finally {
    elements.send.disabled = false;
