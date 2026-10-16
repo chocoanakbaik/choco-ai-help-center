@@ -1,6 +1,8 @@
 [build]
-  base = "choco-ai-help-center"
   publish = "."
+
+[functions]
+  directory = "netlify/functions"
 
 [[headers]]
   for = "/*"
