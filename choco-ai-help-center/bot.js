@@ -42,24 +42,25 @@ const POPULAR_LIMIT = 6;
 const MIN_MATCH_SCORE = 5;
 
 function getArticles() {
- if (typeof window.getHelpArticles !== "function") {
-   console.error(
-     "Bot Bantuan: fungsi getHelpArticles() tidak ditemukan di data/articles.js."
-   );
+ const articleGetter = typeof window.getHelpArticles === "function"
+   ? window.getHelpArticles
+   : null;
+ const source = articleGetter
+   ? articleGetter.call(window)
+   : Array.isArray(window.HELP_ARTICLES)
+     ? window.HELP_ARTICLES
+     : [];
+
+ if (!Array.isArray(source)) {
+   console.error("Sara: data artikel Pusat Bantuan tidak berbentuk daftar.");
    return [];
  }
 
- const articles = window.getHelpArticles();
-
- return Array.isArray(articles)
-   ? articles.filter((article) => {
-       return (
-         article &&
-         typeof article.title === "string" &&
-         typeof article.id === "string"
-       );
-     })
-   : [];
+ return source.filter((article) => {
+   return article &&
+     typeof article.title === "string" &&
+     typeof article.id === "string";
+ });
 }
 
 function getPopularArticles(articles) {
@@ -405,7 +406,7 @@ async function handleQuestion(question) {
  const articles = getArticles();
  if (articles.length === 0) {
    const errorMessage = addMessage("bot");
-   addParagraph(errorMessage, "Data panduan belum berhasil dimuat. Periksa file data/articles.js.");
+   addParagraph(errorMessage, "Maaf, panduan bantuan belum berhasil dimuat. Silakan muat ulang halaman ini. Jika masalah berlanjut, tim pengelola perlu memeriksa data Pusat Bantuan.");
    return;
  }
 
