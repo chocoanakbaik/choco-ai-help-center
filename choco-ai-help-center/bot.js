@@ -393,39 +393,79 @@ function renderSuggestions(articles) {
  }
 }
 
-function handleQuestion(question) {
+async function handleQuestion(question) {
  const cleanQuestion = String(question || "").trim();
 
  if (!cleanQuestion) return;
 
  const userMessage = addMessage("user");
  addParagraph(userMessage, cleanQuestion);
-
  elements.input.value = "";
 
  const articles = getArticles();
-
  if (articles.length === 0) {
    const errorMessage = addMessage("bot");
-
-   addParagraph(
-     errorMessage,
-     "Data panduan belum berhasil dimuat. Periksa file data/articles.js dan pastikan fungsi getHelpArticles() tersedia."
-   );
-
+   addParagraph(errorMessage, "Data panduan belum berhasil dimuat. Periksa file data/articles.js.");
    return;
  }
 
- renderAnswer(cleanQuestion, articles);
+ const loadingMessage = addMessage("bot");
+ addParagraph(loadingMessage, "Sara sedang mencari panduan yang relevan...");
+ elements.send.disabled = true;
+
+ try {
+   const response = await fetch("/.netlify/functions/sara", {
+     method: "POST",
+     headers: { "Content-Type": "application/json" },
+     body: JSON.stringify({
+       question: cleanQuestion,
+       articles: articles.map((article) => ({
+         id: article.id,
+         title: article.title,
+         summary: article.summary || "",
+         keywords: article.keywords || [],
+         content: article.content || [],
+         redirect: article.redirect || null
+       }))
+     })
+   });
+
+   const result = await response.json();
+   if (!response.ok) throw new Error(result.error || "Permintaan ke Sara gagal.");
+
+   loadingMessage.replaceChildren();
+   addParagraph(loadingMessage, result.answer || "Sara belum menemukan jawaban yang sesuai.");
+
+   if (Array.isArray(result.sources) && result.sources.length) {
+     const heading = createElement("h3", "", "Panduan terkait");
+     loadingMessage.appendChild(heading);
+     const list = document.createElement("ul");
+     for (const source of result.sources) {
+       const item = document.createElement("li");
+       const link = document.createElement("a");
+       link.href = source.redirect || `article.html?id=${encodeURIComponent(source.id)}`;
+       link.textContent = source.title;
+       item.appendChild(link);
+       list.appendChild(item);
+     }
+     loadingMessage.appendChild(list);
+   }
+ } catch (error) {
+   loadingMessage.replaceChildren();
+   addParagraph(loadingMessage, "Sara belum bisa terhubung ke layanan AI. Coba lagi sebentar. Jika masalah berlanjut, periksa konfigurasi GROQ_API_KEY di Netlify.");
+   console.error("Sara API error:", error);
+ } finally {
+   elements.send.disabled = false;
+   elements.input.focus();
+   renderSuggestions(articles);
+   scrollToLatestMessage();
+ }
 }
 
 elements.form.addEventListener("submit", (event) => {
  event.preventDefault();
-
  const question = elements.input.value.trim();
-
  if (!question) return;
-
  handleQuestion(question);
 });
 
