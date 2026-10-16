@@ -62,7 +62,7 @@ exports.handler = async function(event) {
       content: (Array.isArray(article.content) ? article.content : []).map(block => {
         if (!block) return "";
         return [block.text || "", ...(Array.isArray(block.items) ? block.items : [])].join(" ");
-      }).join("\\n")
+      }).join("\n")
     }));
 
     const groqResponse = await fetch("https://api.groq.com/openai/v1/chat/completions", {
