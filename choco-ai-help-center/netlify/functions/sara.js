@@ -52,7 +52,7 @@ exports.handler = async function(event) {
     const articles = Array.isArray(payload.articles) ? payload.articles.slice(0, 100) : [];
     if (!question) return { statusCode: 400, headers, body: JSON.stringify({ error: "Pertanyaan masih kosong." }) };
     const normalizedQuestion = normalize(question);
-    if (/\\b(siapa sara|sara siapa|kamu siapa|anda siapa|siapa kamu|siapa anda|siapa dirimu)\\b/.test(normalizedQuestion)) {
+    if (/(siapa.{0,20}sara|sara.{0,20}siapa|siapa.{0,20}(kamu|anda|dirimu)|(kamu|anda).{0,20}siapa)/.test(normalizedQuestion)) {
       return { statusCode: 200, headers, body: JSON.stringify({
         answer: "Perkenalkan, saya Sara, AI assistant kedua dari Choco AI. Saya dibuat khusus untuk membantu Anda menggunakan Choco AI dan menemukan jawaban melalui Pusat Bantuan. Saya akan menjelaskan panduan dengan bahasa yang sopan dan mudah dipahami.",
         sources: []
