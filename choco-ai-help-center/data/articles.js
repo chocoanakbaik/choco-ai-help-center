@@ -425,24 +425,30 @@ window.HELP_ARTICLES = [
         id: "mengelola-profil",
         category: "profil",
         title: "Bagaimana cara mengelola profil?",
-        summary: "Informasi mengenai pengelolaan profil pengguna.",
-        keywords: ["profil", "nama pengguna", "ubah nama", "data akun"],
+        summary: "Panduan dasar untuk melihat dan mengelola informasi profil akun.",
+        keywords: ["profil", "kelola profil", "informasi akun", "data pengguna"],
         popular: false,
         order: 22,
         updated: "2026-10-16",
-        redirect: "404.html"
-    },
+        content: [
+            { type: "p", text: "Buka menu Profil dari antarmuka Choco AI untuk melihat informasi akun yang tersedia." },
+            { type: "p", text: "Pilihan yang dapat diubah bergantung pada fitur profil yang sedang tersedia di aplikasi. Jangan membagikan kata sandi atau informasi autentikasi kepada orang lain." }
+        ]
+    }
     {
         id: "mengubah-data-profil",
         category: "profil",
         title: "Bagaimana cara mengubah data profil?",
-        summary: "Informasi tentang perubahan data profil akun.",
-        keywords: ["ubah profil", "edit profil", "ganti nama", "data pengguna"],
+        summary: "Informasi umum tentang perubahan data profil akun.",
+        keywords: ["ubah profil", "edit profil", "nama", "data akun", "informasi profil"],
         popular: false,
         order: 23,
         updated: "2026-10-16",
-        redirect: "404.html"
-    },
+        content: [
+            { type: "p", text: "Buka menu Profil dan periksa apakah informasi yang ingin diubah menyediakan opsi edit." },
+            { type: "p", text: "Jika opsi perubahan belum tersedia di antarmuka, data tersebut belum dapat diubah dari halaman profil. Hindari mencoba mengubah data akun secara langsung melalui alat browser." }
+        ]
+    }
 
     // ==========================================
     // PRIVASI & MEMORI
@@ -466,24 +472,30 @@ window.HELP_ARTICLES = [
         id: "memori-permanen",
         category: "privasi",
         title: "Apakah Choco AI memiliki memori permanen?",
-        summary: "Perbedaan antara konteks percakapan dan memori yang disimpan.",
-        keywords: ["memori", "ingatan permanen", "mengingat pengguna", "memory"],
+        summary: "Perbedaan antara konteks percakapan dan memori yang tersimpan lintas sesi.",
+        keywords: ["memori permanen", "ingatan", "memory", "konteks", "riwayat chat"],
         popular: false,
         order: 25,
         updated: "2026-10-16",
-        redirect: "404.html"
-    },
+        content: [
+            { type: "p", text: "Konteks percakapan membantu Choco AI merujuk pesan sebelumnya dalam sesi yang sedang berlangsung. Hal itu berbeda dari memori permanen yang menyimpan informasi untuk percakapan berikutnya." },
+            { type: "p", text: "Ketersediaan memori lintas sesi bergantung pada fitur yang benar-benar aktif pada aplikasi. Jangan menganggap suatu informasi akan selalu diingat jika aplikasi belum menunjukkan bahwa informasi tersebut berhasil disimpan." }
+        ]
+    }
     {
         id: "menghapus-data",
         category: "privasi",
         title: "Bagaimana cara menghapus data saya?",
-        summary: "Informasi mengenai penghapusan data akun dan percakapan.",
-        keywords: ["hapus data", "hapus akun", "hapus percakapan", "privasi"],
+        summary: "Panduan umum untuk memahami penghapusan data akun dan percakapan.",
+        keywords: ["hapus data", "menghapus akun", "hapus percakapan", "privasi", "data pribadi"],
         popular: false,
         order: 26,
         updated: "2026-10-16",
-        redirect: "404.html"
-    },
+        content: [
+            { type: "p", text: "Periksa menu Profil atau Pengaturan untuk melihat apakah tersedia pilihan penghapusan data atau akun." },
+            { type: "p", text: "Jika pilihan penghapusan belum tersedia, jangan menganggap data telah terhapus hanya dengan menghapus riwayat browser atau keluar dari akun. Penghapusan data tersimpan perlu ditangani melalui mekanisme yang memang disediakan aplikasi." }
+        ]
+    }
 
     // ==========================================
     // PEMECAHAN MASALAH
