@@ -404,12 +404,10 @@ async function handleQuestion(question) {
  elements.input.value = "";
 
  const articles = getArticles();
- if (articles.length === 0) {
-   const errorMessage = addMessage("bot");
-   addParagraph(errorMessage, "Maaf, panduan bantuan belum berhasil dimuat. Silakan muat ulang halaman ini. Jika masalah berlanjut, tim pengelola perlu memeriksa data Pusat Bantuan.");
-   return;
- }
 
+ // Sara tetap dapat menjawab pertanyaan tentang identitas dan fungsi dirinya
+ // meskipun data artikel gagal dimuat. Untuk fakta produk, ia akan menyatakan
+ // dengan jujur jika panduan belum tersedia.
  const loadingMessage = addMessage("bot");
  addParagraph(loadingMessage, "Saya sedang mencari panduan yang sesuai...");
  elements.send.disabled = true;
