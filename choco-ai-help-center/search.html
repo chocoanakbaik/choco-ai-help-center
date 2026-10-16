@@ -1,0 +1,301 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#090b14">
+  <meta name="description" content="Cari panduan dan solusi masalah seputar Choco AI di Pusat Bantuan.">
+
+  <title>Pencarian Bantuan | Choco AI</title>
+
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html" aria-label="Choco AI Pusat Bantuan">
+        <img
+          src="assets/images/choco-logo.svg"
+          alt=""
+          class="brand-logo"
+        >
+
+        <span class="brand-copy">
+          <span class="brand-name">Choco AI</span>
+          <span class="brand-caption">Pusat Bantuan</span>
+        </span>
+      </a>
+
+      <nav class="header-nav" aria-label="Navigasi utama">
+        <a href="index.html">Beranda</a>
+        <a href="index.html#kategori">Kategori bantuan</a>
+      </nav>
+
+      <div class="header-actions">
+        <a class="button button--secondary" href="bot.html">
+          Bot Bantuan
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <a href="index.html">Beranda</a>
+        <span class="breadcrumb-separator" aria-hidden="true">/</span>
+        <span class="breadcrumb-current">Pencarian</span>
+      </nav>
+
+      <section class="page-intro">
+        <span class="eyebrow">Pusat Bantuan Choco AI</span>
+
+        <h1>Cari <span class="gradient-text">bantuan</span></h1>
+
+        <p>
+          Temukan jawaban dan panduan penggunaan Choco AI.
+          Masukkan kata kunci yang sesuai dengan pertanyaan lu.
+        </p>
+
+        <form
+          id="search-page-form"
+          class="search-form"
+          action="search.html"
+          method="get"
+          role="search"
+        >
+          <label class="visually-hidden" for="search-page-input">
+            Kata kunci pencarian
+          </label>
+
+          <input
+            class="search-input"
+            id="search-page-input"
+            name="q"
+            type="search"
+            placeholder="Contoh: login, pengaturan, percakapan..."
+            autocomplete="off"
+            maxlength="200"
+          >
+
+          <button class="button button--primary search-submit" type="submit">
+            Cari
+          </button>
+        </form>
+      </section>
+
+      <section class="section--compact" aria-labelledby="search-results-heading">
+        <div class="search-results-heading">
+          <h2 id="search-results-heading">Artikel bantuan</h2>
+          <p class="result-count" id="search-result-count" aria-live="polite"></p>
+        </div>
+
+        <div
+          class="search-results"
+          id="search-results"
+          aria-live="polite"
+        ></div>
+
+        <div class="search-empty" id="search-empty-state" hidden>
+          <h2 id="search-empty-title">Mulai pencarian</h2>
+
+          <p id="search-empty-description">
+            Masukkan kata kunci di atas untuk mencari panduan Choco AI.
+          </p>
+
+          <a class="button button--secondary" href="index.html">
+            Kembali ke Pusat Bantuan
+          </a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-bottom">
+      <p>© <span id="current-year"></span> Choco AI Help Center</p>
+
+      <a href="index.html">Pusat Bantuan</a>
+    </div>
+  </footer>
+
+  <script src="data/categories.js"></script>
+  <script src="data/articles.js"></script>
+
+  <script>
+    "use strict";
+
+    (() => {
+      const form = document.getElementById("search-page-form");
+      const input = document.getElementById("search-page-input");
+      const resultsContainer = document.getElementById("search-results");
+      const countElement = document.getElementById("search-result-count");
+      const headingElement = document.getElementById("search-results-heading");
+      const emptyState = document.getElementById("search-empty-state");
+      const emptyTitle = document.getElementById("search-empty-title");
+      const emptyDescription = document.getElementById("search-empty-description");
+      const yearElement = document.getElementById("current-year");
+
+      if (yearElement) {
+        yearElement.textContent = new Date().getFullYear();
+      }
+
+      function createElement(tag, className, text) {
+        const element = document.createElement(tag);
+
+        if (className) {
+          element.className = className;
+        }
+
+        if (text !== undefined && text !== null) {
+          element.textContent = text;
+        }
+
+        return element;
+      }
+
+      function getCategory(article) {
+        if (typeof window.getHelpCategoryById !== "function") {
+          return null;
+        }
+
+        return window.getHelpCategoryById(article.category) || null;
+      }
+
+      function getArticles(query) {
+        if (typeof window.searchHelpArticles !== "function") {
+          return null;
+        }
+
+        const results = window.searchHelpArticles(query);
+        return Array.isArray(results) ? results : [];
+      }
+
+      function createResultCard(article) {
+        const card = createElement("a", "result-card");
+
+        card.href = article.redirect
+          ? article.redirect
+          : "article.html?id=" + encodeURIComponent(article.id);
+
+        const title = createElement("h3", "", article.title || "Artikel bantuan");
+        const summary = createElement(
+          "p",
+          "",
+          article.summary || "Buka panduan untuk membaca informasi selengkapnya."
+        );
+
+        const category = getCategory(article);
+
+        card.appendChild(title);
+        card.appendChild(summary);
+
+        if (category) {
+          card.appendChild(
+            createElement("span", "result-category", category.title)
+          );
+        }
+
+        return card;
+      }
+
+      function showEmptyState(title, description) {
+        emptyState.hidden = false;
+        emptyTitle.textContent = title;
+        emptyDescription.textContent = description;
+      }
+
+      function renderResults(query) {
+        resultsContainer.replaceChildren();
+        countElement.textContent = "";
+        emptyState.hidden = true;
+
+        const cleanQuery = query.trim();
+
+        if (!cleanQuery) {
+          headingElement.textContent = "Artikel bantuan";
+
+          showEmptyState(
+            "Mulai pencarian",
+            "Masukkan kata kunci di atas untuk mencari panduan Choco AI."
+          );
+
+          return;
+        }
+
+        headingElement.textContent = 'Hasil untuk "' + cleanQuery + '"';
+
+        const results = getArticles(cleanQuery);
+
+        if (results === null) {
+          showEmptyState(
+            "Data pencarian tidak tersedia",
+            "Pastikan data/articles.js berhasil dimuat dan fungsi searchHelpArticles() tersedia."
+          );
+
+          return;
+        }
+
+        countElement.textContent =
+          results.length + (results.length === 1
+            ? " artikel ditemukan"
+            : " artikel ditemukan");
+
+        if (results.length === 0) {
+          showEmptyState(
+            "Tidak ada hasil",
+            "Coba kata kunci lain, misalnya login, percakapan, atau pengaturan."
+          );
+
+          return;
+        }
+
+        for (const article of results) {
+          if (!article || !article.id) continue;
+
+          resultsContainer.appendChild(createResultCard(article));
+        }
+
+        if (!resultsContainer.children.length) {
+          countElement.textContent = "";
+
+          showEmptyState(
+            "Tidak ada hasil",
+            "Tidak ada artikel yang bisa ditampilkan untuk kata kunci tersebut."
+          );
+        }
+      }
+
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        const query = input.value.trim();
+        const params = new URLSearchParams();
+
+        if (query) {
+          params.set("q", query);
+        }
+
+        const nextUrl = "search.html" +
+          (params.toString() ? "?" + params.toString() : "");
+
+        window.history.replaceState(null, "", nextUrl);
+        renderResults(query);
+      });
+
+      input.addEventListener("input", () => {
+        renderResults(input.value);
+      });
+
+      const params = new URLSearchParams(window.location.search);
+      const initialQuery = (params.get("q") || "").slice(0, 200);
+
+      input.value = initialQuery;
+      renderResults(initialQuery);
+    })();
+  </script>
+</body>
+</html>

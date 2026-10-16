@@ -1,0 +1,506 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080b14">
+  <meta name="description" content="Pusat Bantuan Choco AI. Temukan panduan akun, percakapan, pengaturan, personalisasi, profil, dan solusi masalah.">
+
+  <title>Pusat Bantuan | Choco AI</title>
+
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+  <link rel="stylesheet" href="style.css">
+
+  <meta property="og:title" content="Pusat Bantuan | Choco AI">
+  <meta property="og:description" content="Temukan jawaban dan panduan penggunaan Choco AI.">
+  <meta property="og:type" content="website">
+</head>
+
+<body>
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html" aria-label="Choco AI Help Center">
+        <img
+          class="brand-logo"
+          src="assets/images/choco-logo.svg"
+          alt="Logo Choco AI"
+          width="38"
+          height="38"
+        >
+
+        <span class="brand-copy">
+          <span class="brand-name">Choco AI</span>
+          <span class="brand-caption">Pusat Bantuan</span>
+        </span>
+      </a>
+
+      <nav class="header-nav" aria-label="Navigasi utama">
+        <a href="#kategori">Kategori</a>
+        <a href="#pertanyaan-populer">Pertanyaan populer</a>
+        <a href="#dukungan">Dukungan</a>
+      </nav>
+
+      <div class="header-actions">
+        <a class="button button--secondary" href="https://choco-ai.netlify.app/">
+          Kembali ke Choco AI
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <span class="eyebrow">CHOCO AI HELP CENTER</span>
+
+          <h1>
+            Ada yang bisa kami
+            <span class="gradient-text">bantu?</span>
+          </h1>
+
+          <p class="hero-description">
+            Cari jawaban, pelajari fitur, dan temukan panduan untuk
+            menggunakan Choco AI dengan lebih mudah.
+          </p>
+
+          <!-- Pencarian akan diproses oleh script.js -->
+          <form class="search-form" id="help-search-form" action="search.html" method="GET" role="search">
+            <svg
+              class="search-icon"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <circle cx="11" cy="11" r="7"></circle>
+              <path d="m20 20-4-4"></path>
+            </svg>
+
+            <label class="visually-hidden" for="help-search-input">
+              Cari artikel bantuan
+            </label>
+
+            <input
+              class="search-input"
+              id="help-search-input"
+              name="q"
+              type="search"
+              placeholder="Cari pertanyaan atau masalah..."
+              autocomplete="off"
+              required
+            >
+
+            <button class="button button--primary search-submit" type="submit">
+              Cari
+            </button>
+          </form>
+
+          <p class="search-hint">
+            Contoh:
+            <a href="search.html?q=login">cara login</a>,
+            <a href="search.html?q=personalisasi">personalisasi</a>,
+            <a href="search.html?q=akun">akun</a>
+          </p>
+
+          <!-- Pertanyaan populer -->
+          <div class="popular-questions" id="pertanyaan-populer">
+            <p class="popular-label">Pertanyaan populer</p>
+
+            <div class="popular-list" id="popular-questions-list">
+              <a class="popular-link" href="search.html?q=login">
+                Cara masuk ke akun
+              </a>
+
+              <a class="popular-link" href="search.html?q=memulai">
+                Memulai dengan Choco AI
+              </a>
+
+              <a class="popular-link" href="search.html?q=percakapan">
+                Mengelola percakapan
+              </a>
+
+              <a class="popular-link" href="search.html?q=pengaturan">
+                Pengaturan akun
+              </a>
+
+              <a class="popular-link" href="search.html?q=personalisasi">
+                Personalisasi Choco AI
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- KATEGORI -->
+    <section class="section" id="kategori">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">JELAJAHI PUSAT BANTUAN</span>
+
+          <h2>Apa yang ingin kamu ketahui?</h2>
+
+          <p>
+            Pilih kategori yang sesuai untuk menemukan panduan dan
+            jawaban yang kamu butuhkan.
+          </p>
+        </div>
+
+        <!--
+          Kategori utama akan diisi dari data/categories.js
+          oleh script.js. Jika JavaScript belum berjalan,
+          tautan dasar di bawah tetap bisa digunakan.
+        -->
+        <div class="category-grid" id="category-grid">
+          <a class="category-card" href="category.html?id=memulai">
+            <span class="category-icon" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3v3"></path>
+                <path d="M12 18v3"></path>
+                <path d="m4.93 4.93 2.12 2.12"></path>
+                <path d="m16.95 16.95 2.12 2.12"></path>
+                <path d="M3 12h3"></path>
+                <path d="M18 12h3"></path>
+                <path d="m4.93 19.07 2.12-2.12"></path>
+                <path d="m16.95 7.05 2.12-2.12"></path>
+                <circle cx="12" cy="12" r="4"></circle>
+              </svg>
+            </span>
+
+            <h3>Memulai dengan Choco AI</h3>
+            <p>Kenali Choco AI dan pelajari cara menggunakan fitur dasarnya.</p>
+
+            <span class="category-meta">
+              Panduan pemula
+              <span class="category-arrow" aria-hidden="true">→</span>
+            </span>
+          </a>
+
+          <a class="category-card" href="category.html?id=akun">
+            <span class="category-icon" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="8" r="4"></circle>
+                <path d="M5 21v-2a7 7 0 0 1 14 0v2"></path>
+              </svg>
+            </span>
+
+            <h3>Akun &amp; Login</h3>
+            <p>Pelajari pendaftaran, login, metode masuk, dan masalah akun.</p>
+
+            <span class="category-meta">
+              Akun pengguna
+              <span class="category-arrow" aria-hidden="true">→</span>
+            </span>
+          </a>
+
+          <a class="category-card" href="category.html?id=percakapan">
+            <span class="category-icon" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8z"></path>
+              </svg>
+            </span>
+
+            <h3>Percakapan &amp; Fitur</h3>
+            <p>Temukan panduan menggunakan chatbot dan fitur yang tersedia.</p>
+
+            <span class="category-meta">
+              Chat dan fitur
+              <span class="category-arrow" aria-hidden="true">→</span>
+            </span>
+          </a>
+
+          <a class="category-card" href="category.html?id=pengaturan">
+            <span class="category-icon" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"></path>
+                <path d="m19.4 15 .1.1a2 2 0 1 1-2.8 2.8l-.1-.1a2 2 0 0 0-3.4 1.4v.3a2 2 0 1 1-4 0v-.2A2 2 0 0 0 5.8 17l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1A2 2 0 0 0 1.6 11h-.2a2 2 0 1 1 0-4h.2A2 2 0 0 0 3 3.6l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1A2 2 0 0 0 9.2-.6v-.2a2 2 0 1 1 4 0v.2A2 2 0 0 0 16.6 1l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1A2 2 0 0 0 20.8 7h.2a2 2 0 1 1 0 4h-.2a2 2 0 0 0-1.4 4z" transform="translate(1 2) scale(.92)"></path>
+              </svg>
+            </span>
+
+            <h3>Pengaturan</h3>
+            <p>Pelajari opsi dan preferensi yang tersedia di menu pengaturan.</p>
+
+            <span class="category-meta">
+              Preferensi aplikasi
+              <span class="category-arrow" aria-hidden="true">→</span>
+            </span>
+          </a>
+
+          <a class="category-card" href="category.html?id=personalisasi">
+            <span class="category-icon" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3a9 9 0 1 0 0 18h1.5a2.5 2.5 0 0 0 1.8-4.3 1.5 1.5 0 0 1 1.1-2.6H19a2 2 0 0 0 2-2A9 9 0 0 0 12 3z"></path>
+                <circle cx="7.5" cy="10" r="1"></circle>
+                <circle cx="11" cy="6.5" r="1"></circle>
+                <circle cx="16" cy="8" r="1"></circle>
+              </svg>
+            </span>
+
+            <h3>Personalisasi</h3>
+            <p>Kenali pilihan untuk menyesuaikan pengalaman penggunaan.</p>
+
+            <span class="category-meta">
+              Pengalaman pribadi
+              <span class="category-arrow" aria-hidden="true">→</span>
+            </span>
+          </a>
+
+          <a class="category-card" href="category.html?id=profil">
+            <span class="category-icon" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="8" r="3.5"></circle>
+                <path d="M5 21v-2a7 7 0 0 1 14 0v2z"></path>
+              </svg>
+            </span>
+
+            <h3>Profil</h3>
+            <p>Pelajari informasi profil dan pengelolaan data akunmu.</p>
+
+            <span class="category-meta">
+              Informasi profil
+              <span class="category-arrow" aria-hidden="true">→</span>
+            </span>
+          </a>
+
+          <a class="category-card" href="category.html?id=privasi">
+            <span class="category-icon" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="4" y="10" width="16" height="11" rx="2"></rect>
+                <path d="M8 10V7a4 4 0 0 1 8 0v3"></path>
+                <path d="M12 14v3"></path>
+              </svg>
+            </span>
+
+            <h3>Privasi &amp; Keamanan</h3>
+            <p>Pahami keamanan akun dan pengelolaan informasi pribadi.</p>
+
+            <span class="category-meta">
+              Keamanan pengguna
+              <span class="category-arrow" aria-hidden="true">→</span>
+            </span>
+          </a>
+
+          <a class="category-card" href="category.html?id=pemecahan-masalah">
+            <span class="category-icon" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="9"></circle>
+                <path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3"></path>
+                <path d="M12 17h.01"></path>
+              </svg>
+            </span>
+
+            <h3>Pemecahan Masalah</h3>
+            <p>Cari solusi untuk kendala teknis dan masalah penggunaan.</p>
+
+            <span class="category-meta">
+              Bantuan teknis
+              <span class="category-arrow" aria-hidden="true">→</span>
+            </span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- PERTANYAAN YANG SERING DICARI -->
+    <section class="section section--compact" id="pertanyaan-sering-dicari">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">JAWABAN CEPAT</span>
+
+          <h2>Pertanyaan yang sering dicari</h2>
+
+          <p>
+            Mulai dari hal mendasar sampai pengelolaan akun.
+          </p>
+        </div>
+
+        <div class="article-list" id="featured-articles">
+          <a class="article-link" href="search.html?q=cara+mendaftar">
+            <span class="article-link-title">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="9"></circle>
+                <path d="M12 8v8M8 12h8"></path>
+              </svg>
+              Bagaimana cara membuat akun Choco AI?
+            </span>
+            <span class="article-link-arrow" aria-hidden="true">→</span>
+          </a>
+
+          <a class="article-link" href="search.html?q=login">
+            <span class="article-link-title">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M10 17l5-5-5-5"></path>
+                <path d="M15 12H3"></path>
+                <path d="M12 3h6a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3h-6"></path>
+              </svg>
+              Bagaimana cara masuk ke akun saya?
+            </span>
+            <span class="article-link-arrow" aria-hidden="true">→</span>
+          </a>
+
+          <a class="article-link" href="search.html?q=personalisasi">
+            <span class="article-link-title">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 3a9 9 0 1 0 0 18h1.5a2.5 2.5 0 0 0 1.8-4.3 1.5 1.5 0 0 1 1.1-2.6H19a2 2 0 0 0 2-2A9 9 0 0 0 12 3z"></path>
+              </svg>
+              Apa fungsi personalisasi di Choco AI?
+            </span>
+            <span class="article-link-arrow" aria-hidden="true">→</span>
+          </a>
+
+          <a class="article-link" href="search.html?q=pengaturan">
+            <span class="article-link-title">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="3"></circle>
+                <path d="m19.4 15 .1.1a2 2 0 1 1-2.8 2.8l-.1-.1a2 2 0 0 0-3.4 1.4v.3a2 2 0 1 1-4 0v-.2A2 2 0 0 0 5.8 17l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1A2 2 0 0 0 1.6 11h-.2a2 2 0 1 1 0-4h.2A2 2 0 0 0 3 3.6l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1A2 2 0 0 0 9.2-.6v-.2a2 2 0 1 1 4 0v.2A2 2 0 0 0 16.6 1l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1A2 2 0 0 0 20.8 7h.2a2 2 0 1 1 0 4h-.2a2 2 0 0 0-1.4 4z" transform="translate(1 2) scale(.92)"></path>
+              </svg>
+              Di mana saya bisa mengatur preferensi?
+            </span>
+            <span class="article-link-arrow" aria-hidden="true">→</span>
+          </a>
+
+          <a class="article-link" href="search.html?q=masalah">
+            <span class="article-link-title">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="9"></circle>
+                <path d="M12 8v4"></path>
+                <path d="M12 16h.01"></path>
+              </svg>
+              Apa yang harus dilakukan jika Choco AI bermasalah?
+            </span>
+            <span class="article-link-arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- DUKUNGAN -->
+    <section class="section" id="dukungan">
+      <div class="container">
+        <div class="support-panel">
+          <div class="support-content">
+            <span class="eyebrow">MASIH BUTUH BANTUAN?</span>
+
+            <h2>Belum menemukan jawabanmu?</h2>
+
+            <p>
+              Telusuri artikel bantuan lainnya untuk menemukan informasi
+              yang sesuai dengan kendalamu.
+            </p>
+          </div>
+
+          <div class="support-actions">
+            <a class="button button--primary" href="search.html?q=">
+              Jelajahi bantuan
+            </a>
+
+            <a class="button button--secondary" href="https://choco-ai.netlify.app/">
+              Buka Choco AI
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <a class="brand" href="index.html">
+            <img
+              class="brand-logo"
+              src="assets/images/choco-logo.svg"
+              alt=""
+              width="38"
+              height="38"
+            >
+
+            <span class="brand-copy">
+              <span class="brand-name">Choco AI</span>
+              <span class="brand-caption">Pusat Bantuan</span>
+            </span>
+          </a>
+
+          <p>
+            Pusat informasi dan panduan untuk membantu kamu menggunakan
+            Choco AI.
+          </p>
+        </div>
+
+        <div class="footer-column">
+          <h3>Pusat Bantuan</h3>
+
+          <div class="footer-links">
+            <a href="#kategori">Semua kategori</a>
+            <a href="#pertanyaan-populer">Pertanyaan populer</a>
+            <a href="search.html?q=akun">Akun &amp; Login</a>
+            <a href="search.html?q=pemecahan+masalah">Pemecahan masalah</a>
+          </div>
+        </div>
+
+        <div class="footer-column">
+          <h3>Choco AI</h3>
+
+          <div class="footer-links">
+            <a href="https://choco-ai.netlify.app/">Buka aplikasi</a>
+            <a href="https://choco-ai.netlify.app/" target="_blank" rel="noopener noreferrer">
+              Kunjungi Choco AI
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>
+          &copy; <span id="current-year">2026</span> Choco AI. Semua hak dilindungi.
+        </p>
+
+        <div class="footer-bottom-links">
+          <a href="index.html">Pusat Bantuan</a>
+          <a href="#top" id="back-to-top">Kembali ke atas ↑</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="data/categories.js"></script>
+  <script src="data/articles.js"></script>
+  <script src="script.js"></script>
+
+  <script>
+    // Tahun footer otomatis mengikuti tahun saat ini.
+    const yearElement = document.getElementById("current-year");
+
+    if (yearElement) {
+      yearElement.textContent = new Date().getFullYear();
+    }
+
+    // Form pencarian memakai halaman search.html.
+    const searchForm = document.getElementById("help-search-form");
+    const searchInput = document.getElementById("help-search-input");
+
+    if (searchForm && searchInput) {
+      searchForm.addEventListener("submit", function (event) {
+        const query = searchInput.value.trim();
+
+        if (!query) {
+          event.preventDefault();
+          searchInput.focus();
+        }
+      });
+    }
+  </script>
+</body>
+</html>

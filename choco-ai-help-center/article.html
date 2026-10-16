@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#090b14">
+  <meta name="description" content="Baca panduan penggunaan Choco AI di Pusat Bantuan.">
+  <title>Artikel Bantuan | Choco AI</title>
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="help-layout">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="index.html" aria-label="Choco AI Help Center">
+        <img src="assets/images/choco-logo.svg" alt="Choco AI" class="brand-logo">
+        <span class="brand-text">
+          <strong>Choco AI</strong>
+          <small>Pusat Bantuan</small>
+        </span>
+      </a>
+
+      <nav class="sidebar-nav" aria-label="Navigasi utama">
+        <a class="side-link" href="index.html">
+          <span aria-hidden="true">⌂</span>
+          <span>Beranda</span>
+        </a>
+        <a class="side-link" href="index.html#kategori">
+          <span aria-hidden="true">▦</span>
+          <span>Kategori bantuan</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <p class="sidebar-caption">CHOCO AI HELP CENTER</p>
+        <p class="sidebar-note">Temukan panduan untuk menggunakan Choco AI.</p>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <button
+          class="menu-toggle"
+          id="menuToggle"
+          type="button"
+          aria-label="Buka navigasi"
+          aria-expanded="false"
+          aria-controls="sidebar"
+        >☰</button>
+
+        <div class="topbar-breadcrumb">
+          <a href="index.html">Pusat Bantuan</a>
+          <span aria-hidden="true">/</span>
+          <a id="article-category-link" href="index.html#kategori">Kategori</a>
+          <span aria-hidden="true">/</span>
+          <span id="breadcrumb-article">Artikel</span>
+        </div>
+
+        <a class="topbar-home" href="index.html">Beranda</a>
+      </header>
+
+      <section class="page-section article-page">
+        <div class="article-heading">
+          <a id="article-back-link" class="back-link" href="index.html">
+            <span aria-hidden="true">←</span> Kembali
+          </a>
+
+          <p id="article-category" class="eyebrow">PANDUAN CHOCO AI</p>
+          <h1 id="article-title">Memuat artikel...</h1>
+          <p id="article-summary" class="article-summary"></p>
+          <p class="article-meta">
+            Terakhir diperbarui:
+            <time id="article-updated">-</time>
+          </p>
+        </div>
+
+        <article id="article-content" class="article-content">
+          <p>Artikel sedang dimuat.</p>
+        </article>
+
+        <section class="related-section" id="related-section" hidden>
+          <h2>Artikel terkait</h2>
+          <div id="related-articles" class="article-list"></div>
+        </section>
+
+        <div class="article-feedback">
+          <p>Apakah panduan ini membantu?</p>
+          <div class="feedback-actions">
+            <button type="button" class="feedback-button" data-feedback="yes">
+              Ya, membantu
+            </button>
+            <button type="button" class="feedback-button" data-feedback="no">
+              Belum membantu
+            </button>
+          </div>
+          <p id="feedback-message" class="feedback-message" role="status" hidden></p>
+        </div>
+      </section>
+
+      <footer class="site-footer">
+        <p>© <span id="currentYear"></span> Choco AI Help Center</p>
+        <a href="index.html">Pusat Bantuan</a>
+      </footer>
+    </main>
+  </div>
+
+  <script src="data/categories.js"></script>
+  <script src="data/articles.js"></script>
+  <script>
+    "use strict";
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const params = new URLSearchParams(window.location.search);
+      const articleId = params.get("id");
+
+      const titleElement = document.getElementById("article-title");
+      const summaryElement = document.getElementById("article-summary");
+      const categoryElement = document.getElementById("article-category");
+      const categoryLink = document.getElementById("article-category-link");
+      const breadcrumbElement = document.getElementById("breadcrumb-article");
+      const updatedElement = document.getElementById("article-updated");
+      const contentElement = document.getElementById("article-content");
+      const backLink = document.getElementById("article-back-link");
+      const relatedSection = document.getElementById("related-section");
+      const relatedContainer = document.getElementById("related-articles");
+      const feedbackMessage = document.getElementById("feedback-message");
+      const sidebar = document.getElementById("sidebar");
+      const menuToggle = document.getElementById("menuToggle");
+      const yearElement = document.getElementById("currentYear");
+
+      if (yearElement) {
+        yearElement.textContent = new Date().getFullYear();
+      }
+
+      function createElement(tag, className, text) {
+        const element = document.createElement(tag);
+
+        if (className) {
+          element.className = className;
+        }
+
+        if (text !== undefined && text !== null) {
+          element.textContent = text;
+        }
+
+        return element;
+      }
+
+      function showNotFound() {
+        window.location.replace("404.html");
+      }
+
+      function closeSidebar() {
+        if (!sidebar || !menuToggle) return;
+
+        sidebar.classList.remove("open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.setAttribute("aria-label", "Buka navigasi");
+      }
+
+      if (menuToggle && sidebar) {
+        menuToggle.addEventListener("click", function () {
+          const isOpen = sidebar.classList.toggle("open");
+
+          menuToggle.setAttribute("aria-expanded", String(isOpen));
+          menuToggle.setAttribute(
+            "aria-label",
+            isOpen ? "Tutup navigasi" : "Buka navigasi"
+          );
+        });
+
+        document.addEventListener("click", function (event) {
+          if (
+            window.innerWidth <= 850 &&
+            sidebar.classList.contains("open") &&
+            !sidebar.contains(event.target) &&
+            !menuToggle.contains(event.target)
+          ) {
+            closeSidebar();
+          }
+        });
+
+        document.addEventListener("keydown", function (event) {
+          if (event.key === "Escape") {
+            closeSidebar();
+          }
+        });
+      }
+
+      if (
+        !articleId ||
+        typeof window.getHelpArticleById !== "function" ||
+        typeof window.getHelpCategoryById !== "function"
+      ) {
+        showNotFound();
+        return;
+      }
+
+      const article = window.getHelpArticleById(articleId);
+
+      if (!article) {
+        showNotFound();
+        return;
+      }
+
+      if (article.redirect) {
+        window.location.replace(article.redirect);
+        return;
+      }
+
+      const category = window.getHelpCategoryById(article.category);
+
+      document.title = article.title + " | Pusat Bantuan Choco AI";
+      titleElement.textContent = article.title;
+      summaryElement.textContent = article.summary || "";
+      breadcrumbElement.textContent = article.title;
+
+      if (category) {
+        categoryElement.textContent = category.title;
+        categoryLink.textContent = category.title;
+        categoryLink.href =
+          "category.html?id=" + encodeURIComponent(category.id);
+        backLink.href =
+          "category.html?id=" + encodeURIComponent(category.id);
+      } else {
+        categoryElement.textContent = "PANDUAN CHOCO AI";
+        categoryLink.textContent = "Kategori";
+        categoryLink.href = "index.html#kategori";
+        backLink.href = "index.html";
+      }
+
+      updatedElement.textContent = article.updated || "Belum ditentukan";
+
+      function renderContentBlock(block) {
+        if (!block || !block.type) return null;
+
+        if (block.type === "p") {
+          return createElement("p", "", block.text || "");
+        }
+
+        if (block.type === "h2") {
+          return createElement("h2", "", block.text || "");
+        }
+
+        if (block.type === "h3") {
+          return createElement("h3", "", block.text || "");
+        }
+
+        if (block.type === "ul" || block.type === "ol") {
+          const list = document.createElement(block.type);
+
+          if (Array.isArray(block.items)) {
+            block.items.forEach(function (item) {
+              list.appendChild(createElement("li", "", item));
+            });
+          }
+
+          return list;
+        }
+
+        return null;
+      }
+
+      contentElement.replaceChildren();
+
+      if (Array.isArray(article.content)) {
+        article.content.forEach(function (block) {
+          const element = renderContentBlock(block);
+
+          if (element) {
+            contentElement.appendChild(element);
+          }
+        });
+      }
+
+      if (!contentElement.children.length) {
+        contentElement.appendChild(
+          createElement("p", "", "Belum ada isi untuk artikel ini.")
+        );
+      }
+
+      if (typeof window.getHelpArticlesByCategory === "function") {
+        const relatedArticles = window
+          .getHelpArticlesByCategory(article.category)
+          .filter(function (item) {
+            return item.id !== article.id && !item.redirect;
+          })
+          .slice(0, 3);
+
+        relatedContainer.replaceChildren();
+
+        relatedArticles.forEach(function (item) {
+          const card = createElement("a", "article-item");
+          card.href = "article.html?id=" + encodeURIComponent(item.id);
+
+          const cardContent = createElement("div", "article-item-content");
+          cardContent.appendChild(createElement("h3", "", item.title));
+          cardContent.appendChild(
+            createElement("p", "", item.summary || "Baca panduan selengkapnya.")
+          );
+
+          card.appendChild(cardContent);
+          card.appendChild(
+            createElement("span", "article-item-arrow", "→")
+          );
+
+          relatedContainer.appendChild(card);
+        });
+
+        relatedSection.hidden = relatedArticles.length === 0;
+      }
+
+      document.querySelectorAll("[data-feedback]").forEach(function (button) {
+        button.addEventListener("click", function () {
+          const helpful = button.dataset.feedback === "yes";
+
+          feedbackMessage.textContent = helpful
+            ? "Terima kasih atas masukanmu."
+            : "Terima kasih. Masukanmu membantu kami memperbaiki panduan.";
+
+          feedbackMessage.hidden = false;
+
+          document.querySelectorAll("[data-feedback]").forEach(function (item) {
+            item.disabled = true;
+          });
+        });
+      });
+    });
+  </script>
+</body>
+</html>
