@@ -35,8 +35,8 @@ UI aplikasi utama di `chocoanakbaik/AIKEPRIBADIAN/public/index.html` menunjukkan
 4. `planned` berarti belum tersedia. Jangan menampilkannya sebagai fitur aktif.
 5. Sara menerima katalog dari `data/features.js` sebagai rujukan status dan batasan fitur; artikel di `data/articles.js` dipakai untuk langkah bantuan yang cocok.
 6. `documented` dan `verify` bukan bukti bahwa fungsi sudah berjalan sempurna di produksi.
-6. Jangan menambahkan redirect global ke 404 pada `netlify.toml`.
-7. File dokumentasi fitur bukan halaman website otomatis. Hubungkan ke navigasi hanya setelah URL dan perilakunya diuji.
+7. Jangan menambahkan redirect global ke 404 pada `netlify.toml`.
+8. File dokumentasi fitur bukan halaman website otomatis. Berkas Markdown internal tidak boleh ditautkan sebagai halaman web kecuali dibuatkan halaman publik khusus.
 
 ## Validasi repository
 
