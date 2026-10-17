@@ -94,17 +94,17 @@ window.HELP_ARTICLES = [
         order: 5,
         updated: "2026-10-16",
         content: [
-            { type: "p", text: "Choco AI menyediakan login menggunakan Google." },
+            { type: "p", text: "Dokumentasi saat ini mencatat alur login menggunakan Google. Ketersediaan dan keberhasilan login bergantung pada konfigurasi aplikasi yang sedang aktif." },
             {
                 type: "ol",
                 items: [
                     "Buka halaman Choco AI.",
-                    "Tekan tombol Login.",
+                    "Jika tombol Login tersedia, pilih tombol tersebut.",
                     "Pilih akun Google yang ingin digunakan.",
-                    "Selesaikan proses autentikasi yang diminta."
+                    "Ikuti proses autentikasi yang benar-benar ditampilkan, lalu periksa apakah aplikasi mengonfirmasi login berhasil."
                 ]
             },
-            { type: "p", text: "Jika login gagal, pastikan koneksi internet berfungsi dan coba kembali setelah beberapa saat." }
+            { type: "p", text: "Jika tombol login tidak tersedia atau proses gagal, jangan menganggap akun sudah terhubung. Periksa koneksi, muat ulang halaman satu kali, dan catat pesan error tanpa membagikan kata sandi, kode verifikasi, atau token sesi." }
         ]
     },
     {
