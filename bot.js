@@ -426,12 +426,6 @@ async function handleQuestion(question) {
          relatedArticles: feature.relatedArticles || [],
          helpPage: feature.helpPage || null
        })),
-       features: features.map((feature) => ({
-         id: feature.id, name: feature.name, group: feature.group,
-         summary: feature.summary || "", details: feature.details || "",
-         usage: feature.usage || [], limitations: feature.limitations || "",
-         relatedArticles: feature.relatedArticles || [], helpPage: feature.helpPage || null
-       })),
        articles: articles.map((article) => ({
          id: article.id,
          title: article.title,
