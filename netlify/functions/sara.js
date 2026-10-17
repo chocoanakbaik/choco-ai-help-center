@@ -169,6 +169,20 @@ function rankArticles(question, articles) {
     .slice(0, 5);
 }
 
+function sanitizeHistory(history) {
+  if (!Array.isArray(history)) return [];
+
+  return history.slice(-8).filter((message) =>
+    message &&
+    typeof message === "object" &&
+    (message.role === "user" || message.role === "assistant") &&
+    typeof message.content === "string"
+  ).map((message) => ({
+    role: message.role,
+    content: message.content.trim().slice(0, 1200)
+  })).filter((message) => message.content);
+}
+
 function getClientIp(event) {
   const headers = event.headers || {};
   const entry = Object.entries(headers).find(([name]) =>
@@ -273,6 +287,8 @@ exports.handler = async function (event) {
     return jsonResponse(400, { error: "Pertanyaan masih kosong." });
   }
 
+  const history = sanitizeHistory(payload.history);
+
   const articles = (Array.isArray(payload.articles) ? payload.articles : [])
     .slice(0, 100).map(sanitizeArticle).filter(Boolean);
   const features = (Array.isArray(payload.features) ? payload.features : [])
@@ -330,6 +346,7 @@ exports.handler = async function (event) {
           max_tokens: 900,
           messages: [
             { role: "system", content: SYSTEM_PROMPT },
+            ...history,
             {
               role: "user",
               content:
