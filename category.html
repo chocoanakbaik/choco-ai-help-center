@@ -189,6 +189,9 @@
       descriptionElement.textContent = category.description;
 
       const articles = window.getHelpArticlesByCategory(categoryId)
+        .filter(function (article) {
+          return !article.redirect;
+        })
         .slice()
         .sort(function (a, b) {
           return (a.order || 0) - (b.order || 0);
