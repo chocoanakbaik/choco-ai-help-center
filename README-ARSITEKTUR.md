@@ -6,7 +6,7 @@ Data fitur produk dipisahkan dari data artikel bantuan. Status artikel tidak bol
 
 ## Struktur
 
-- `data/articles.js`: 35 record artikel: 30 artikel dapat dibuka dan lima entri mengarah ke rute 404. Tetap dipertahankan.
+- `data/articles.js`: 36 record artikel: 31 artikel dapat dibuka dan lima entri mengarah ke rute 404. Tetap dipertahankan.
 - `data/categories.js`: 8 kategori yang digunakan halaman sekarang. Tetap dipertahankan.
 - `data/category.js`: shim legacy yang tidak dimuat halaman dan tidak mendefinisikan ulang data kategori.
 - `data/features.js`: katalog 16 fitur dengan status, penjelasan, cara penggunaan, batasan, dan artikel terkait. Ini juga dikirim oleh `bot.js` ke fungsi Sara.

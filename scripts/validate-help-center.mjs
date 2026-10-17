@@ -85,7 +85,7 @@ check("data kategori, artikel, dan fitur berhasil dimuat", () => {
 
 check("jumlah data inti tidak berkurang tanpa sengaja", () => {
   assert.equal(categories.length, 8, "Jumlah kategori berubah dari 8");
-  assert.equal(articles.length, 35, "Jumlah record artikel harus 35");
+  assert.equal(articles.length, 36, "Jumlah record artikel harus 36");
   assert.equal(features.length, 16, "Jumlah fitur harus 16");
 });
 
@@ -233,6 +233,8 @@ check("fungsi pencarian artikel utama memberi hasil yang masuk akal", () => {
   assert.ok(memoryResults.some((article) => article.id === "memori-permanen"), "Pencarian memori tidak menemukan artikel memori");
   const saveMemoryResults = browserContext.window.searchHelpArticles("menyimpan memori");
   assert.ok(saveMemoryResults.some((article) => article.id === "menyimpan-memori"), "Pencarian menyimpan memori tidak menemukan panduan manual");
+  const privacyResults = browserContext.window.searchHelpArticles("penyedia AI eksternal");
+  assert.ok(privacyResults.some((article) => article.id === "pemrosesan-pesan-ai"), "Pencarian privasi tidak menemukan artikel pemrosesan pesan");
   const bodyResults = browserContext.window.searchHelpArticles("Shift");
   assert.ok(bodyResults.some((article) => article.id === "cara-mulai-chat"), "Pencarian tidak memeriksa isi artikel");
   const identityResults = browserContext.window.searchHelpArticles("apa itu Choco AI");

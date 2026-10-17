@@ -161,6 +161,43 @@ try {
     assert.match(sentBody.messages[1].content, /Simpan memori manual/);
   });
 
+
+  await test("pertanyaan privasi memilih artikel pemrosesan pesan AI", async () => {
+    process.env.GROQ_API_KEY = "test-key-not-a-real-secret";
+    let sentBody;
+    globalThis.fetch = async (_url, options) => {
+      sentBody = JSON.parse(options.body);
+      return { ok: true, status: 200, json: async () => ({ choices: [{ message: { content: "Pesan diproses oleh layanan model Groq untuk menghasilkan jawaban." } }] }) };
+    };
+    const response = await handler(makeEvent({
+      ip: "192.0.2.19",
+      body: JSON.stringify({
+        question: "Apakah pesan saya dikirim ke layanan AI eksternal?",
+        features: [{
+          id: "chat", name: "Percakapan dengan Choco AI", group: "available",
+          summary: "Mengirim pesan ke layanan AI.", details: "Pesan dan konteks relevan dikirim ke Groq.",
+          usage: [], limitations: "Tidak semua pesan pasti tersimpan.",
+          relatedArticles: ["pemrosesan-pesan-ai"], helpPage: { status: "article", articleId: "pemrosesan-pesan-ai" }
+        }],
+        articles: [{
+          id: "pemrosesan-pesan-ai",
+          title: "Apakah pesan saya dikirim ke layanan AI eksternal?",
+          summary: "Ketahui bagaimana pertanyaan dan konteks diproses.",
+          keywords: ["penyedia AI eksternal", "Groq", "data percakapan", "privasi chat"],
+          content: [
+            { type: "p", text: "Pesan chat dikirim melalui backend ke layanan model AI Groq." },
+            { type: "p", text: "Help Center Sara juga mengirim pertanyaan serta konteks terpilih." }
+          ],
+          redirect: null
+        }]
+      })
+    }));
+    assert.equal(response.statusCode, 200);
+    assert.equal(JSON.parse(response.body).sources[0].id, "pemrosesan-pesan-ai");
+    assert.match(sentBody.messages[1].content, /Apakah pesan saya dikirim ke layanan AI eksternal/);
+    assert.match(sentBody.messages[1].content, /layanan model AI Groq/);
+  });
+
   await test("pembatasan dari layanan model tidak diteruskan sebagai error mentah", async () => {
     process.env.GROQ_API_KEY = "test-key-not-a-real-secret";
     globalThis.fetch = async () => ({
@@ -177,7 +214,7 @@ try {
     assert.doesNotMatch(response.body, /upstream detail should not leak/);
   });
 
-  console.log("\nRingkasan pengujian Sara: " + passed + "/9 lulus.");
+  console.log("\nRingkasan pengujian Sara: " + passed + "/10 lulus.");
 } finally {
   globalThis.fetch = originalFetch;
   if (originalApiKey === undefined) delete process.env.GROQ_API_KEY;

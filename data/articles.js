@@ -469,13 +469,30 @@ window.HELP_ARTICLES = [
         ]
     },
     {
+        id: "pemrosesan-pesan-ai",
+        category: "privasi",
+        title: "Apakah pesan saya dikirim ke layanan AI eksternal?",
+        summary: "Ketahui bagaimana pertanyaan dan konteks percakapan diproses untuk menghasilkan jawaban.",
+        keywords: ["layanan AI eksternal", "penyedia AI", "Groq", "pihak ketiga", "pesan dikirim", "data percakapan", "pemrosesan chat", "privasi chat"],
+        popular: false,
+        order: 25,
+        updated: "2026-10-17",
+        content: [
+            { type: "p", text: "Ya. Saat Anda memakai chat Choco AI, pesan dan konteks yang relevan dikirim melalui backend ke layanan model AI Groq untuk menghasilkan jawaban. Jika Anda login dan menyimpan catatan melalui tombol + Memori, catatan yang berhasil dimuat juga dapat disertakan sebagai konteks. Preferensi jawaban yang dipilih di aplikasi dapat ikut dikirim sebagai instruksi." },
+            { type: "p", text: "Sara di Pusat Bantuan juga mengirim pertanyaan yang Anda tulis, sebagian konteks percakapan sementara, katalog fitur, dan artikel bantuan terpilih ke layanan model Groq untuk menyusun respons." },
+            { type: "p", text: "Kunci API digunakan oleh backend dan tidak semestinya dimasukkan ke pesan atau kode browser. Penyimpanan pesan di database akun adalah proses terpisah; penyimpanan tersebut dapat gagal dan tidak berarti pesan tidak diproses oleh layanan model." },
+            { type: "p", text: "Pusat Bantuan ini tidak memverifikasi rincian retensi atau penggunaan data di pihak penyedia layanan. Karena itu, jangan menganggap isi pertanyaan otomatis langsung dihapus atau tidak pernah disimpan oleh penyedia." },
+            { type: "p", text: "Jangan masukkan kata sandi, API key, kode verifikasi, informasi pembayaran, data keuangan, atau rahasia pribadi ke chat atau catatan memori. Masukkan hanya informasi yang memang diperlukan untuk mendapatkan jawaban." }
+        ]
+    },
+    {
         id: "memori-permanen",
         category: "privasi",
         title: "Apakah Choco AI memiliki memori permanen?",
         summary: "Perbedaan antara konteks percakapan dan memori yang tersimpan lintas sesi.",
         keywords: ["memori permanen", "ingatan", "memory", "konteks", "riwayat chat"],
         popular: false,
-        order: 25,
+        order: 26,
         updated: "2026-10-17",
         content: [
             { type: "p", text: "Konteks percakapan menggunakan pesan dari sesi yang sedang berlangsung; itu berbeda dari catatan yang disimpan lintas sesi." },
@@ -490,7 +507,7 @@ window.HELP_ARTICLES = [
         summary: "Simpan catatan pilihan setelah login agar dapat disertakan dalam konteks chat berikutnya.",
         keywords: ["simpan memori", "menyimpan memori", "memori manual", "tombol memori", "ingat informasi", "memories"],
         popular: false,
-        order: 26,
+        order: 27,
         updated: "2026-10-17",
         content: [
             { type: "p", text: "Menu Memori pada sidebar masih bertanda Soon. Namun, setelah login, aplikasi menyediakan tombol terpisah bertuliskan + Memori untuk menyimpan catatan secara manual." },
@@ -514,7 +531,7 @@ window.HELP_ARTICLES = [
         summary: "Batasan opsi penghapusan akun, percakapan, dan memori pada UI saat ini.",
         keywords: ["hapus data", "menghapus akun", "hapus percakapan", "privasi", "data pribadi"],
         popular: false,
-        order: 27,
+        order: 28,
         updated: "2026-10-17",
         content: [
             { type: "p", text: "Antarmuka Choco AI saat ini belum menyediakan tombol mandiri untuk menghapus akun, riwayat percakapan yang tersimpan, atau catatan memori satu per satu." },
@@ -533,7 +550,7 @@ window.HELP_ARTICLES = [
         summary: "Langkah awal saat halaman Choco AI mengalami gangguan.",
         keywords: ["halaman macet", "tidak merespons", "freeze", "browser", "loading"],
         popular: true,
-        order: 28,
+        order: 29,
         updated: "2026-10-16",
         content: [
             {
@@ -555,7 +572,7 @@ window.HELP_ARTICLES = [
         summary: "Cara awal mengatasi masalah tampilan pada browser.",
         keywords: ["tampilan rusak", "CSS", "layout", "desain", "browser"],
         popular: false,
-        order: 29,
+        order: 30,
         updated: "2026-10-16",
         content: [
             {
@@ -576,7 +593,7 @@ window.HELP_ARTICLES = [
         summary: "Langkah awal ketika jaringan terputus selama percakapan.",
         keywords: ["koneksi terputus", "internet mati", "jaringan", "offline"],
         popular: false,
-        order: 30,
+        order: 31,
         updated: "2026-10-16",
         content: [
             { type: "p", text: "Periksa koneksi internet dan tunggu sampai perangkat kembali terhubung." },
@@ -594,7 +611,7 @@ window.HELP_ARTICLES = [
         summary: "Informasi mengenai fitur Jelajahi.",
         keywords: ["jelajahi", "explore", "fitur jelajahi"],
         popular: false,
-        order: 31,
+        order: 32,
         updated: "2026-10-16",
         redirect: "features/unavailable/jelajahi.html"
     },
@@ -605,7 +622,7 @@ window.HELP_ARTICLES = [
         summary: "Informasi mengenai fitur File.",
         keywords: ["file", "dokumen", "lampiran"],
         popular: false,
-        order: 32,
+        order: 33,
         updated: "2026-10-16",
         redirect: "features/unavailable/file.html"
     },
@@ -616,7 +633,7 @@ window.HELP_ARTICLES = [
         summary: "Informasi mengenai fitur unggah file.",
         keywords: ["unggah", "upload", "upload file", "lampiran dokumen"],
         popular: false,
-        order: 33,
+        order: 34,
         updated: "2026-10-16",
         redirect: "features/unavailable/unggah-file.html"
     },
@@ -627,7 +644,7 @@ window.HELP_ARTICLES = [
         summary: "Informasi mengenai fitur analisis gambar.",
         keywords: ["gambar", "analisis gambar", "foto", "image"],
         popular: false,
-        order: 34,
+        order: 35,
         updated: "2026-10-16",
         redirect: "features/unavailable/analisis-gambar.html"
     },
@@ -638,7 +655,7 @@ window.HELP_ARTICLES = [
         summary: "Informasi mengenai fitur pencarian web.",
         keywords: ["pencarian web", "web search", "internet", "browsing"],
         popular: false,
-        order: 35,
+        order: 36,
         updated: "2026-10-16",
         redirect: "features/unavailable/pencarian-web.html"
     },
