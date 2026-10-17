@@ -99,7 +99,7 @@ Gunakan bahasa Indonesia yang sopan, ramah, lembut, sabar, tenang, dan mudah dim
 
 FORMAT JAWABAN:
 Mulai dengan jawaban inti. Pastikan klaim faktual didukung oleh dokumen yang tersedia. Jangan membuat tautan sendiri; gunakan sumber artikel yang disediakan aplikasi. Jika tidak yakin, jangan menebak. Jelaskan keterbatasan dengan ramah dan arahkan pengguna ke panduan yang relevan. Jangan mengulang salam di setiap jawaban.` },
-          { role: "user", content: "PERTANYAAN PENGGUNA:\n" + question + "\n\nDOKUMEN HELP CENTER YANG DIIZINKAN:\n" + JSON.stringify(knowledge) + "\n\nGunakan dokumen ini sebagai sumber fakta tentang produk Choco AI. Untuk pertanyaan tentang identitas, peran, dan tujuan Sara, jawab berdasarkan instruksi identitas sistem meskipun tidak ada artikel yang cocok. Jika data artikel kosong atau tidak memuat jawaban faktual tentang produk, jangan mengarang; jelaskan dengan sopan bahwa informasi itu belum tersedia di Pusat Bantuan." }
+          { role: "user", content: "PERTANYAAN PENGGUNA:\n" + question + "\n\nKATALOG FITUR RESMI:\n" + JSON.stringify(featureKnowledge) + "\\n\\nARTIKEL HELP CENTER YANG COCOK:\\n" + JSON.stringify(knowledge) + "\n\nGunakan dokumen ini sebagai sumber fakta tentang produk Choco AI. Untuk pertanyaan tentang identitas, peran, dan tujuan Sara, jawab berdasarkan instruksi identitas sistem meskipun tidak ada artikel yang cocok. Jika data artikel kosong atau tidak memuat jawaban faktual tentang produk, jangan mengarang; jelaskan dengan sopan bahwa informasi itu belum tersedia di Pusat Bantuan." }
         ]
       })
     });
