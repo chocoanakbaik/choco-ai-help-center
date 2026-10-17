@@ -171,6 +171,10 @@ check("fungsi pencarian artikel utama memberi hasil yang masuk akal", () => {
   assert.ok(loginResults.some((article) => article.id === "login-choco-ai"), "Pencarian login tidak menemukan artikel login");
   const memoryResults = browserContext.window.searchHelpArticles("memori");
   assert.ok(memoryResults.some((article) => article.id === "memori-permanen"), "Pencarian memori tidak menemukan artikel memori");
+  const bodyResults = browserContext.window.searchHelpArticles("Shift");
+  assert.ok(bodyResults.some((article) => article.id === "cara-mulai-chat"), "Pencarian tidak memeriksa isi artikel");
+  const unavailableResults = browserContext.window.searchHelpArticles("unggah file");
+  assert.ok(unavailableResults.every((article) => article.id !== "unggah-file"), "Artikel yang menuju 404 masih tampil dalam pencarian");
   const popular = browserContext.window.getPopularHelpArticles();
   assert.ok(popular.every((article) => !article.redirect), "Artikel redirect tidak boleh tampil sebagai artikel populer");
 });
