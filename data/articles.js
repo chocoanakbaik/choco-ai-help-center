@@ -622,6 +622,15 @@ window.HELP_ARTICLES = [
     // ==========================================
 ];
 
+// Jumlah artikel yang benar-benar bisa dibuka; artikel redirect tidak dihitung.
+if (Array.isArray(window.HELP_CATEGORIES)) {
+    window.HELP_CATEGORIES.forEach(function (category) {
+        category.articleCount = window.HELP_ARTICLES.filter(function (article) {
+            return article.category === category.id && !article.redirect;
+        }).length;
+    });
+}
+
 // ==========================================
 // FUNGSI PENGELOLAAN ARTIKEL
 // ==========================================
