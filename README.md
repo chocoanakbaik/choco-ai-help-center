@@ -16,7 +16,8 @@ Pusat Bantuan statis untuk Choco AI, dilengkapi pencarian artikel, halaman kateg
 - `data/features.js`: katalog status dan batasan 15 fitur Choco AI.
 - `netlify/functions/sara.js`: endpoint serverless yang mengirim pertanyaan dan konteks terpilih ke layanan model.
 - `features/`: dokumentasi internal per fitur, dipisahkan menurut status. Berkas Markdown di folder ini bukan halaman publik otomatis.
-- `features/available/`: panduan area UI utama; status per fitur tetap mengikuti `data/features.js`.
+- `features/available/`: panduan untuk fitur inti yang tersedia.
+- `features/documented/`: panduan untuk fitur yang dokumentasinya ada, tetapi perilaku produksi perlu dikonfirmasi.
 - `features/planned/`: panduan internal untuk fitur yang belum tersedia penuh.
 - `features/verify/`: catatan fitur yang perilakunya belum terkonfirmasi.
 - `features/unavailable/`: dokumentasi internal fitur yang tidak disediakan dan rute HTML lama yang menuju 404.

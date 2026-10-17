@@ -221,8 +221,8 @@ check("setiap fitur memiliki dokumen internal yang sesuai status", () => {
     "obrolan-baru": "features/available/obrolan-baru.md",
     pengaturan: "features/available/pengaturan.md",
     personalisasi: "features/available/personalisasi.md",
-    "login-google": "features/available/login-google.md",
-    profil: "features/available/profil.md",
+    "login-google": "features/documented/login-google.md",
+    profil: "features/documented/profil.md",
     "riwayat-chat": "features/verify/riwayat-chat.md",
     memori: "features/planned/memori.md",
     jelajahi: "features/planned/jelajahi.md",
@@ -238,6 +238,15 @@ check("setiap fitur memiliki dokumen internal yang sesuai status", () => {
     const fullPath = path.join(root, documentPath);
     assert.ok(fs.existsSync(fullPath), feature.id + " dokumen tidak ada: " + documentPath);
     assert.ok(fs.readFileSync(fullPath, "utf8").length > 300, feature.id + " dokumen terlalu dangkal");
+    const expectedFolder = {
+      available: "features/available/",
+      documented: "features/documented/",
+      verify: "features/verify/",
+      planned: "features/planned/",
+      "intentionally-disabled": "features/unavailable/"
+    }[feature.group];
+    assert.ok(expectedFolder && documentPath.startsWith(expectedFolder),
+      feature.id + " disimpan di folder yang tidak sesuai status katalog");
   }
 });
 

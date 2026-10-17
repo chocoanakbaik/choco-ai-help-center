@@ -11,7 +11,8 @@ Data fitur produk dipisahkan dari data artikel bantuan. Status artikel tidak bol
 - `data/category.js`: shim legacy yang tidak dimuat halaman dan tidak mendefinisikan ulang data kategori.
 - `data/features.js`: katalog fitur dengan status, penjelasan, cara penggunaan, batasan, dan artikel terkait. Ini juga dikirim oleh `bot.js` ke fungsi Sara.
 - `features.html`: halaman publik yang menampilkan katalog fitur menurut status.
-- `features/available/`: dokumentasi area UI utama; status tiap fitur tetap ditentukan oleh `data/features.js`, bukan nama folder.
+- `features/available/`: dokumentasi fitur dengan status tersedia.
+- `features/documented/`: dokumentasi fitur yang tersedia di panduan tetapi perlu konfirmasi di produksi.
 - `features/planned/`: dokumentasi fitur yang direncanakan.
 - `features/verify/`: dokumentasi perilaku yang masih perlu diverifikasi.
 - `features/unavailable/`: halaman HTML tipis untuk rute bantuan yang sengaja dialihkan ke `../../404.html`.

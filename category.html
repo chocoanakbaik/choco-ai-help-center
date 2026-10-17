@@ -29,6 +29,10 @@
           <span aria-hidden="true">▦</span>
           <span>Kategori bantuan</span>
         </a>
+        <a class="side-link" href="bot.html">
+          <span aria-hidden="true">?</span>
+          <span>Tanya Sara</span>
+        </a>
       </nav>
 
       <div class="sidebar-bottom">
@@ -62,7 +66,7 @@
           <p class="eyebrow">PUSAT BANTUAN CHOCO AI</p>
           <h1 id="category-title">Kategori Bantuan</h1>
           <p id="category-description">
-            Temukan panduan berdasarkan topik yang ingin kamu pelajari.
+            Temukan panduan berdasarkan topik yang ingin Anda pelajari.
           </p>
         </div>
 
@@ -91,8 +95,8 @@
     </main>
   </div>
 
-  <script src="data/categories.js"></script>
-  <script src="data/articles.js?v=20261017-4"></script>
+  <script src="data/categories.js?v=20261017-2"></script>
+  <script src="data/articles.js?v=20261017-5"></script>
   <script>
     "use strict";
 
@@ -198,7 +202,7 @@
         });
 
       countElement.textContent =
-        articles.length + (articles.length === 1 ? " artikel" : " artikel");
+        articles.length + " artikel";
 
       articleContainer.replaceChildren();
 
