@@ -676,7 +676,17 @@ window.searchHelpArticles = function (query) {
         return [];
     }
 
-    var terms = Array.from(new Set(normalizedQuery.split(/\s+/).filter(Boolean)));
+    var stopWords = new Set([
+        "apa", "apakah", "bagaimana", "gimana", "kenapa", "mengapa", "cara",
+        "yang", "dan", "atau", "untuk", "dengan", "pada", "di", "ke", "dari",
+        "saya", "aku", "kamu", "lu", "gw", "gue", "nya", "bisa", "tolong",
+        "choco", "ai", "itu", "ini", "ada", "tidak", "gak", "ga", "nggak"
+    ]);
+    var terms = Array.from(new Set(
+        normalizedQuery.split(/\s+/).filter(function (term) {
+            return term.length > 1 && !stopWords.has(term);
+        })
+    ));
 
     return window.getHelpArticles()
         .filter(function (article) {
