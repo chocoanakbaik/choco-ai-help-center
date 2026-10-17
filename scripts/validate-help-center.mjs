@@ -188,6 +188,31 @@ check("fungsi pencarian artikel utama memberi hasil yang masuk akal", () => {
   assert.ok(popular.every((article) => !article.redirect), "Artikel redirect tidak boleh tampil sebagai artikel populer");
 });
 
+check("payload browser dengan riwayat maksimal tetap di bawah batas body Sara", () => {
+  const payload = {
+    question: "q".repeat(500),
+    history: Array.from({ length: 8 }, (_, index) => ({
+      role: index % 2 === 0 ? "user" : "assistant",
+      content: "x".repeat(1200)
+    })),
+    features: features.map((feature) => ({
+      id: feature.id, name: feature.name, group: feature.group,
+      summary: feature.summary || "", details: feature.details || "",
+      usage: feature.usage || [], limitations: feature.limitations || "",
+      relatedArticles: feature.relatedArticles || [],
+      helpPage: feature.helpPage || null
+    })),
+    articles: articles.map((article) => ({
+      id: article.id, title: article.title, summary: article.summary || "",
+      keywords: article.keywords || [], content: article.content || [],
+      redirect: article.redirect || null
+    }))
+  };
+  const bytes = Buffer.byteLength(JSON.stringify(payload), "utf8");
+  assert.ok(bytes < 100 * 1024, "Payload representatif terlalu besar: " + bytes + " byte");
+  console.log("INFO payload representatif: " + bytes + " byte");
+});
+
 check("setiap fitur memiliki dokumen internal yang sesuai status", () => {
   const featureDocs = {
     beranda: "features/available/beranda.md",
