@@ -14,7 +14,8 @@ Pusat Bantuan statis untuk Choco AI, dilengkapi pencarian artikel, halaman kateg
 - `data/articles.js`: sumber data 34 artikel aktif beserta fungsi pencarian.
 - `data/features.js`: katalog status dan batasan 15 fitur Choco AI.
 - `netlify/functions/sara.js`: endpoint serverless yang mengirim pertanyaan dan konteks terpilih ke layanan model.
-- `features/`: dokumentasi internal per fitur. Berkas Markdown di folder ini bukan halaman publik otomatis.
+- `features/`: dokumentasi internal per fitur, dipisahkan menurut status. Berkas Markdown di folder ini bukan halaman publik otomatis.
+- `features/verify/`: catatan fitur yang perilakunya belum terkonfirmasi.
 - `scripts/validate-help-center.mjs`: pemeriksaan konsistensi repository tanpa dependensi pihak ketiga.
 
 ## Pengujian sebelum deploy
@@ -23,9 +24,10 @@ Gunakan Node.js 20 atau lebih baru. Dari root repository, jalankan:
 
 ```bash
 node scripts/validate-help-center.mjs
+node scripts/test-sara-function.mjs
 ```
 
-Pemeriksaan ini memvalidasi sintaks JavaScript termasuk skrip inline HTML, data kategori/artikel/fitur, ID duplikat, referensi artikel, target redirect, dan tautan file lokal. Workflow GitHub Actions menjalankan pemeriksaan yang sama pada perubahan branch `main` dan pull request. Workflow ini **tidak melakukan deploy ke Netlify**.
+Skrip pertama memvalidasi sintaks JavaScript termasuk skrip inline HTML, data kategori/artikel/fitur, ID duplikat, referensi artikel, target redirect, pencarian, dokumentasi fitur, dan tautan file lokal. Skrip kedua menguji perilaku endpoint Sara dengan fetch tiruan, tanpa menghubungi layanan model sungguhan. Workflow GitHub Actions menjalankan keduanya pada perubahan branch `main` dan pull request. Workflow ini **tidak melakukan deploy ke Netlify**.
 
 Pemeriksaan statis tidak dapat membuktikan bahwa OAuth, API eksternal, atau UI produksi berfungsi. Tetap lakukan deploy manual setelah pemeriksaan GitHub lulus, lalu uji halaman dan Sara di Netlify.
 
