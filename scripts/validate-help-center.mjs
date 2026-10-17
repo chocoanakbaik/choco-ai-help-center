@@ -83,6 +83,12 @@ check("data kategori, artikel, dan fitur berhasil dimuat", () => {
   assert.ok(Array.isArray(features) && features.length > 0, "CHOCO_FEATURES kosong");
 });
 
+check("jumlah data inti tidak berkurang tanpa sengaja", () => {
+  assert.equal(categories.length, 8, "Jumlah kategori berubah dari 8");
+  assert.equal(articles.length, 34, "Jumlah artikel berubah dari 34");
+  assert.equal(features.length, 15, "Jumlah fitur berubah dari 15");
+});
+
 check("ID kategori, artikel, dan fitur unik", () => {
   for (const [label, list] of [["kategori", categories], ["artikel", articles], ["fitur", features]]) {
     const ids = list.map((item) => item.id);
@@ -158,6 +164,50 @@ check("beranda memakai skrip yang sesuai dan semua elemen opsional dijaga", () =
   assert.match(homeScript, /DOMContentLoaded/);
   assert.doesNotMatch(homeScript, /getElementById\(["']searchForm["']\)/, "skrip beranda masih mencari ID dari halaman lain");
   assert.match(homeScript, /if\s*\(\s*searchForm\s*&&\s*searchInput\s*\)/, "form pencarian harus diperiksa sebelum dipakai");
+});
+
+check("fungsi pencarian artikel utama memberi hasil yang masuk akal", () => {
+  const loginResults = browserContext.window.searchHelpArticles("login");
+  assert.ok(loginResults.some((article) => article.id === "login-choco-ai"), "Pencarian login tidak menemukan artikel login");
+  const memoryResults = browserContext.window.searchHelpArticles("memori");
+  assert.ok(memoryResults.some((article) => article.id === "memori-permanen"), "Pencarian memori tidak menemukan artikel memori");
+  const popular = browserContext.window.getPopularHelpArticles();
+  assert.ok(popular.every((article) => !article.redirect), "Artikel redirect tidak boleh tampil sebagai artikel populer");
+});
+
+check("setiap fitur memiliki dokumen internal yang sesuai status", () => {
+  const featureDocs = {
+    beranda: "features/available/beranda.md",
+    chat: "features/available/chat.md",
+    "template-pertanyaan": "features/available/template-pertanyaan.md",
+    "obrolan-baru": "features/available/obrolan-baru.md",
+    pengaturan: "features/available/pengaturan.md",
+    personalisasi: "features/available/personalisasi.md",
+    "login-google": "features/available/login-google.md",
+    profil: "features/available/profil.md",
+    "riwayat-chat": "features/verify/riwayat-chat.md",
+    memori: "features/planned/memori.md",
+    jelajahi: "features/planned/jelajahi.md",
+    file: "features/planned/file.md",
+    "unggah-file": "features/unavailable/unggah-file.md",
+    "analisis-gambar": "features/unavailable/analisis-gambar.md",
+    "pencarian-web": "features/unavailable/pencarian-web.md"
+  };
+  assert.equal(Object.keys(featureDocs).length, features.length, "Peta dokumen tidak mencakup seluruh fitur");
+  for (const feature of features) {
+    const documentPath = featureDocs[feature.id];
+    assert.ok(documentPath, feature.id + " belum memiliki dokumen internal");
+    const fullPath = path.join(root, documentPath);
+    assert.ok(fs.existsSync(fullPath), feature.id + " dokumen tidak ada: " + documentPath);
+    assert.ok(fs.readFileSync(fullPath, "utf8").length > 300, feature.id + " dokumen terlalu dangkal");
+  }
+});
+
+check("salinan kategori lama tidak dipakai sebagai sumber kedua", () => {
+  const html = [...htmlByPath.values()].join("\n");
+  assert.doesNotMatch(html, /data\/category\.js/, "Halaman masih memuat file kategori legacy");
+  const legacy = fs.readFileSync(path.join(root, "data/category.js"), "utf8");
+  assert.doesNotMatch(legacy, /window\.HELP_CATEGORIES\s*=/, "File legacy mendefinisikan ulang data kategori");
 });
 
 check("halaman fitur memuat katalog artikel untuk tautan yang akurat", () => {
