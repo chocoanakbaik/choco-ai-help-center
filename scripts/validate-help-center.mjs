@@ -158,6 +158,47 @@ check("tautan file lokal statis di HTML tidak rusak", () => {
   assert.deepEqual(missing, [], missing.join("\n"));
 });
 
+check("tautan fragmen internal menunjuk target yang tersedia", () => {
+  const dynamicAnchors = {
+    "features.html": new Set([
+      "tersedia", "status-documented", "status-verify", "rencana", "tidak-disediakan"
+    ])
+  };
+  const broken = [];
+
+  for (const [file, html] of htmlByPath) {
+    const ids = new Set([...html.matchAll(/\\bid\\s*=\\s*["']([^"']+)["']/gi)].map((match) => match[1]));
+    for (const match of html.matchAll(/\\bhref\\s*=\\s*["']([^"']*#[^"']*)["']/gi)) {
+      const raw = match[1].trim();
+      const hashIndex = raw.indexOf("#");
+      if (hashIndex < 0) continue;
+      const rawPath = raw.slice(0, hashIndex).split(/[?]/, 1)[0];
+      const fragment = decodeURIComponent(raw.slice(hashIndex + 1));
+      let targetFile = file;
+
+      if (rawPath) {
+        const targetPath = path.resolve(root, path.dirname(file), rawPath);
+        if (!targetPath.startsWith(root + path.sep)) {
+          broken.push(file + " -> " + raw);
+          continue;
+        }
+        targetFile = relative(targetPath);
+      }
+
+      const targetHtml = htmlByPath.get(targetFile);
+      if (!targetHtml) continue;
+      const targetIds = targetFile === file
+        ? ids
+        : new Set([...targetHtml.matchAll(/\\bid\\s*=\\s*["']([^"']+)["']/gi)].map((item) => item[1]));
+      if (!targetIds.has(fragment) && !(dynamicAnchors[targetFile] && dynamicAnchors[targetFile].has(fragment))) {
+        broken.push(file + " -> " + raw);
+      }
+    }
+  }
+
+  assert.deepEqual(broken, [], broken.join("\\n"));
+});
+
 check("ID HTML tidak duplikat pada halaman yang sama", () => {
   for (const [file, html] of htmlByPath) {
     const ids = [...html.matchAll(/\bid\s*=\s*["']([^"']+)["']/gi)].map((match) => match[1]);

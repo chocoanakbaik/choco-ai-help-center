@@ -61,7 +61,7 @@ window.HELP_CATEGORIES = [
       id: "profil",
       title: "Profil",
       description:
-        "Informasi profil pengguna dan panduan mengelola data profil akun.",
+        "Pahami data akun yang digunakan saat login dan batasan pengelolaan profil.",
       icon: "contact",
       articleCount: 0,
       order: 6,
