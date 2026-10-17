@@ -434,7 +434,7 @@ window.HELP_ARTICLES = [
             { type: "p", text: "Buka menu Profil dari antarmuka Choco AI untuk melihat informasi akun yang tersedia." },
             { type: "p", text: "Pilihan yang dapat diubah bergantung pada fitur profil yang sedang tersedia di aplikasi. Jangan membagikan kata sandi atau informasi autentikasi kepada orang lain." }
         ]
-    }
+    },
     {
         id: "mengubah-data-profil",
         category: "profil",
@@ -448,7 +448,7 @@ window.HELP_ARTICLES = [
             { type: "p", text: "Buka menu Profil dan periksa apakah informasi yang ingin diubah menyediakan opsi edit." },
             { type: "p", text: "Jika opsi perubahan belum tersedia di antarmuka, data tersebut belum dapat diubah dari halaman profil. Hindari mencoba mengubah data akun secara langsung melalui alat browser." }
         ]
-    }
+    },
 
     // ==========================================
     // PRIVASI & MEMORI
@@ -481,7 +481,7 @@ window.HELP_ARTICLES = [
             { type: "p", text: "Konteks percakapan membantu Choco AI merujuk pesan sebelumnya dalam sesi yang sedang berlangsung. Hal itu berbeda dari memori permanen yang menyimpan informasi untuk percakapan berikutnya." },
             { type: "p", text: "Ketersediaan memori lintas sesi bergantung pada fitur yang benar-benar aktif pada aplikasi. Jangan menganggap suatu informasi akan selalu diingat jika aplikasi belum menunjukkan bahwa informasi tersebut berhasil disimpan." }
         ]
-    }
+    },
     {
         id: "menghapus-data",
         category: "privasi",
@@ -495,7 +495,7 @@ window.HELP_ARTICLES = [
             { type: "p", text: "Periksa menu Profil atau Pengaturan untuk melihat apakah tersedia pilihan penghapusan data atau akun." },
             { type: "p", text: "Jika pilihan penghapusan belum tersedia, jangan menganggap data telah terhapus hanya dengan menghapus riwayat browser atau keluar dari akun. Penghapusan data tersimpan perlu ditangani melalui mekanisme yang memang disediakan aplikasi." }
         ]
-    }
+    },
 
     // ==========================================
     // PEMECAHAN MASALAH
