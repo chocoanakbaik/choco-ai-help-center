@@ -42,7 +42,7 @@ function relative(file) {
 }
 
 const allFiles = walk(root);
-const jsFiles = allFiles.filter((file) => file.endsWith(".js") || file.endsWith(".mjs"));
+const jsFiles = allFiles.filter((file) => file.endsWith(".js"));
 const htmlFiles = allFiles.filter((file) => file.endsWith(".html"));
 const htmlByPath = new Map(htmlFiles.map((file) => [relative(file), fs.readFileSync(file, "utf8")]));
 
