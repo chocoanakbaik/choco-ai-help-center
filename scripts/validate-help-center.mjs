@@ -167,8 +167,8 @@ check("tautan fragmen internal menunjuk target yang tersedia", () => {
   const broken = [];
 
   for (const [file, html] of htmlByPath) {
-    const ids = new Set([...html.matchAll(/\\bid\\s*=\\s*["']([^"']+)["']/gi)].map((match) => match[1]));
-    for (const match of html.matchAll(/\\bhref\\s*=\\s*["']([^"']*#[^"']*)["']/gi)) {
+    const ids = new Set([...html.matchAll(/\bid\\s*=\\s*["']([^"']+)["']/gi)].map((match) => match[1]));
+    for (const match of html.matchAll(/\bhref\\s*=\\s*["']([^"']*#[^"']*)["']/gi)) {
       const raw = match[1].trim();
       const hashIndex = raw.indexOf("#");
       if (hashIndex < 0) continue;
@@ -189,14 +189,14 @@ check("tautan fragmen internal menunjuk target yang tersedia", () => {
       if (!targetHtml) continue;
       const targetIds = targetFile === file
         ? ids
-        : new Set([...targetHtml.matchAll(/\\bid\\s*=\\s*["']([^"']+)["']/gi)].map((item) => item[1]));
+        : new Set([...targetHtml.matchAll(/\bid\\s*=\\s*["']([^"']+)["']/gi)].map((item) => item[1]));
       if (!targetIds.has(fragment) && !(dynamicAnchors[targetFile] && dynamicAnchors[targetFile].has(fragment))) {
         broken.push(file + " -> " + raw);
       }
     }
   }
 
-  assert.deepEqual(broken, [], broken.join("\\n"));
+  assert.deepEqual(broken, [], broken.join("\n"));
 });
 
 check("ID HTML tidak duplikat pada halaman yang sama", () => {
