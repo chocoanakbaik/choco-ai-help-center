@@ -1,17 +1,26 @@
 # Pengaturan
 
-**Status:** Menu tercatat tersedia. Opsi yang tampil mengikuti versi aplikasi.
+**Status katalog:** Menu tercatat tersedia; opsi yang benar-benar tampil mengikuti versi aplikasi.
 
 ## Fungsi
-Pengaturan digunakan untuk menyesuaikan preferensi penggunaan. Artikel Help Center membahas kelompok usia, panjang jawaban, efek mengetik, dan sapaan berdasarkan waktu.
+Pengaturan digunakan untuk menyesuaikan preferensi penggunaan. Artikel Help Center saat ini membahas kelompok usia, panjang jawaban, efek mengetik, dan sapaan berdasarkan waktu.
 
 ## Cara menggunakan
 1. Buka menu **Pengaturan** dari navigasi aplikasi.
-2. Pilih opsi yang ingin diubah.
-3. Baca keterangan di layar sebelum memilih nilai.
-4. Simpan jika ada tombol simpan, lalu periksa apakah perubahan diterapkan.
+2. Baca keterangan opsi sebelum mengubah nilainya.
+3. Pilih nilai yang sesuai dengan kebutuhan.
+4. Simpan jika tersedia tombol simpan.
+5. Periksa apakah perubahan terlihat setelah menu ditutup atau halaman dibuka kembali.
 
-## Batasan
-Dokumentasi menyebut beberapa preferensi disimpan pada browser yang digunakan. Jangan menjanjikan semua pengaturan otomatis tersinkron lintas perangkat. Pilihan kelompok usia juga bukan proses verifikasi umur.
+## Arti opsi dan batasan
+- **Kelompok usia:** preferensi untuk menyesuaikan pengalaman, bukan verifikasi identitas atau umur.
+- **Panjang jawaban:** mengatur tingkat ringkas atau detail sesuai opsi yang benar-benar ditampilkan.
+- **Efek mengetik:** berkaitan dengan animasi tampilan, bukan kecepatan model menghasilkan jawaban.
+- **Sapaan berdasarkan waktu:** memengaruhi sapaan yang ditampilkan jika kontrol tersebut tersedia.
+
+Jangan menjanjikan bahwa setiap preferensi tersimpan permanen atau tersinkron otomatis lintas perangkat. Penyimpanan browser dapat berbeda antarperangkat atau profil browser.
+
+## Jika perubahan tidak diterapkan
+Muat ulang halaman setelah memastikan perubahan tersimpan. Jika opsi tidak terlihat, jangan mengarang letak tombol; jelaskan bahwa opsi dapat berbeda menurut versi aplikasi.
 
 **Artikel terkait:** `membuka-pengaturan`, `kelompok-usia`, `panjang-jawaban`, `efek-mengetik`, `sapaan-waktu`.
