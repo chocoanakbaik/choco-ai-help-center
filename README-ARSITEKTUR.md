@@ -41,7 +41,7 @@ UI aplikasi utama di `chocoanakbaik/AIKEPRIBADIAN/public/index.html` menunjukkan
 
 ## Validasi repository
 
-Jalankan `node scripts/validate-help-center.mjs` untuk memeriksa sintaks JavaScript dan skrip inline, konsistensi ID data, kategori artikel, referensi fitur, target redirect, dan tautan file lokal. Workflow GitHub Actions menjalankan pemeriksaan ini; workflow tersebut tidak men-deploy ke Netlify.
+Jalankan `node scripts/validate-help-center.mjs` untuk memeriksa sintaks JavaScript dan skrip inline, konsistensi ID data, kategori artikel, referensi fitur, target redirect, pencarian, dokumentasi fitur, dan tautan file lokal. Jalankan `node scripts/test-sara-function.mjs` untuk menguji status HTTP, validasi input, rate limit, dan respons model tiruan. Workflow GitHub Actions menjalankan kedua pemeriksaan ini; workflow tersebut tidak men-deploy ke Netlify.
 
 Pembatasan permintaan Sara menggunakan memori instance serverless sehingga hanya best effort. Jangan menganggapnya sebagai batas global yang persisten.
 
