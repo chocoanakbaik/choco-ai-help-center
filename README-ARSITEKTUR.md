@@ -11,7 +11,8 @@ Data fitur produk dipisahkan dari data artikel bantuan. Status artikel tidak bol
 - `data/features.js`: katalog fitur dengan status, penjelasan, cara penggunaan, batasan, dan artikel terkait. Ini juga dikirim oleh `bot.js` ke fungsi Sara.
 - `features.html`: halaman publik yang menampilkan katalog fitur menurut status.
 - `features/available/`: dokumentasi fitur yang tersedia, satu file per fitur.
-- `features/planned/`: dokumentasi fitur yang direncanakan, satu file per fitur.
+- `features/planned/`: dokumentasi fitur yang direncanakan.
+- `features/verify/`: dokumentasi perilaku yang masih perlu diverifikasi.
 - `features/unavailable/`: halaman HTML tipis untuk rute bantuan yang sengaja dialihkan ke `../../404.html`.
 
 ## Yang ditemukan di repo
