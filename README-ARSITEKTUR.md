@@ -6,7 +6,7 @@ Data fitur produk dipisahkan dari data artikel bantuan. Status artikel tidak bol
 
 ## Struktur
 
-- `data/articles.js`: 35 artikel yang digunakan halaman sekarang. Tetap dipertahankan.
+- `data/articles.js`: 34 artikel yang digunakan halaman sekarang. Tetap dipertahankan.
 - `data/categories.js`: 8 kategori yang digunakan halaman sekarang. Tetap dipertahankan.
 - `data/features.js`: katalog fitur dengan status, penjelasan, cara penggunaan, batasan, dan artikel terkait. Ini juga dikirim oleh `bot.js` ke fungsi Sara.
 - `features.html`: halaman publik yang menampilkan katalog fitur menurut status.
@@ -37,6 +37,12 @@ UI aplikasi utama di `chocoanakbaik/AIKEPRIBADIAN/public/index.html` menunjukkan
 6. `documented` dan `verify` bukan bukti bahwa fungsi sudah berjalan sempurna di produksi.
 6. Jangan menambahkan redirect global ke 404 pada `netlify.toml`.
 7. File dokumentasi fitur bukan halaman website otomatis. Hubungkan ke navigasi hanya setelah URL dan perilakunya diuji.
+
+## Validasi repository
+
+Jalankan `node scripts/validate-help-center.mjs` untuk memeriksa sintaks JavaScript dan skrip inline, konsistensi ID data, kategori artikel, referensi fitur, target redirect, dan tautan file lokal. Workflow GitHub Actions menjalankan pemeriksaan ini; workflow tersebut tidak men-deploy ke Netlify.
+
+Pembatasan permintaan Sara menggunakan memori instance serverless sehingga hanya best effort. Jangan menganggapnya sebagai batas global yang persisten.
 
 ## Status
 
