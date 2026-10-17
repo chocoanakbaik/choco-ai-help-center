@@ -405,7 +405,6 @@ async function handleQuestion(question) {
 
  const articles = getArticles();
  const features = Array.isArray(window.CHOCO_FEATURES) ? window.CHOCO_FEATURES : [];
- const features = Array.isArray(window.CHOCO_FEATURES) ? window.CHOCO_FEATURES : [];
 
  // Sara tetap dapat menjawab pertanyaan tentang identitas dan fungsi dirinya
  // meskipun data artikel gagal dimuat. Untuk fakta produk, ia akan menyatakan
