@@ -1,17 +1,23 @@
 # Personalisasi
 
-**Status:** Menu tercatat tersedia. Kontrol yang tampil harus mengikuti UI aktual.
+**Status katalog:** Menu tercatat tersedia; kontrol yang tampil harus mengikuti UI aktual.
 
 ## Fungsi
-Personalisasi bertujuan menyesuaikan pengalaman Choco AI, termasuk preferensi gaya bahasa, tingkat detail, humor, dan emoji sebagaimana dibahas dalam artikel Help Center.
+Personalisasi bertujuan menyesuaikan gaya pengalaman percakapan. Artikel yang tersedia membahas gaya bahasa, tingkat detail penjelasan, humor, dan emoji.
 
 ## Cara menggunakan
 1. Buka menu **Personalisasi**.
 2. Baca penjelasan setiap pilihan yang benar-benar tampil.
-3. Sesuaikan pilihan sesuai kebutuhan.
-4. Simpan perubahan jika kontrol simpan tersedia.
+3. Sesuaikan pilihan dengan kebutuhan.
+4. Simpan jika ada kontrol simpan.
+5. Uji hasilnya dalam percakapan baru atau pesan berikutnya tanpa menganggap perubahan langsung berlaku pada semua sesi.
 
 ## Batasan
-Jangan mengklaim personalisasi melatih ulang model, berlaku pada semua perangkat, atau tersimpan permanen kecuali perilaku tersebut sudah diverifikasi. Sara tidak dapat mengubah preferensi pengguna secara langsung.
+Personalisasi bukan bukti bahwa model dilatih ulang. Jangan mengklaim preferensi berlaku pada seluruh perangkat, tersimpan permanen, atau mengubah semua jawaban tanpa batas. Perilaku akhir tetap dapat dipengaruhi konteks, instruksi, dan kemampuan model.
+
+Sara hanya menjelaskan panduan. Sara tidak dapat membuka menu Personalisasi atau mengubah preferensi pengguna dari percakapan Help Center.
+
+## Jika hasil tidak sesuai
+Periksa kembali pilihan yang aktif, simpan jika diperlukan, dan buat contoh permintaan yang jelas. Jika kontrol yang disebut artikel tidak terlihat, gunakan UI aktual sebagai acuan dan jangan mengarang tombol.
 
 **Artikel terkait:** `membuka-personalisasi`, `gaya-bahasa`, `tingkat-detail`, `humor-dan-emoji`.
