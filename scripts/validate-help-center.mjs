@@ -180,6 +180,8 @@ check("fungsi pencarian artikel utama memberi hasil yang masuk akal", () => {
   assert.ok(memoryResults.some((article) => article.id === "memori-permanen"), "Pencarian memori tidak menemukan artikel memori");
   const bodyResults = browserContext.window.searchHelpArticles("Shift");
   assert.ok(bodyResults.some((article) => article.id === "cara-mulai-chat"), "Pencarian tidak memeriksa isi artikel");
+  const identityResults = browserContext.window.searchHelpArticles("apa itu Choco AI");
+  assert.ok(identityResults.some((article) => article.id === "tentang-choco-ai"), "Pencarian frasa lengkap tidak menemukan artikel identitas");
   const unavailableResults = browserContext.window.searchHelpArticles("unggah file");
   assert.ok(unavailableResults.every((article) => article.id !== "unggah-file"), "Artikel yang menuju 404 masih tampil dalam pencarian");
   const popular = browserContext.window.getPopularHelpArticles();
@@ -225,6 +227,22 @@ check("halaman fitur memuat katalog artikel untuk tautan yang akurat", () => {
   const html = htmlByPath.get("features.html") || "";
   assert.match(html, /data\/articles\.js/, "data artikel belum dimuat di halaman fitur");
   assert.match(html, /Baca:/, "tautan artikel masih memakai label generik");
+});
+
+check("konteks lanjutan Sara dibatasi dan divalidasi", () => {
+  const client = fs.readFileSync(path.join(root, "bot.js"), "utf8");
+  const server = fs.readFileSync(path.join(root, "netlify/functions/sara.js"), "utf8");
+  assert.match(client, /MAX_HISTORY_MESSAGES\s*=\s*8/);
+  assert.match(client, /history:\s*previousHistory/);
+  assert.match(server, /function sanitizeHistory/);
+  assert.match(server, /message\.role === "user" \|\| message\.role === "assistant"/);
+  assert.match(server, /history\.slice\(-8\)/);
+});
+
+check("umpan balik artikel tidak mengklaim terkirim jika belum ada backend", () => {
+  const html = htmlByPath.get("article.html") || "";
+  assert.match(html, /belum dikirim ke tim Help Center/);
+  assert.match(html, /masukan ini tidak disimpan/);
 });
 
 check("fungsi Sara membatasi ukuran input dan menangani batas permintaan", () => {
