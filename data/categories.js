@@ -21,7 +21,7 @@ window.HELP_CATEGORIES = [
       id: "akun",
       title: "Akun & Login",
       description:
-        "Panduan pendaftaran, login, metode masuk, dan solusi kendala akses akun.",
+        "Panduan login, akses akun, keluar dari akun, dan solusi kendala masuk.",
       icon: "user",
       articleCount: 0,
       order: 2,
