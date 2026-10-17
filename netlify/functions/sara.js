@@ -50,10 +50,19 @@ exports.handler = async function(event) {
     const payload = JSON.parse(event.body || "{}");
     const question = String(payload.question || "").trim().slice(0, 1000);
     const articles = Array.isArray(payload.articles) ? payload.articles.slice(0, 100) : [];
+    const features = Array.isArray(payload.features) ? payload.features.slice(0, 50) : [];
     if (!question) return { statusCode: 400, headers, body: JSON.stringify({ error: "Pertanyaan masih kosong." }) };
     const matches = rankArticles(question, articles);
     const sources = matches.slice(0, 3).map(x => ({
       id: x.article.id, title: x.article.title, redirect: x.article.redirect || null
+    }));
+    const featureKnowledge = features.map(feature => ({
+      id: feature.id, name: feature.name, status: feature.group || "unknown",
+      summary: feature.summary || "", details: feature.details || "",
+      usage: Array.isArray(feature.usage) ? feature.usage : [],
+      limitations: feature.limitations || "",
+      relatedArticles: Array.isArray(feature.relatedArticles) ? feature.relatedArticles : [],
+      helpPage: feature.helpPage || null
     }));
     const knowledge = matches.map(({article}) => ({
       id: article.id,
