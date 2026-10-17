@@ -264,6 +264,7 @@ check("halaman fitur memuat katalog artikel untuk tautan yang akurat", () => {
   const html = htmlByPath.get("features.html") || "";
   assert.match(html, /data\/articles\.js/, "data artikel belum dimuat di halaman fitur");
   assert.match(html, /Baca:/, "tautan artikel masih memakai label generik");
+  assert.doesNotMatch(html, /Rute lama menuju 404/, "katalog publik tidak boleh mengarahkan pengguna ke tautan 404");
 });
 
 check("konteks lanjutan Sara dibatasi dan divalidasi", () => {

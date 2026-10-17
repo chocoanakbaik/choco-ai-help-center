@@ -1,93 +1,33 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#090b14">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080b14">
   <meta name="robots" content="noindex, nofollow">
-  <meta name="description" content="Halaman tidak dapat ditampilkan saat ini.">
-  <title>404 | Choco AI</title>
-
+  <meta name="description" content="Halaman tidak ditemukan di Choco AI Help Center.">
+  <title>Halaman tidak ditemukan | Choco AI Help Center</title>
   <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
   <link rel="stylesheet" href="style.css">
+  <style>
+    .not-found{min-height:100vh;padding:32px 20px}
+    .not-found-mark{display:grid;place-items:center;width:48px;height:48px;margin:0 auto 22px;border:1px solid rgba(126,149,255,.3);border-radius:15px;background:var(--gradient);color:#fff;font-weight:800;font-size:22px;box-shadow:0 0 28px rgba(105,118,255,.18)}
+    .not-found p{margin-bottom:24px}
+    .not-found-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;max-width:700px}
+  </style>
 </head>
-
 <body>
   <main class="not-found">
-    <a href="index.html" aria-label="Kembali ke Pusat Bantuan">
-      <img
-        src="assets/images/choco-logo.svg"
-        alt="Choco AI"
-        width="42"
-        height="42"
-        style="object-fit:contain; margin-bottom:24px;"
-      >
-    </a>
-
+    <div class="not-found-mark" aria-hidden="true">C</div>
     <div class="not-found-code" aria-label="Error 404">404</div>
-
-    <h1 id="error-title">Ouppss!!</h1>
-
-    <p id="error-message" role="status" aria-live="polite">
-      Sepertinya kami sedang mengalami kesalahan server.
-    </p>
-
-    <a
-      href="index.html"
-      class="contact-button"
-      style="margin-top:12px; text-decoration:none;"
-    >
-      Kembali ke Beranda
-    </a>
+    <h1>Halaman tidak ditemukan</h1>
+    <p>Alamat ini mungkin sudah berubah, atau panduan yang dicari belum tersedia. Ini tidak selalu berarti layanan sedang mengalami gangguan.</p>
+    <nav class="not-found-actions" aria-label="Pilihan bantuan">
+      <a href="index.html" class="button button--primary">Kembali ke Pusat Bantuan</a>
+      <a href="search.html" class="button button--secondary">Cari panduan</a>
+      <a href="features.html" class="button button--secondary">Lihat status fitur</a>
+      <a href="bot.html" class="button button--secondary">Tanya Sara</a>
+    </nav>
   </main>
-
-  <script>
-    (() => {
-      const messages = [
-        {
-          title: "Ouppss!!",
-          message: "Sepertinya kami sedang mengalami kesalahan server."
-        },
-        {
-          title: "Oops!!",
-          message: "Sepertinya ada kendala saat memproses permintaan Anda."
-        },
-        {
-          title: "Waduh!!",
-          message: "Terjadi kesalahan yang tidak terduga. Silakan coba kembali."
-        },
-        {
-          title: "Upss!!",
-          message: "Halaman ini sepertinya sedang mengalami gangguan."
-        },
-        {
-          title: "Oops, ada kendala!",
-          message: "Kami belum dapat memuat halaman ini."
-        },
-        {
-          title: "Sepertinya ada yang tidak beres!",
-          message: "Silakan coba kembali beberapa saat lagi."
-        },
-        {
-          title: "Ouppss!!",
-          message: "Terjadi gangguan saat membuka halaman ini."
-        },
-        {
-          title: "Mohon maaf!",
-          message: "Halaman ini tidak dapat ditampilkan saat ini."
-        }
-      ];
-
-      const selected = messages[
-        Math.floor(Math.random() * messages.length)
-      ];
-
-      document.getElementById("error-title").textContent =
-        selected.title;
-
-      document.getElementById("error-message").textContent =
-        selected.message;
-    })();
-  </script>
 </body>
 </html>

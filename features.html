@@ -153,7 +153,10 @@
         if (linkedArticleCount) {
           card.appendChild(links);
         } else {
-          card.appendChild(node("p", "feature-no-article", "Belum ada artikel penggunaan yang tersedia untuk fitur ini."));
+          const note = feature.group === "planned" || feature.group === "intentionally-disabled"
+            ? "Panduan publik belum tersedia untuk fitur ini. Lihat status dan batasan di atas."
+            : "Belum ada artikel penggunaan yang tersedia untuk fitur ini.";
+          card.appendChild(node("p", "feature-no-article", note));
         }
 
         return card;
