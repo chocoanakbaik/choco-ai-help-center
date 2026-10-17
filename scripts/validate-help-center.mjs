@@ -107,6 +107,13 @@ check("setiap artikel mengarah ke kategori yang ada dan memiliki isi", () => {
   }
 });
 
+check("jumlah artikel pada setiap kategori sesuai artikel yang bisa dibuka", () => {
+  for (const category of categories) {
+    const expected = articles.filter((article) => article.category === category.id && !article.redirect).length;
+    assert.equal(category.articleCount, expected, category.id + " memiliki jumlah artikel yang tidak akurat");
+  }
+});
+
 check("semua rute redirect artikel benar-benar ada", () => {
   for (const article of articles) {
     if (!article.redirect) continue;
@@ -226,6 +233,25 @@ check("fungsi Sara membatasi ukuran input dan menangani batas permintaan", () =>
   assert.match(source, /jsonResponse\(429/, "batas frekuensi permintaan belum diterapkan");
   assert.match(source, /AbortController/, "timeout panggilan model belum diterapkan");
   assert.doesNotMatch(source, /Access-Control-Allow-Origin["']?\s*:\s*["']\*["']/, "endpoint masih mengizinkan CORS wildcard");
+});
+
+check("kredensial dan endpoint model tidak terekspos di browser", () => {
+  const browserFiles = allFiles.filter((file) =>
+    file.endsWith(".html") ||
+    (file.endsWith(".js") && !file.includes(path.join("netlify", "functions")))
+  );
+  for (const file of browserFiles) {
+    const source = fs.readFileSync(file, "utf8");
+    assert.doesNotMatch(source, /GROQ_API_KEY/, relative(file) + " memuat nama variabel rahasia");
+    assert.doesNotMatch(source, /api\.groq\.com/, relative(file) + " memanggil provider langsung dari browser");
+  }
+});
+
+check("konfigurasi Netlify memakai root dan direktori function yang benar", () => {
+  const config = fs.readFileSync(path.join(root, "netlify.toml"), "utf8");
+  assert.match(config, /publish\s*=\s*["']\.["']/);
+  assert.match(config, /directory\s*=\s*["']netlify\/functions["']/);
+  assert.doesNotMatch(config, /command\s*=/i, "situs statis ini tidak membutuhkan build command");
 });
 
 check("README utama menjelaskan struktur, pengujian, dan deploy manual", () => {
