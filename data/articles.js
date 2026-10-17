@@ -650,41 +650,57 @@ window.getPopularHelpArticles = function () {
     });
 };
 
+function normalizeHelpSearchText(value) {
+    return String(value || "")
+        .toLocaleLowerCase("id-ID")
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[^a-z0-9\s]/g, " ")
+        .replace(/\s+/g, " ")
+        .trim();
+}
+
 window.searchHelpArticles = function (query) {
-    var normalizedQuery = String(query || "").trim().toLowerCase();
+    var normalizedQuery = normalizeHelpSearchText(query);
 
     if (!normalizedQuery) {
         return [];
     }
 
-    var terms = normalizedQuery.split(/\s+/);
+    var terms = Array.from(new Set(normalizedQuery.split(/\s+/).filter(Boolean)));
 
     return window.getHelpArticles()
+        .filter(function (article) {
+            // Artikel yang sengaja dialihkan ke 404 bukan hasil pencarian yang berguna.
+            return !article.redirect;
+        })
         .map(function (article) {
-            var title = article.title.toLowerCase();
-            var summary = article.summary.toLowerCase();
-            var keywords = article.keywords.join(" ").toLowerCase();
-            var searchableText = title + " " + summary + " " + keywords;
-            var score = 0;
+            var title = normalizeHelpSearchText(article.title);
+            var summary = normalizeHelpSearchText(article.summary);
+            var keywords = normalizeHelpSearchText(
+                Array.isArray(article.keywords) ? article.keywords.join(" ") : ""
+            );
+            var body = normalizeHelpSearchText(
+                (Array.isArray(article.content) ? article.content : [])
+                    .map(function (block) {
+                        if (!block) return "";
+                        var items = Array.isArray(block.items) ? block.items.join(" ") : "";
+                        return [block.text || "", items].join(" ");
+                    })
+                    .join(" ")
+            );
+            var score = title.includes(normalizedQuery) ? 6 : 0;
 
             terms.forEach(function (term) {
-                if (title.includes(term)) {
-                    score += 5;
-                }
-
-                if (keywords.includes(term)) {
-                    score += 3;
-                }
-
-                if (summary.includes(term)) {
-                    score += 2;
-                }
+                if (title.includes(term)) score += 5;
+                if (keywords.includes(term)) score += 3;
+                if (summary.includes(term)) score += 2;
+                if (body.includes(term)) score += 1;
             });
 
             return {
                 article: article,
-                score: score,
-                searchableText: searchableText
+                score: score
             };
         })
         .filter(function (result) {
