@@ -210,13 +210,18 @@ function checkRateLimit(ip) {
   recent.push(now);
   requestBuckets.set(ip, recent);
 
-  // Jaga agar peta tidak tumbuh tanpa batas pada instance yang lama hidup.
+  // Hapus bucket kedaluwarsa terlebih dahulu, lalu pertahankan batas memori yang keras.
   if (requestBuckets.size > 1000) {
     for (const [key, timestamps] of requestBuckets) {
       if (!timestamps.some((timestamp) => now - timestamp < RATE_LIMIT_WINDOW_MS)) {
         requestBuckets.delete(key);
       }
-      if (requestBuckets.size <= 800) break;
+      if (requestBuckets.size <= 900) break;
+    }
+
+    if (requestBuckets.size > 1000) {
+      const oldestKey = requestBuckets.keys().next().value;
+      if (oldestKey && oldestKey !== ip) requestBuckets.delete(oldestKey);
     }
   }
 
@@ -363,14 +368,16 @@ exports.handler = async function (event) {
         return jsonResponse(504, { error: "Layanan jawaban membutuhkan waktu terlalu lama. Silakan coba lagi." });
       }
       throw error;
-    } finally {
-      clearTimeout(timeout);
     }
 
     let result;
     try {
+      // Timeout tetap aktif sampai body respons selesai dibaca.
       result = await groqResponse.json();
-    } catch {
+    } catch (error) {
+      if (error && error.name === "AbortError") {
+        return jsonResponse(504, { error: "Layanan jawaban membutuhkan waktu terlalu lama. Silakan coba lagi." });
+      }
       return jsonResponse(502, { error: "Layanan jawaban mengirim respons yang tidak dapat dibaca." });
     }
 
@@ -391,5 +398,7 @@ exports.handler = async function (event) {
   } catch (error) {
     console.error("Sara function failed:", error && error.name ? error.name : "UnknownError");
     return jsonResponse(500, { error: "Sara mengalami gangguan sementara. Silakan coba lagi nanti." });
+  } finally {
+    clearTimeout(timeout);
   }
 };
