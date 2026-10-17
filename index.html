@@ -479,30 +479,8 @@
 
   <script src="data/categories.js"></script>
   <script src="data/articles.js"></script>
-  <script src="script.js"></script>
+  <script src="script.js?v=20261017-1"></script>
 
-  <script>
-    // Tahun footer otomatis mengikuti tahun saat ini.
-    const yearElement = document.getElementById("current-year");
-
-    if (yearElement) {
-      yearElement.textContent = new Date().getFullYear();
-    }
-
-    // Form pencarian memakai halaman search.html.
-    const searchForm = document.getElementById("help-search-form");
-    const searchInput = document.getElementById("help-search-input");
-
-    if (searchForm && searchInput) {
-      searchForm.addEventListener("submit", function (event) {
-        const query = searchInput.value.trim();
-
-        if (!query) {
-          event.preventDefault();
-          searchInput.focus();
-        }
-      });
-    }
-  </script>
+  
 </body>
 </html>
