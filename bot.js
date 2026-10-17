@@ -404,6 +404,7 @@ async function handleQuestion(question) {
  elements.input.value = "";
 
  const articles = getArticles();
+ const features = Array.isArray(window.CHOCO_FEATURES) ? window.CHOCO_FEATURES : [];
 
  // Sara tetap dapat menjawab pertanyaan tentang identitas dan fungsi dirinya
  // meskipun data artikel gagal dimuat. Untuk fakta produk, ia akan menyatakan
@@ -418,6 +419,13 @@ async function handleQuestion(question) {
      headers: { "Content-Type": "application/json" },
      body: JSON.stringify({
        question: cleanQuestion,
+       features: features.map((feature) => ({
+         id: feature.id, name: feature.name, group: feature.group,
+         summary: feature.summary || "", details: feature.details || "",
+         usage: feature.usage || [], limitations: feature.limitations || "",
+         relatedArticles: feature.relatedArticles || [],
+         helpPage: feature.helpPage || null
+       })),
        articles: articles.map((article) => ({
          id: article.id,
          title: article.title,
