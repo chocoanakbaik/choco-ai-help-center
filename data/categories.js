@@ -59,7 +59,7 @@ window.HELP_CATEGORIES = [
     },
     {
       id: "profil",
-      title: "Profil",
+      title: "Profil & Data Akun",
       description:
         "Pahami data akun yang digunakan saat login dan batasan pengelolaan profil.",
       icon: "contact",
