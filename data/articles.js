@@ -570,7 +570,7 @@ window.HELP_ARTICLES = [
         popular: false,
         order: 30,
         updated: "2026-10-16",
-        redirect: "404.html"
+        redirect: "features/unavailable/jelajahi.html"
     },
     {
         id: "fitur-file",
@@ -581,7 +581,7 @@ window.HELP_ARTICLES = [
         popular: false,
         order: 31,
         updated: "2026-10-16",
-        redirect: "404.html"
+        redirect: "features/unavailable/file.html"
     },
     {
         id: "unggah-file",
@@ -592,7 +592,7 @@ window.HELP_ARTICLES = [
         popular: false,
         order: 32,
         updated: "2026-10-16",
-        redirect: "404.html"
+        redirect: "features/unavailable/unggah-file.html"
     },
     {
         id: "analisis-gambar",
@@ -603,7 +603,7 @@ window.HELP_ARTICLES = [
         popular: false,
         order: 33,
         updated: "2026-10-16",
-        redirect: "404.html"
+        redirect: "features/unavailable/analisis-gambar.html"
     },
     {
         id: "pencarian-web",
@@ -614,7 +614,7 @@ window.HELP_ARTICLES = [
         popular: false,
         order: 34,
         updated: "2026-10-16",
-        redirect: "404.html"
+        redirect: "features/unavailable/pencarian-web.html"
     },
 
     // ==========================================
