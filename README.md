@@ -12,8 +12,8 @@ Pusat Bantuan statis untuk Choco AI, dilengkapi pencarian artikel, halaman kateg
 - `bot.html` dan `bot.js`: antarmuka percakapan Sara.
 - `data/categories.js`: sumber data kategori aktif.
 - `data/category.js`: shim legacy yang tidak dimuat halaman; jangan dipakai sebagai sumber data kedua.
-- `data/articles.js`: sumber data 34 artikel aktif beserta fungsi pencarian.
-- `data/features.js`: katalog status dan batasan 15 fitur Choco AI.
+- `data/articles.js`: sumber 35 record artikel: 30 artikel yang dapat dibuka dan 5 entri rute lama yang diarahkan ke 404.
+- `data/features.js`: katalog status dan batasan 16 fitur Choco AI, termasuk penyimpanan memori manual.
 - `netlify/functions/sara.js`: endpoint serverless yang mengirim pertanyaan dan konteks terpilih ke layanan model.
 - `features/`: dokumentasi internal per fitur, dipisahkan menurut status. Berkas Markdown di folder ini bukan halaman publik otomatis.
 - `features/available/`: panduan untuk fitur inti yang tersedia.

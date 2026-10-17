@@ -425,28 +425,28 @@ window.HELP_ARTICLES = [
         id: "mengelola-profil",
         category: "profil",
         title: "Bagaimana cara mengelola profil?",
-        summary: "Panduan dasar untuk melihat dan mengelola informasi profil akun.",
+        summary: "Status ketersediaan menu profil pengguna pada aplikasi saat ini.",
         keywords: ["profil", "kelola profil", "informasi akun", "data pengguna"],
         popular: false,
         order: 22,
-        updated: "2026-10-16",
+        updated: "2026-10-17",
         content: [
-            { type: "p", text: "Buka menu Profil dari antarmuka Choco AI untuk melihat informasi akun yang tersedia." },
-            { type: "p", text: "Pilihan yang dapat diubah bergantung pada fitur profil yang sedang tersedia di aplikasi. Jangan membagikan kata sandi atau informasi autentikasi kepada orang lain." }
+            { type: "p", text: "Pada versi Choco AI saat ini belum ada halaman atau menu Profil yang bisa dibuka pengguna untuk mengelola data pribadi. Bagian bawah sidebar menampilkan identitas Choco AI dan pengembang, bukan profil akun pengguna." },
+            { type: "p", text: "Setelah login Google, aplikasi dapat membuat atau memperbarui catatan profil di database secara internal. Proses ini bukan halaman pengelolaan profil dan tidak menyediakan kontrol edit untuk pengguna. Sara tidak dapat melihat atau mengubah catatan tersebut." }
         ]
     },
     {
         id: "mengubah-data-profil",
         category: "profil",
         title: "Bagaimana cara mengubah data profil?",
-        summary: "Informasi umum tentang perubahan data profil akun.",
+        summary: "Penjelasan batasan perubahan profil pada antarmuka saat ini.",
         keywords: ["ubah profil", "edit profil", "nama", "data akun", "informasi profil"],
         popular: false,
         order: 23,
-        updated: "2026-10-16",
+        updated: "2026-10-17",
         content: [
-            { type: "p", text: "Buka menu Profil dan periksa apakah informasi yang ingin diubah menyediakan opsi edit." },
-            { type: "p", text: "Jika opsi perubahan belum tersedia di antarmuka, data tersebut belum dapat diubah dari halaman profil. Hindari mencoba mengubah data akun secara langsung melalui alat browser." }
+            { type: "p", text: "Antarmuka Choco AI saat ini belum menyediakan form untuk mengedit profil pengguna. Nama yang ditampilkan setelah login berasal dari informasi akun Google jika tersedia, atau alamat email sebagai cadangan." },
+            { type: "p", text: "Tidak ada kontrol edit profil khusus yang dapat diikuti. Mengubah informasi akun Google tidak menjamin perubahan langsung tampil di Choco AI sampai data login disegarkan. Jangan mengubah record database melalui alat browser atau membagikan kredensial kepada siapa pun." }
         ]
     },
 
@@ -476,24 +476,50 @@ window.HELP_ARTICLES = [
         keywords: ["memori permanen", "ingatan", "memory", "konteks", "riwayat chat"],
         popular: false,
         order: 25,
-        updated: "2026-10-16",
+        updated: "2026-10-17",
         content: [
-            { type: "p", text: "Konteks percakapan membantu Choco AI merujuk pesan sebelumnya dalam sesi yang sedang berlangsung. Hal itu berbeda dari memori permanen yang menyimpan informasi untuk percakapan berikutnya." },
-            { type: "p", text: "Ketersediaan memori lintas sesi bergantung pada fitur yang benar-benar aktif pada aplikasi. Jangan menganggap suatu informasi akan selalu diingat jika aplikasi belum menunjukkan bahwa informasi tersebut berhasil disimpan." }
+            { type: "p", text: "Konteks percakapan menggunakan pesan dari sesi yang sedang berlangsung; itu berbeda dari catatan yang disimpan lintas sesi." },
+            { type: "p", text: "Menu Memori pada sidebar masih bertanda Soon. Secara terpisah, setelah login Google, antarmuka menyediakan tombol + Memori untuk menyimpan catatan pilihan secara manual. Alur ini bergantung pada konfigurasi Supabase dan dapat gagal." },
+            { type: "p", text: "Catatan yang berhasil tersimpan dicoba dimuat lagi saat login dan dapat dikirim sebagai konteks untuk chat berikutnya. Ini bukan berarti seluruh percakapan otomatis diingat. Panduan lengkap ada pada artikel menyimpan memori secara manual." }
+        ]
+    },
+    {
+        id: "menyimpan-memori",
+        category: "privasi",
+        title: "Bagaimana cara menyimpan memori secara manual?",
+        summary: "Simpan catatan pilihan setelah login agar dapat disertakan dalam konteks chat berikutnya.",
+        keywords: ["simpan memori", "menyimpan memori", "memori manual", "tombol memori", "ingat informasi", "memories"],
+        popular: false,
+        order: 26,
+        updated: "2026-10-17",
+        content: [
+            { type: "p", text: "Menu Memori pada sidebar masih bertanda Soon. Namun, setelah login, aplikasi menyediakan tombol terpisah bertuliskan + Memori untuk menyimpan catatan secara manual." },
+            {
+                type: "ol",
+                items: [
+                    "Buka Choco AI dan login menggunakan Google.",
+                    "Setelah status akun aktif, pilih tombol + Memori pada bagian atas halaman.",
+                    "Tulis satu catatan singkat yang ingin digunakan lagi, lalu konfirmasikan penyimpanan.",
+                    "Tunggu notifikasi. Jika aplikasi menyatakan memori gagal disimpan, jangan menganggap catatan sudah tersimpan."
+                ]
+            },
+            { type: "p", text: "Catatan yang berhasil disimpan dicoba dimuat kembali saat login dan dapat dikirim sebagai konteks ke chat berikutnya. Proses ini bergantung pada konfigurasi serta izin database Supabase." },
+            { type: "p", text: "Fitur ini hanya menyimpan catatan yang Anda masukkan secara manual. Aplikasi belum menyediakan daftar untuk mengedit atau menghapus catatan satu per satu. Jangan simpan kata sandi, API key, kode verifikasi, informasi keuangan, atau rahasia pribadi." }
         ]
     },
     {
         id: "menghapus-data",
         category: "privasi",
         title: "Bagaimana cara menghapus data saya?",
-        summary: "Panduan umum untuk memahami penghapusan data akun dan percakapan.",
+        summary: "Batasan opsi penghapusan akun, percakapan, dan memori pada UI saat ini.",
         keywords: ["hapus data", "menghapus akun", "hapus percakapan", "privasi", "data pribadi"],
         popular: false,
-        order: 26,
-        updated: "2026-10-16",
+        order: 27,
+        updated: "2026-10-17",
         content: [
-            { type: "p", text: "Periksa menu Profil atau Pengaturan untuk melihat apakah tersedia pilihan penghapusan data atau akun." },
-            { type: "p", text: "Jika pilihan penghapusan belum tersedia, jangan menganggap data telah terhapus hanya dengan menghapus riwayat browser atau keluar dari akun. Penghapusan data tersimpan perlu ditangani melalui mekanisme yang memang disediakan aplikasi." }
+            { type: "p", text: "Antarmuka Choco AI saat ini belum menyediakan tombol mandiri untuk menghapus akun, riwayat percakapan yang tersimpan, atau catatan memori satu per satu." },
+            { type: "p", text: "Logout, menghapus riwayat yang terlihat di browser, atau membersihkan cache browser tidak membuktikan bahwa data pada database Supabase telah terhapus." },
+            { type: "p", text: "Pusat Bantuan ini belum mendokumentasikan alur penghapusan mandiri yang sudah terverifikasi. Jangan menganggap data sudah dihapus tanpa konfirmasi dari mekanisme resmi yang benar-benar tersedia." }
         ]
     },
 
@@ -507,7 +533,7 @@ window.HELP_ARTICLES = [
         summary: "Langkah awal saat halaman Choco AI mengalami gangguan.",
         keywords: ["halaman macet", "tidak merespons", "freeze", "browser", "loading"],
         popular: true,
-        order: 27,
+        order: 28,
         updated: "2026-10-16",
         content: [
             {
@@ -529,7 +555,7 @@ window.HELP_ARTICLES = [
         summary: "Cara awal mengatasi masalah tampilan pada browser.",
         keywords: ["tampilan rusak", "CSS", "layout", "desain", "browser"],
         popular: false,
-        order: 28,
+        order: 29,
         updated: "2026-10-16",
         content: [
             {
@@ -550,7 +576,7 @@ window.HELP_ARTICLES = [
         summary: "Langkah awal ketika jaringan terputus selama percakapan.",
         keywords: ["koneksi terputus", "internet mati", "jaringan", "offline"],
         popular: false,
-        order: 29,
+        order: 30,
         updated: "2026-10-16",
         content: [
             { type: "p", text: "Periksa koneksi internet dan tunggu sampai perangkat kembali terhubung." },
@@ -568,7 +594,7 @@ window.HELP_ARTICLES = [
         summary: "Informasi mengenai fitur Jelajahi.",
         keywords: ["jelajahi", "explore", "fitur jelajahi"],
         popular: false,
-        order: 30,
+        order: 31,
         updated: "2026-10-16",
         redirect: "features/unavailable/jelajahi.html"
     },
@@ -579,7 +605,7 @@ window.HELP_ARTICLES = [
         summary: "Informasi mengenai fitur File.",
         keywords: ["file", "dokumen", "lampiran"],
         popular: false,
-        order: 31,
+        order: 32,
         updated: "2026-10-16",
         redirect: "features/unavailable/file.html"
     },
@@ -590,7 +616,7 @@ window.HELP_ARTICLES = [
         summary: "Informasi mengenai fitur unggah file.",
         keywords: ["unggah", "upload", "upload file", "lampiran dokumen"],
         popular: false,
-        order: 32,
+        order: 33,
         updated: "2026-10-16",
         redirect: "features/unavailable/unggah-file.html"
     },
@@ -601,7 +627,7 @@ window.HELP_ARTICLES = [
         summary: "Informasi mengenai fitur analisis gambar.",
         keywords: ["gambar", "analisis gambar", "foto", "image"],
         popular: false,
-        order: 33,
+        order: 34,
         updated: "2026-10-16",
         redirect: "features/unavailable/analisis-gambar.html"
     },
@@ -612,7 +638,7 @@ window.HELP_ARTICLES = [
         summary: "Informasi mengenai fitur pencarian web.",
         keywords: ["pencarian web", "web search", "internet", "browsing"],
         popular: false,
-        order: 34,
+        order: 35,
         updated: "2026-10-16",
         redirect: "features/unavailable/pencarian-web.html"
     },

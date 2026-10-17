@@ -85,8 +85,8 @@ check("data kategori, artikel, dan fitur berhasil dimuat", () => {
 
 check("jumlah data inti tidak berkurang tanpa sengaja", () => {
   assert.equal(categories.length, 8, "Jumlah kategori berubah dari 8");
-  assert.equal(articles.length, 34, "Jumlah artikel berubah dari 34");
-  assert.equal(features.length, 15, "Jumlah fitur berubah dari 15");
+  assert.equal(articles.length, 35, "Jumlah record artikel harus 35");
+  assert.equal(features.length, 16, "Jumlah fitur harus 16");
 });
 
 check("ID kategori, artikel, dan fitur unik", () => {
@@ -178,6 +178,8 @@ check("fungsi pencarian artikel utama memberi hasil yang masuk akal", () => {
   assert.ok(loginResults.some((article) => article.id === "login-choco-ai"), "Pencarian login tidak menemukan artikel login");
   const memoryResults = browserContext.window.searchHelpArticles("memori");
   assert.ok(memoryResults.some((article) => article.id === "memori-permanen"), "Pencarian memori tidak menemukan artikel memori");
+  const saveMemoryResults = browserContext.window.searchHelpArticles("menyimpan memori");
+  assert.ok(saveMemoryResults.some((article) => article.id === "menyimpan-memori"), "Pencarian menyimpan memori tidak menemukan panduan manual");
   const bodyResults = browserContext.window.searchHelpArticles("Shift");
   assert.ok(bodyResults.some((article) => article.id === "cara-mulai-chat"), "Pencarian tidak memeriksa isi artikel");
   const identityResults = browserContext.window.searchHelpArticles("apa itu Choco AI");
@@ -222,7 +224,8 @@ check("setiap fitur memiliki dokumen internal yang sesuai status", () => {
     pengaturan: "features/available/pengaturan.md",
     personalisasi: "features/available/personalisasi.md",
     "login-google": "features/documented/login-google.md",
-    profil: "features/documented/profil.md",
+    "simpan-memori": "features/documented/simpan-memori.md",
+    profil: "features/unavailable/profil.md",
     "riwayat-chat": "features/verify/riwayat-chat.md",
     memori: "features/planned/memori.md",
     jelajahi: "features/planned/jelajahi.md",

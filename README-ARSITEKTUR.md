@@ -6,16 +6,16 @@ Data fitur produk dipisahkan dari data artikel bantuan. Status artikel tidak bol
 
 ## Struktur
 
-- `data/articles.js`: 34 artikel yang digunakan halaman sekarang. Tetap dipertahankan.
+- `data/articles.js`: 35 record artikel: 30 artikel dapat dibuka dan lima entri mengarah ke rute 404. Tetap dipertahankan.
 - `data/categories.js`: 8 kategori yang digunakan halaman sekarang. Tetap dipertahankan.
 - `data/category.js`: shim legacy yang tidak dimuat halaman dan tidak mendefinisikan ulang data kategori.
-- `data/features.js`: katalog fitur dengan status, penjelasan, cara penggunaan, batasan, dan artikel terkait. Ini juga dikirim oleh `bot.js` ke fungsi Sara.
+- `data/features.js`: katalog 16 fitur dengan status, penjelasan, cara penggunaan, batasan, dan artikel terkait. Ini juga dikirim oleh `bot.js` ke fungsi Sara.
 - `features.html`: halaman publik yang menampilkan katalog fitur menurut status.
 - `features/available/`: dokumentasi fitur dengan status tersedia.
 - `features/documented/`: dokumentasi fitur yang tersedia di panduan tetapi perlu konfirmasi di produksi.
 - `features/planned/`: dokumentasi fitur yang direncanakan.
 - `features/verify/`: dokumentasi perilaku yang masih perlu diverifikasi.
-- `features/unavailable/`: halaman HTML tipis untuk rute bantuan yang sengaja dialihkan ke `../../404.html`.
+- `features/unavailable/`: rute HTML lama yang sengaja dialihkan ke `../../404.html`, ditambah dokumentasi internal fitur tanpa UI mandiri seperti pengelolaan profil.
 
 ## Yang ditemukan di repo
 

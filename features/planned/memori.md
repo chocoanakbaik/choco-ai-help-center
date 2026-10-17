@@ -1,22 +1,20 @@
-# Memori jangka panjang
+# Menu Memori
 
-**Status katalog:** Direncanakan; menu aplikasi ditandai **Soon**.
+**Status katalog:** Direncanakan; menu Memori di sidebar aplikasi ditandai **Soon**.
 
 ## Bedanya dengan konteks chat
-Konteks percakapan berarti sebagian pesan sebelumnya dalam sesi aktif dapat digunakan agar jawaban tetap nyambung. Memori jangka panjang membutuhkan mekanisme terpisah untuk menyimpan informasi yang relevan dan mengambilnya kembali pada percakapan lain.
+Konteks percakapan berarti pesan dari sesi aktif dapat digunakan untuk membuat jawaban tetap nyambung. Menu Memori penuh belum tersedia dan tidak boleh dipresentasikan sebagai pengelolaan memori lengkap.
 
-## Status saat ini
-Belum ada dasar untuk menyatakan memori jangka panjang sudah tersedia bagi semua pengguna. Jangan menjanjikan Choco AI akan mengingat informasi lintas obrolan, bahkan ketika pengguna sudah login.
+## Kontrol manual yang sudah tercatat
+Setelah login Google, antarmuka juga menyediakan tombol terpisah **+ Memori** di bagian atas. Tombol ini meminta pengguna memasukkan catatan, lalu mencoba menyimpannya ke Supabase. Catatan yang berhasil disimpan dicoba dimuat saat login dan dikirim sebagai konteks ke permintaan chat berikutnya.
 
-## Persyaratan sebelum dianggap tersedia
-Fitur perlu memiliki:
-- penyimpanan dan pengambilan data yang diuji;
-- batas yang jelas tentang jenis informasi yang disimpan;
-- penjelasan privasi yang mudah dipahami;
-- kontrol bagi pengguna untuk melihat, mengubah, atau menghapus memori jika didukung;
-- perilaku yang aman ketika memori tidak tersedia atau gagal dimuat.
+Ini adalah penyimpanan catatan secara manual, bukan kemampuan mengingat semua percakapan otomatis. Keberhasilannya bergantung pada konfigurasi dan kebijakan database; proses dapat gagal.
 
-## Panduan untuk Sara
-Jelaskan perbedaan konteks sesi dan memori lintas sesi. Jika pengguna bertanya apakah informasi akan diingat pada chat berikutnya, jawab bahwa memori jangka panjang belum dapat dijanjikan aktif. Jangan berpura-pura mengakses atau mengubah memori pengguna.
+## Batasan menu Memori
+- Menu sidebar masih bertanda Soon.
+- Tidak ada UI terverifikasi untuk melihat, mengedit, atau menghapus setiap catatan tersimpan.
+- Jangan menjanjikan bahwa seluruh percakapan otomatis diingat atau dipulihkan.
+- Pengguna sebaiknya tidak menyimpan kata sandi, API key, kode verifikasi, data keuangan, atau rahasia pribadi.
 
-**Artikel terkait:** `memori-permanen`, `konteks-percakapan`, `menghapus-data`.
+## Panduan terkait
+Lihat artikel publik `menyimpan-memori` untuk langkah memakai tombol + Memori. Untuk perbedaan konteks dan penyimpanan lintas sesi, lihat `memori-permanen`.

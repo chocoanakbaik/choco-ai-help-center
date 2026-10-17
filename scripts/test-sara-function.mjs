@@ -139,6 +139,28 @@ try {
     assert.match(sentBody.messages[3].content, /Bagaimana login Google gagal/);
   });
 
+
+  await test("panduan simpan memori manual dipilih sebagai sumber yang relevan", async () => {
+    process.env.GROQ_API_KEY = "test-key-not-a-real-secret";
+    let sentBody;
+    globalThis.fetch = async (_url, options) => {
+      sentBody = JSON.parse(options.body);
+      return { ok: true, status: 200, json: async () => ({ choices: [{ message: { content: "Login terlebih dahulu, lalu gunakan tombol + Memori." } }] }) };
+    };
+    const response = await handler(makeEvent({
+      ip: "192.0.2.18",
+      body: JSON.stringify({
+        question: "Bagaimana cara menyimpan memori secara manual?",
+        features: [{ id: "simpan-memori", name: "Simpan memori manual", group: "documented", summary: "Simpan catatan secara manual setelah login.", details: "Bergantung pada Supabase.", usage: ["Login", "Pilih + Memori"], limitations: "Belum ada UI edit atau hapus.", relatedArticles: ["menyimpan-memori"], helpPage: { status: "article", articleId: "menyimpan-memori" } }],
+        articles: [{ id: "menyimpan-memori", title: "Bagaimana cara menyimpan memori secara manual?", summary: "Simpan catatan pilihan setelah login.", keywords: ["simpan memori", "menyimpan memori", "tombol memori", "manual"], content: [{ type: "ol", text: "", items: ["Login Google", "Pilih tombol + Memori"] }], redirect: null }]
+      })
+    }));
+    assert.equal(response.statusCode, 200);
+    assert.equal(JSON.parse(response.body).sources[0].id, "menyimpan-memori");
+    assert.match(sentBody.messages[1].content, /KATALOG FITUR RESMI/);
+    assert.match(sentBody.messages[1].content, /Simpan memori manual/);
+  });
+
   await test("pembatasan dari layanan model tidak diteruskan sebagai error mentah", async () => {
     process.env.GROQ_API_KEY = "test-key-not-a-real-secret";
     globalThis.fetch = async () => ({
@@ -155,7 +177,7 @@ try {
     assert.doesNotMatch(response.body, /upstream detail should not leak/);
   });
 
-  console.log("\nRingkasan pengujian Sara: " + passed + "/8 lulus.");
+  console.log("\nRingkasan pengujian Sara: " + passed + "/9 lulus.");
 } finally {
   globalThis.fetch = originalFetch;
   if (originalApiKey === undefined) delete process.env.GROQ_API_KEY;
