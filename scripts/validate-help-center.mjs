@@ -167,7 +167,7 @@ check("halaman fitur memuat katalog artikel untuk tautan yang akurat", () => {
 check("fungsi Sara membatasi ukuran input dan menangani batas permintaan", () => {
   const source = fs.readFileSync(path.join(root, "netlify/functions/sara.js"), "utf8");
   assert.match(source, /MAX_BODY_BYTES/, "batas ukuran body belum diterapkan");
-  assert.match(source, /statusCode:\s*429/, "batas frekuensi permintaan belum diterapkan");
+  assert.match(source, /jsonResponse\(429/, "batas frekuensi permintaan belum diterapkan");
   assert.match(source, /AbortController/, "timeout panggilan model belum diterapkan");
   assert.doesNotMatch(source, /Access-Control-Allow-Origin["']?\s*:\s*["']\*["']/, "endpoint masih mengizinkan CORS wildcard");
 });
