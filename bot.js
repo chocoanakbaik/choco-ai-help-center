@@ -40,6 +40,7 @@ const STOP_WORDS = new Set([
 
 const POPULAR_LIMIT = 6;
 const MIN_MATCH_SCORE = 5;
+let isProcessing = false;
 
 function getArticles() {
  const articleGetter = typeof window.getHelpArticles === "function"
@@ -397,7 +398,8 @@ function renderSuggestions(articles) {
 async function handleQuestion(question) {
  const cleanQuestion = String(question || "").trim();
 
- if (!cleanQuestion) return;
+ if (!cleanQuestion || isProcessing) return;
+ isProcessing = true;
 
  const userMessage = addMessage("user");
  addParagraph(userMessage, cleanQuestion);
@@ -405,13 +407,10 @@ async function handleQuestion(question) {
 
  const articles = getArticles();
  const features = Array.isArray(window.CHOCO_FEATURES) ? window.CHOCO_FEATURES : [];
-
- // Sara tetap dapat menjawab pertanyaan tentang identitas dan fungsi dirinya
- // meskipun data artikel gagal dimuat. Untuk fakta produk, ia akan menyatakan
- // dengan jujur jika panduan belum tersedia.
  const loadingMessage = addMessage("bot");
  addParagraph(loadingMessage, "Saya sedang mencari panduan yang sesuai...");
  elements.send.disabled = true;
+ elements.input.disabled = true;
 
  try {
    const response = await fetch("/.netlify/functions/sara", {
@@ -420,9 +419,13 @@ async function handleQuestion(question) {
      body: JSON.stringify({
        question: cleanQuestion,
        features: features.map((feature) => ({
-         id: feature.id, name: feature.name, group: feature.group,
-         summary: feature.summary || "", details: feature.details || "",
-         usage: feature.usage || [], limitations: feature.limitations || "",
+         id: feature.id,
+         name: feature.name,
+         group: feature.group,
+         summary: feature.summary || "",
+         details: feature.details || "",
+         usage: feature.usage || [],
+         limitations: feature.limitations || "",
          relatedArticles: feature.relatedArticles || [],
          helpPage: feature.helpPage || null
        })),
@@ -437,8 +440,18 @@ async function handleQuestion(question) {
      })
    });
 
-   const result = await response.json();
-   if (!response.ok) throw new Error(result.error || "Permintaan ke Sara gagal.");
+   let result;
+   try {
+     result = await response.json();
+   } catch {
+     throw new Error("Respons Sara tidak dapat dibaca.");
+   }
+
+   if (!response.ok) {
+     const error = new Error(result.error || "Permintaan ke Sara gagal.");
+     error.status = response.status;
+     throw error;
+   }
 
    loadingMessage.replaceChildren();
    addParagraph(loadingMessage, result.answer || "Maaf, saya belum menemukan jawaban yang sesuai.");
@@ -447,7 +460,9 @@ async function handleQuestion(question) {
      const heading = createElement("h3", "", "Panduan terkait");
      loadingMessage.appendChild(heading);
      const list = document.createElement("ul");
+
      for (const source of result.sources) {
+       if (!source || typeof source.id !== "string" || typeof source.title !== "string") continue;
        const item = document.createElement("li");
        const link = document.createElement("a");
        link.href = source.redirect || `article.html?id=${encodeURIComponent(source.id)}`;
@@ -455,20 +470,25 @@ async function handleQuestion(question) {
        item.appendChild(link);
        list.appendChild(item);
      }
-     loadingMessage.appendChild(list);
+
+     if (list.children.length) loadingMessage.appendChild(list);
    }
  } catch (error) {
    loadingMessage.replaceChildren();
-   addParagraph(loadingMessage, "Maaf, saat ini Sara belum dapat memproses pertanyaan Anda. Silakan coba kembali beberapa saat lagi.");
+   const userMessage = error && error.status === 429
+     ? "Permintaan ke Sara terlalu sering dalam waktu singkat. Tunggu sebentar sebelum mencoba lagi."
+     : "Maaf, saat ini Sara belum dapat memproses pertanyaan Anda. Silakan coba kembali beberapa saat lagi.";
+   addParagraph(loadingMessage, userMessage);
    console.error("Sara API error:", error);
  } finally {
+   isProcessing = false;
    elements.send.disabled = false;
+   elements.input.disabled = false;
    elements.input.focus();
    renderSuggestions(articles);
    scrollToLatestMessage();
  }
 }
-
 elements.form.addEventListener("submit", (event) => {
  event.preventDefault();
  const question = elements.input.value.trim();
