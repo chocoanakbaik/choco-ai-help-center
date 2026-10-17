@@ -110,12 +110,15 @@ check("setiap artikel mengarah ke kategori yang ada dan memiliki isi", () => {
 check("pertanyaan cadangan beranda cocok dengan artikel tujuan", () => {
   const home = htmlByPath.get("index.html") || "";
   const byId = new Map(articles.map((article) => [article.id, article]));
-  const fallbackLinks = [...home.matchAll(/<a class="article-link" href="article\\.html\\?id=([^"]+)"/g)];
+  const fallbackLinks = [...home.matchAll(/class="article-link" href="([^"]+)"/g)];
   assert.ok(fallbackLinks.length >= 5, "Daftar pertanyaan cadangan beranda terlalu sedikit");
   for (const match of fallbackLinks) {
-    const article = byId.get(match[1]);
-    assert.ok(article, "Tautan pertanyaan cadangan beranda tidak memiliki artikel: " + match[1]);
-    assert.ok(!article.redirect, "Pertanyaan cadangan mengarah ke artikel redirect: " + match[1]);
+    const rawHref = match[1];
+    const articleId = rawHref.split("?id=")[1];
+    assert.ok(rawHref.startsWith("article.html?id="), "Pertanyaan cadangan harus mengarah langsung ke artikel: " + rawHref);
+    const article = byId.get(articleId);
+    assert.ok(article, "Tautan pertanyaan cadangan beranda tidak memiliki artikel: " + articleId);
+    assert.ok(!article.redirect, "Pertanyaan cadangan mengarah ke artikel redirect: " + articleId);
   }
 });
 
