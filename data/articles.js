@@ -239,11 +239,11 @@ window.HELP_ARTICLES = [
         keywords: ["simpan chat", "riwayat akun", "database", "percakapan tersimpan", "pesan akun"],
         popular: false,
         order: 12,
-        updated: "2026-10-16",
+        updated: "2026-10-18",
         content: [
             { type: "p", text: "Saat login, Choco AI mencoba menyimpan pasangan pesan pengguna dan jawaban AI ke database akun." },
             { type: "p", text: "Penyimpanan dapat gagal, misalnya jika konfigurasi atau izin database bermasalah. Dalam kondisi tersebut, aplikasi dapat menampilkan pemberitahuan bahwa jawaban tampil tetapi belum tersimpan." },
-            { type: "p", text: "Antarmuka saat ini belum menyediakan fitur untuk membuka kembali seluruh percakapan lama yang tersimpan. Jangan menganggap setiap pesan pasti berhasil disimpan." }
+            { type: "p", text: "Setelah login, aplikasi memiliki daftar hingga 30 percakapan terbaru pada bagian Obrolan saat ini di sidebar. Jika daftar berhasil dimuat, pilih judul percakapan untuk mencoba membukanya kembali. Fitur ini bergantung pada koneksi dan izin database; kode yang tersedia bukan jaminan bahwa semua riwayat berhasil tersimpan atau dapat dibuka di setiap sesi. Tanpa login, judul obrolan yang tampil hanya berlaku selama sesi halaman dan tidak dapat dianggap sebagai riwayat akun. Jika daftar tidak muncul atau gagal dibuka, catat pemberitahuan yang tampil dan coba lagi setelah memeriksa koneksi." }
         ]
     },
 

@@ -182,8 +182,8 @@ check("tautan fragmen internal menunjuk target yang tersedia", () => {
   const broken = [];
 
   for (const [file, html] of htmlByPath) {
-    const ids = new Set([...html.matchAll(/\bid\\s*=\\s*["']([^"']+)["']/gi)].map((match) => match[1]));
-    for (const match of html.matchAll(/\bhref\\s*=\\s*["']([^"']*#[^"']*)["']/gi)) {
+    const ids = new Set([...html.matchAll(/\bid\s*=\\s*["']([^"']+)["']/gi)].map((match) => match[1]));
+    for (const match of html.matchAll(/\bhref\s*=\\s*["']([^"']*#[^"']*)["']/gi)) {
       const raw = match[1].trim();
       const hashIndex = raw.indexOf("#");
       if (hashIndex < 0) continue;
@@ -204,7 +204,7 @@ check("tautan fragmen internal menunjuk target yang tersedia", () => {
       if (!targetHtml) continue;
       const targetIds = targetFile === file
         ? ids
-        : new Set([...targetHtml.matchAll(/\bid\\s*=\\s*["']([^"']+)["']/gi)].map((item) => item[1]));
+        : new Set([...targetHtml.matchAll(/\bid\s*=\\s*["']([^"']+)["']/gi)].map((item) => item[1]));
       if (!targetIds.has(fragment) && !(dynamicAnchors[targetFile] && dynamicAnchors[targetFile].has(fragment))) {
         broken.push(file + " -> " + raw);
       }
@@ -212,6 +212,47 @@ check("tautan fragmen internal menunjuk target yang tersedia", () => {
   }
 
   assert.deepEqual(broken, [], broken.join("\n"));
+});
+
+check("status halaman bantuan fitur konsisten dengan tujuan rute", () => {
+  const allowedHelpStatuses = new Set(["article", "redirect-404"]);
+  for (const feature of features) {
+    if (!feature.helpPage) continue;
+    assert.ok(allowedHelpStatuses.has(feature.helpPage.status),
+      feature.id + " memiliki status halaman bantuan yang tidak dikenal: " + feature.helpPage.status);
+
+    if (feature.helpPage.status === "article") {
+      assert.ok(feature.helpPage.articleId, feature.id + " menandai artikel tetapi tidak memiliki articleId");
+      const target = articles.find((article) => article.id === feature.helpPage.articleId);
+      assert.ok(target, feature.id + " menunjuk artikel yang tidak ada");
+      assert.ok(!target.redirect, feature.id + " menunjuk artikel yang dialihkan ke 404");
+      assert.ok(!feature.helpPage.route, feature.id + " mencampur status artikel dengan rute 404");
+    }
+
+    if (feature.helpPage.status === "redirect-404") {
+      assert.ok(feature.helpPage.route, feature.id + " menandai redirect-404 tanpa rute");
+      const targetPath = path.resolve(root, feature.helpPage.route);
+      assert.ok(targetPath.startsWith(root + path.sep), feature.id + " memiliki rute di luar repository");
+      assert.ok(fs.existsSync(targetPath), feature.id + " memiliki rute yang tidak ada");
+      assert.match(fs.readFileSync(targetPath, "utf8"), /404\.html/, feature.id + " tidak menuju halaman 404");
+      assert.ok(feature.helpPage.articleId, feature.id + " tidak mencatat ID artikel lama");
+      const oldArticle = articles.find((article) => article.id === feature.helpPage.articleId);
+      assert.ok(oldArticle && oldArticle.redirect, feature.id + " harus merujuk entri artikel lama yang dialihkan");
+      assert.equal(oldArticle.redirect, feature.helpPage.route, feature.id + " rute katalog tidak sama dengan rute artikel lama");
+    }
+  }
+});
+
+check("validator fragmen menemukan ID dan tautan jangkar nyata", () => {
+  const featureHtml = htmlByPath.get("features.html") || "";
+  const ids = [...featureHtml.matchAll(/\bid\s*=\s*["']([^"']+)["']/gi)].map((match) => match[1]);
+  const anchors = [...featureHtml.matchAll(/\bhref\s*=\s*["']([^"']*#[^"']*)["']/gi)];
+  assert.ok(ids.length > 0, "Validator tidak menemukan ID HTML");
+  assert.ok(anchors.length > 0, "Validator tidak menemukan tautan jangkar");
+  for (const anchor of anchors) {
+    const fragment = decodeURIComponent(anchor[1].split("#").slice(1).join("#"));
+    assert.ok(fragment, "Tautan jangkar kosong: " + anchor[1]);
+  }
 });
 
 check("ID HTML tidak duplikat pada halaman yang sama", () => {
@@ -333,6 +374,28 @@ check("konteks lanjutan Sara dibatasi dan divalidasi", () => {
   assert.match(server, /function sanitizeHistory/);
   assert.match(server, /message\.role === "user" \|\| message\.role === "assistant"/);
   assert.match(server, /history\.slice\(-8\)/);
+});
+
+check("panduan riwayat percakapan mencerminkan UI dan tetap memberi batasan", () => {
+  const historyArticle = articles.find((article) => article.id === "riwayat-percakapan-akun");
+  const historyFeature = features.find((feature) => feature.id === "riwayat-chat");
+  assert.ok(historyArticle, "Artikel riwayat percakapan tidak ditemukan");
+  assert.ok(historyFeature, "Fitur riwayat percakapan tidak ditemukan");
+  const articleText = historyArticle.content.map((block) =>
+    [block.text, ...(Array.isArray(block.items) ? block.items : [])].filter(Boolean).join(" ")
+  ).join(" ");
+  assert.match(articleText, /hingga 30 percakapan terbaru/i,
+    "Artikel harus menjelaskan batas daftar riwayat yang benar-benar diimplementasikan");
+  assert.match(articleText, /pilih judul percakapan/i,
+    "Artikel harus menjelaskan cara mencoba membuka percakapan lama");
+  assert.doesNotMatch(articleText, /belum menyediakan fitur untuk membuka kembali/i,
+    "Artikel masih menyangkal fitur riwayat yang sudah ada di UI");
+  assert.match(articleText, /bergantung pada koneksi dan izin database/i,
+    "Artikel harus menyatakan ketidakpastian konfigurasi produksi");
+  assert.match(historyFeature.summary, /hingga 30 percakapan terbaru/i,
+    "Ringkasan katalog fitur tidak sesuai dengan UI");
+  assert.equal(historyFeature.group, "verify",
+    "Status produksi tetap perlu diverifikasi meskipun alur UI tersedia");
 });
 
 check("umpan balik artikel tidak mengklaim terkirim jika belum ada backend", () => {
