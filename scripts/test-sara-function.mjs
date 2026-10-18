@@ -216,7 +216,57 @@ try {
     assert.doesNotMatch(response.body, /upstream detail should not leak/);
   });
 
-  console.log("\nRingkasan pengujian Sara: " + passed + "/10 lulus.");
+  await test("respons provider yang bukan JSON ditangani dengan aman", async () => {
+    process.env.GROQ_API_KEY = "test-key-not-a-real-secret";
+    globalThis.fetch = async () => ({
+      ok: true,
+      status: 200,
+      json: async () => { throw new SyntaxError("invalid upstream JSON"); }
+    });
+
+    const response = await handler(makeEvent({
+      ip: "192.0.2.20",
+      body: JSON.stringify({ question: "Bagaimana cara membuka pengaturan?" })
+    }));
+    assert.equal(response.statusCode, 502);
+    assert.match(payload(response.body).error, /tidak dapat dibaca/i);
+    assert.doesNotMatch(response.body, /invalid upstream JSON/);
+  });
+
+  await test("timeout provider menghasilkan 504 tanpa detail internal", async () => {
+    process.env.GROQ_API_KEY = "test-key-not-a-real-secret";
+    globalThis.fetch = async () => {
+      const error = new Error("internal timeout detail");
+      error.name = "AbortError";
+      throw error;
+    };
+
+    const response = await handler(makeEvent({
+      ip: "192.0.2.21",
+      body: JSON.stringify({ question: "Bagaimana cara membuat obrolan baru?" })
+    }));
+    assert.equal(response.statusCode, 504);
+    assert.match(payload(response.body).error, /terlalu lama/i);
+    assert.doesNotMatch(response.body, /internal timeout detail/);
+  });
+
+  await test("kesalahan provider selain rate limit tidak membocorkan pesan upstream", async () => {
+    process.env.GROQ_API_KEY = "test-key-not-a-real-secret";
+    globalThis.fetch = async () => ({
+      ok: false,
+      status: 500,
+      json: async () => ({ error: { message: "private upstream stack detail" } })
+    });
+
+    const response = await handler(makeEvent({
+      ip: "192.0.2.22",
+      body: JSON.stringify({ question: "Bagaimana mengatur gaya bahasa?" })
+    }));
+    assert.equal(response.statusCode, 502);
+    assert.doesNotMatch(response.body, /private upstream stack detail/);
+  });
+
+  console.log("\nRingkasan pengujian Sara: " + passed + " skenario lulus.");
 } finally {
   globalThis.fetch = originalFetch;
   if (originalApiKey === undefined) delete process.env.GROQ_API_KEY;
