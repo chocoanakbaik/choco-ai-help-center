@@ -376,6 +376,28 @@ check("konteks lanjutan Sara dibatasi dan divalidasi", () => {
   assert.match(server, /history\.slice\(-8\)/);
 });
 
+check("panduan riwayat percakapan mencerminkan UI dan tetap memberi batasan", () => {
+  const historyArticle = articles.find((article) => article.id === "riwayat-percakapan-akun");
+  const historyFeature = features.find((feature) => feature.id === "riwayat-chat");
+  assert.ok(historyArticle, "Artikel riwayat percakapan tidak ditemukan");
+  assert.ok(historyFeature, "Fitur riwayat percakapan tidak ditemukan");
+  const articleText = historyArticle.content.map((block) =>
+    [block.text, ...(Array.isArray(block.items) ? block.items : [])].filter(Boolean).join(" ")
+  ).join(" ");
+  assert.match(articleText, /hingga 30 percakapan terbaru/i,
+    "Artikel harus menjelaskan batas daftar riwayat yang benar-benar diimplementasikan");
+  assert.match(articleText, /pilih judul percakapan/i,
+    "Artikel harus menjelaskan cara mencoba membuka percakapan lama");
+  assert.doesNotMatch(articleText, /belum menyediakan fitur untuk membuka kembali/i,
+    "Artikel masih menyangkal fitur riwayat yang sudah ada di UI");
+  assert.match(articleText, /bergantung pada koneksi dan izin database/i,
+    "Artikel harus menyatakan ketidakpastian konfigurasi produksi");
+  assert.match(historyFeature.summary, /hingga 30 percakapan terbaru/i,
+    "Ringkasan katalog fitur tidak sesuai dengan UI");
+  assert.equal(historyFeature.group, "verify",
+    "Status produksi tetap perlu diverifikasi meskipun alur UI tersedia");
+});
+
 check("umpan balik artikel tidak mengklaim terkirim jika belum ada backend", () => {
   const html = htmlByPath.get("article.html") || "";
   assert.match(html, /belum dikirim ke tim Help Center/);
