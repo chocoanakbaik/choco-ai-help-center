@@ -239,7 +239,7 @@ window.HELP_ARTICLES = [
         keywords: ["simpan chat", "riwayat akun", "database", "percakapan tersimpan", "pesan akun"],
         popular: false,
         order: 12,
-        updated: "2026-10-16",
+        updated: "2026-10-18",
         content: [
             { type: "p", text: "Saat login, Choco AI mencoba menyimpan pasangan pesan pengguna dan jawaban AI ke database akun." },
             { type: "p", text: "Penyimpanan dapat gagal, misalnya jika konfigurasi atau izin database bermasalah. Dalam kondisi tersebut, aplikasi dapat menampilkan pemberitahuan bahwa jawaban tampil tetapi belum tersimpan." },
