@@ -2,6 +2,8 @@
 
 Pusat Bantuan statis untuk Choco AI, dilengkapi pencarian artikel, halaman kategori, katalog fitur, dan Sara sebagai AI assistant khusus Help Center.
 
+Proyek ini merupakan bagian dari **The Choco Studios (TCS)**, brand induk karya digital Hasby Prasetya Saprudin. TCS saat ini dikelola mandiri oleh Hasby sebagai solo developer; nama ini digunakan sebagai identitas branding dan bukan klaim status badan hukum perusahaan.
+
 ## Struktur repository
 
 - `index.html`: beranda dan navigasi utama.
