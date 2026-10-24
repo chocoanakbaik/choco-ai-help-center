@@ -160,7 +160,7 @@ try {
     assert.equal(response.statusCode, 200);
     assert.equal(JSON.parse(response.body).sources[0].id, "menyimpan-memori");
     assert.match(sentBody.messages[1].content, /KATALOG FITUR RESMI/);
-    assert.match(sentBody.messages[1].content, /Simpan memori manual/);
+    assert.match(sentBody.messages[1].content, /Catatan memori manual/);
   });
 
 
