@@ -229,6 +229,38 @@ try {
     assert.match(sentBody.messages[0].content, /referensi portofolio terkurasi/);
   });
 
+
+  await test("pertanyaan daftar semua proyek memilih indeks portofolio lengkap", async () => {
+    process.env.GROQ_API_KEY = "test-key-not-a-real-secret";
+    let sentBody;
+    globalThis.fetch = async (_url, options) => {
+      sentBody = JSON.parse(options.body);
+      return { ok: true, status: 200, json: async () => ({ choices: [{ message: { content: "Portofolio yang tercatat mencakup Choco AI, Sara, KasirKita, Chocobot Guardian, Privacy Guardian, Panel Admin, TCS Information, dan why-me." } }] }) };
+    };
+    const response = await handler(makeEvent({
+      ip: "192.0.2.29",
+      body: JSON.stringify({
+        question: "Apa saja semua proyek Hasby?",
+        projectKnowledge: [{
+          id: "project-portfolio-index",
+          title: "Daftar lengkap portofolio proyek Hasby",
+          summary: "Daftar semua proyek utama yang tercatat.",
+          details: "Proyek: Choco AI, Sara Help Center, KasirKita, Chocobot Guardian, Privacy Guardian Windows, Choco Panel Admin, The Choco Studios Information, dan why-me.",
+          status: "portfolio-index",
+          repository: "multiple repositories",
+          keywords: ["semua proyek", "daftar proyek", "portofolio lengkap", "apa saja yang dibuat", "KasirKita", "why-me"]
+        }],
+        features: [], articles: []
+      })
+    }));
+    assert.equal(response.statusCode, 200);
+    const sentPrompt = sentBody.messages.map((message) => message.content).join("\\n");
+    assert.match(sentPrompt, /REFERENSI PORTOFOLIO DAN HUBUNGAN ASISTEN/);
+    assert.match(sentPrompt, /project-portfolio-index/);
+    assert.match(sentPrompt, /Chocobot Guardian/);
+    assert.match(sentBody.messages[0].content, /portofolio proyeknya/);
+  });
+
   await test("pembatasan dari layanan model tidak diteruskan sebagai error mentah", async () => {
     process.env.GROQ_API_KEY = "test-key-not-a-real-secret";
     globalThis.fetch = async () => ({
