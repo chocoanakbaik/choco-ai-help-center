@@ -1,26 +1,7 @@
-# Simpan memori manual
+# Catatan internal lama: Simpan memori manual
 
-**Status katalog:** Terdokumentasi; memerlukan login Google dan konfigurasi Supabase yang berfungsi.
+**Status dokumen:** Tidak lagi menjadi dokumen status kanonis. Katalog fitur saat ini menandai input memori manual sebagai **Direncanakan** karena UI yang diperiksa tidak menampilkan tombol + Memori.
 
-## Bedakan dari menu Memori
-Menu **Memori** di sidebar aplikasi masih bertanda Soon. Tombol **+ Memori** adalah kontrol terpisah yang muncul setelah akun berhasil login. Tombol ini menyimpan catatan yang pengguna ketik secara manual, bukan seluruh riwayat chat secara otomatis.
+Jangan gunakan panduan lama yang menyebut tombol **+ Memori** sebagai kontrol aktif. Kode backend untuk memuat/mengekstrak memori berbeda dari kontrol antarmuka untuk menambahkan catatan secara manual. Dokumen kanonis yang mengikuti status saat ini adalah `features/planned/simpan-memori.md`.
 
-## Cara menggunakan
-1. Buka Choco AI dan login menggunakan Google.
-2. Pastikan label akun sudah berubah dari status belum login.
-3. Pilih tombol **+ Memori** di bagian atas halaman.
-4. Masukkan satu catatan singkat yang memang ingin digunakan sebagai konteks pada chat berikutnya.
-5. Konfirmasikan penyimpanan dan tunggu notifikasi berhasil.
-6. Jika muncul notifikasi gagal, catatan itu belum boleh dianggap tersimpan. Periksa konfigurasi Supabase atau kebijakan akses database.
-
-## Bagaimana catatan digunakan
-Saat autentikasi berhasil, aplikasi mencoba mengambil maksimal 20 catatan terbaru dari tabel `memories`. Chat berikutnya mengirim catatan yang berhasil dimuat ke layanan AI sebagai konteks. Jika pemuatan gagal, catatan mungkin tidak disertakan pada respons.
-
-## Privasi dan batasan
-- Tombol + Memori adalah jalur manual. Secara terpisah, setelah pasangan pesan akun berhasil disimpan, source aplikasi mencoba mengekstrak maksimal tiga fakta atau preferensi jangka panjang. Tidak semua pesan dijadikan memori; hasilnya dapat kosong atau gagal, dan perilaku produksi belum diverifikasi penuh.
-- Keberhasilan bergantung pada konfigurasi serta izin database Supabase.
-- UI saat ini tidak menyediakan daftar untuk mengedit atau menghapus catatan satu per satu.
-- Jangan simpan kata sandi, API key, kode verifikasi, nomor rekening, informasi pembayaran, atau rahasia pribadi.
-- Sara tidak dapat melihat catatan memori atau memeriksa database akun pengguna.
-
-**Artikel terkait:** `menyimpan-memori`, `memori-permanen`, `data-akun`.
+Jika ada perubahan UI di masa mendatang, periksa source terbaru dan pengujian terlebih dahulu sebelum memindahkan status katalog kembali menjadi tersedia. Jangan menjanjikan penyimpanan produksi, pengeditan, atau penghapusan catatan secara manual tanpa bukti bahwa alurnya telah diterapkan dan diuji.
