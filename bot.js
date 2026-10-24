@@ -122,6 +122,7 @@
 
     const articles = getArticles();
     const features = Array.isArray(window.CHOCO_FEATURES) ? window.CHOCO_FEATURES : [];
+    const projectKnowledge = Array.isArray(window.CHOCO_PROJECT_KNOWLEDGE) ? window.CHOCO_PROJECT_KNOWLEDGE : [];
     const previousHistory = conversationHistory.slice(-MAX_HISTORY_MESSAGES);
     const loadingMessage = addMessage("bot");
     addParagraph(loadingMessage, "Saya sedang mencari panduan yang sesuai...");
@@ -135,6 +136,15 @@
         body: JSON.stringify({
           question: cleanQuestion,
           history: previousHistory,
+          projectKnowledge: projectKnowledge.map((project) => ({
+            id: project.id,
+            title: project.title,
+            summary: project.summary || "",
+            details: project.details || "",
+            status: project.status || "",
+            repository: project.repository || "",
+            keywords: project.keywords || []
+          })),
           features: features.map((feature) => ({
             id: feature.id,
             name: feature.name,

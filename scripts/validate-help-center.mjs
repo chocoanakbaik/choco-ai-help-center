@@ -339,7 +339,7 @@ check("setiap fitur memiliki dokumen internal yang sesuai status", () => {
     pengaturan: "features/available/pengaturan.md",
     personalisasi: "features/available/personalisasi.md",
     "login-google": "features/documented/login-google.md",
-    "simpan-memori": "features/documented/simpan-memori.md",
+    "simpan-memori": "features/planned/simpan-memori.md",
     profil: "features/unavailable/profil.md",
     "riwayat-chat": "features/verify/riwayat-chat.md",
     memori: "features/planned/memori.md",

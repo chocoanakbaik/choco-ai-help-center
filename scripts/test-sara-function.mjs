@@ -142,25 +142,25 @@ try {
   });
 
 
-  await test("panduan simpan memori manual dipilih sebagai sumber yang relevan", async () => {
+  await test("Sara menjelaskan kontrol memori manual yang belum tersedia", async () => {
     process.env.GROQ_API_KEY = "test-key-not-a-real-secret";
     let sentBody;
     globalThis.fetch = async (_url, options) => {
       sentBody = JSON.parse(options.body);
-      return { ok: true, status: 200, json: async () => ({ choices: [{ message: { content: "Login terlebih dahulu, lalu gunakan tombol + Memori." } }] }) };
+      return { ok: true, status: 200, json: async () => ({ choices: [{ message: { content: "Kontrol untuk menambahkan memori secara manual belum tersedia pada UI yang diperiksa." } }] }) };
     };
     const response = await handler(makeEvent({
       ip: "192.0.2.18",
       body: JSON.stringify({
-        question: "Bagaimana cara menyimpan memori secara manual?",
-        features: [{ id: "simpan-memori", name: "Simpan memori manual", group: "documented", summary: "Simpan catatan secara manual setelah login.", details: "Bergantung pada Supabase.", usage: ["Login", "Pilih + Memori"], limitations: "Belum ada UI edit atau hapus.", relatedArticles: ["menyimpan-memori"], helpPage: { status: "article", articleId: "menyimpan-memori" } }],
-        articles: [{ id: "menyimpan-memori", title: "Bagaimana cara menyimpan memori secara manual?", summary: "Simpan catatan pilihan setelah login.", keywords: ["simpan memori", "menyimpan memori", "tombol memori", "manual"], content: [{ type: "ol", text: "", items: ["Login Google", "Pilih tombol + Memori"] }], redirect: null }]
+        question: "Apakah saya bisa menyimpan memori secara manual?",
+        features: [{ id: "simpan-memori", name: "Catatan memori manual", group: "planned", summary: "Kontrol UI untuk menambahkan catatan manual belum tersedia.", details: "Tombol + Memori belum tersedia pada UI yang diperiksa.", usage: [], limitations: "Jangan memberi langkah penggunaan tombol yang tidak ada.", relatedArticles: ["menyimpan-memori"], helpPage: { status: "article", articleId: "menyimpan-memori" } }],
+        articles: [{ id: "menyimpan-memori", title: "Bisakah saya menyimpan memori secara manual?", summary: "UI saat ini belum menyediakan tombol untuk menambahkan catatan memori secara manual.", keywords: ["memori manual", "catatan manual", "tombol memori"], content: [{ type: "ol", text: "Kontrol manual belum tersedia pada UI yang diperiksa.", items: ["Ekstraksi otomatis berbeda dari input manual."] }], redirect: null }]
       })
     }));
     assert.equal(response.statusCode, 200);
     assert.equal(JSON.parse(response.body).sources[0].id, "menyimpan-memori");
     assert.match(sentBody.messages[1].content, /KATALOG FITUR RESMI/);
-    assert.match(sentBody.messages[1].content, /Simpan memori manual/);
+    assert.match(sentBody.messages[1].content, /Catatan memori manual/);
   });
 
 
@@ -198,6 +198,97 @@ try {
     assert.equal(JSON.parse(response.body).sources[0].id, "pemrosesan-pesan-ai");
     assert.match(sentBody.messages[1].content, /Apakah pesan saya dikirim ke layanan AI eksternal/);
     assert.match(sentBody.messages[1].content, /layanan model AI Groq/);
+  });
+
+
+  await test("pertanyaan hubungan Choco AI dan Sara memakai referensi portofolio", async () => {
+    process.env.GROQ_API_KEY = "test-key-not-a-real-secret";
+    let sentBody;
+    globalThis.fetch = async (_url, options) => {
+      sentBody = JSON.parse(options.body);
+      return { ok: true, status: 200, json: async () => ({ choices: [{ message: { content: "Choco AI adalah chat utama; Sara adalah asisten terpisah di Help Center." } }] }) };
+    };
+    const response = await handler(makeEvent({
+      ip: "192.0.2.28",
+      body: JSON.stringify({
+        question: "Apa hubungan Choco AI dan Sara AI?",
+        projectKnowledge: [{
+          id: "assistant-relationship", title: "Hubungan Choco AI dan Sara AI",
+          summary: "Dua asisten dengan peran berbeda.",
+          details: "Choco AI adalah chat utama. Sara adalah asisten di Help Center. Backend dan konteks mereka terpisah; tidak ada akses langsung ke memori satu sama lain.",
+          status: "shared-context", repository: "chocoanakbaik/choco-ai-help-center",
+          keywords: ["Sara", "Choco AI", "hubungan", "perbedaan", "asisten"]
+        }],
+        features: [], articles: []
+      })
+    }));
+    assert.equal(response.statusCode, 200);
+    const sentPrompt = sentBody.messages.map((message) => message.content).join("\n");
+    assert.match(sentPrompt, /REFERENSI PORTOFOLIO DAN HUBUNGAN ASISTEN/);
+    assert.match(sentPrompt, /Backend dan konteks mereka terpisah/);
+    assert.match(sentBody.messages[0].content, /referensi portofolio terkurasi/);
+  });
+
+
+  await test("pertanyaan daftar semua proyek memilih indeks portofolio lengkap", async () => {
+    process.env.GROQ_API_KEY = "test-key-not-a-real-secret";
+    let sentBody;
+    globalThis.fetch = async (_url, options) => {
+      sentBody = JSON.parse(options.body);
+      return { ok: true, status: 200, json: async () => ({ choices: [{ message: { content: "Portofolio yang tercatat mencakup Choco AI, Sara, KasirKita, Chocobot Guardian, Privacy Guardian, Panel Admin, TCS Information, dan why-me." } }] }) };
+    };
+    const response = await handler(makeEvent({
+      ip: "192.0.2.29",
+      body: JSON.stringify({
+        question: "Apa saja semua proyek Hasby?",
+        projectKnowledge: [{
+          id: "project-portfolio-index",
+          title: "Daftar lengkap portofolio proyek Hasby",
+          summary: "Daftar semua proyek utama yang tercatat.",
+          details: "Proyek: Choco AI, Sara Help Center, KasirKita, Chocobot Guardian, Privacy Guardian Windows, Choco Panel Admin, The Choco Studios Information, dan why-me.",
+          status: "portfolio-index",
+          repository: "multiple repositories",
+          keywords: ["semua proyek", "daftar proyek", "portofolio lengkap", "apa saja yang dibuat", "KasirKita", "why-me"]
+        }],
+        features: [], articles: []
+      })
+    }));
+    assert.equal(response.statusCode, 200);
+    const sentPrompt = sentBody.messages.map((message) => message.content).join("\\n");
+    assert.match(sentPrompt, /REFERENSI PORTOFOLIO DAN HUBUNGAN ASISTEN/);
+    assert.match(sentPrompt, /project-portfolio-index/);
+    assert.match(sentPrompt, /Chocobot Guardian/);
+    assert.match(sentBody.messages[0].content, /portofolio proyeknya/);
+  });
+
+  await test("pertanyaan payung utama memakai referensi hierarki brand TCS", async () => {
+    process.env.GROQ_API_KEY = "test-key-not-a-real-secret";
+    let sentBody;
+    globalThis.fetch = async (_url, options) => {
+      sentBody = JSON.parse(options.body);
+      return { ok: true, status: 200, json: async () => ({ choices: [{ message: { content: "The Choco Studios (TCS) adalah payung utama ekosistem proyek." } }] }) };
+    };
+    const response = await handler(makeEvent({
+      ip: "192.0.2.30",
+      body: JSON.stringify({
+        question: "Siapa payung utama yang menaungi semua proyek?",
+        projectKnowledge: [{
+          id: "brand-hierarchy-choco-ecosystem",
+          title: "Apa payung utama seluruh proyek dan produk Choco?",
+          summary: "The Choco Studios (TCS) adalah payung utama yang menaungi semua proyek dan produk dalam ekosistem Choco.",
+          details: "The Choco Studios (TCS) adalah payung utama branding internal untuk proyek-proyek Choco.",
+          status: "curated-brand-hierarchy",
+          repository: "multiple project repositories",
+          keywords: ["TCS", "The Choco Studios", "payung utama", "semua proyek", "brand induk", "yang menaungi"]
+        }],
+        features: [], articles: []
+      })
+    }));
+    assert.equal(response.statusCode, 200);
+    const sentPrompt = sentBody.messages.map((message) => message.content).join("\n");
+    assert.match(sentPrompt, /REFERENSI PORTOFOLIO DAN HUBUNGAN ASISTEN/);
+    assert.match(sentPrompt, /brand-hierarchy-choco-ecosystem/);
+    assert.match(sentPrompt, /The Choco Studios \(TCS\) adalah payung utama/);
   });
 
   await test("pembatasan dari layanan model tidak diteruskan sebagai error mentah", async () => {
