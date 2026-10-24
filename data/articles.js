@@ -689,10 +689,6 @@ window.HELP_ARTICLES = [
                     "Berikan konteks secukupnya dan hindari rahasia pribadi.",
                     "Sebutkan format yang diinginkan, misalnya daftar atau langkah bernomor."
                 ]
-            },
-            {
-                "type": "p",
-                "text": "Jika masalah berulang, catat gejala serta teks error. Sara tidak dapat memeriksa akun atau database Anda secara langsung."
             }
         ]
     },
@@ -723,10 +719,6 @@ window.HELP_ARTICLES = [
                     "Sebutkan bagian wajib dan panjang yang diharapkan.",
                     "Jika hasil belum sesuai, minta revisi bagian tertentu."
                 ]
-            },
-            {
-                "type": "p",
-                "text": "Jika masalah berulang, catat gejala serta teks error. Sara tidak dapat memeriksa akun atau database Anda secara langsung."
             }
         ]
     },
@@ -757,10 +749,6 @@ window.HELP_ARTICLES = [
                     "Tambahkan koreksi atau fakta yang benar jika diketahui.",
                     "Periksa hasil baru, terutama angka, kode, atau keputusan penting."
                 ]
-            },
-            {
-                "type": "p",
-                "text": "Jika masalah berulang, catat gejala serta teks error. Sara tidak dapat memeriksa akun atau database Anda secara langsung."
             }
         ]
     },
@@ -791,10 +779,6 @@ window.HELP_ARTICLES = [
                     "Gunakan sumber resmi untuk keputusan berdampak besar.",
                     "Choco AI tidak otomatis mencari informasi web langsung."
                 ]
-            },
-            {
-                "type": "p",
-                "text": "Jika masalah berulang, catat gejala serta teks error. Sara tidak dapat memeriksa akun atau database Anda secara langsung."
             }
         ]
     },
@@ -825,10 +809,6 @@ window.HELP_ARTICLES = [
                     "Fitur Soon atau perlu verifikasi tidak boleh dijanjikan aktif.",
                     "Jika informasi belum terdokumentasi, Sara harus menyatakan ketidakpastian."
                 ]
-            },
-            {
-                "type": "p",
-                "text": "Jika masalah berulang, catat gejala serta teks error. Sara tidak dapat memeriksa akun atau database Anda secara langsung."
             }
         ]
     },
@@ -860,10 +840,6 @@ window.HELP_ARTICLES = [
                     "Pilih Login dan akun yang diinginkan.",
                     "Periksa identitas akun setelah kembali."
                 ]
-            },
-            {
-                "type": "p",
-                "text": "Jika masalah berulang, catat gejala serta teks error. Sara tidak dapat memeriksa akun atau database Anda secara langsung."
             }
         ]
     },
@@ -894,10 +870,6 @@ window.HELP_ARTICLES = [
                     "Gunakan pemilih akun resmi Google untuk memilih akun lain jika tersedia.",
                     "Catat teks error, jangan kirim password atau kode verifikasi."
                 ]
-            },
-            {
-                "type": "p",
-                "text": "Jika masalah berulang, catat gejala serta teks error. Sara tidak dapat memeriksa akun atau database Anda secara langsung."
             }
         ]
     },
@@ -928,10 +900,6 @@ window.HELP_ARTICLES = [
                     "Keluar lalu masuk kembali setelah perubahan profil jika perlu.",
                     "Sara tidak dapat membaca data profil atau mengganti nama/email."
                 ]
-            },
-            {
-                "type": "p",
-                "text": "Jika masalah berulang, catat gejala serta teks error. Sara tidak dapat memeriksa akun atau database Anda secara langsung."
             }
         ]
     },
@@ -962,10 +930,6 @@ window.HELP_ARTICLES = [
                     "Sebutkan detail relevan dan koreksi jawaban sebelumnya bila perlu.",
                     "Untuk topik berbeda, pilih Obrolan baru."
                 ]
-            },
-            {
-                "type": "p",
-                "text": "Jika masalah berulang, catat gejala serta teks error. Sara tidak dapat memeriksa akun atau database Anda secara langsung."
             }
         ]
     },
@@ -995,10 +959,6 @@ window.HELP_ARTICLES = [
                     "Minta hasil dalam format tertentu, misalnya tiga langkah baru.",
                     "Pastikan jawaban pertama tidak muncul sebelum mengirim ulang."
                 ]
-            },
-            {
-                "type": "p",
-                "text": "Jika masalah berulang, catat gejala serta teks error. Sara tidak dapat memeriksa akun atau database Anda secara langsung."
             }
         ]
     },
@@ -1029,10 +989,6 @@ window.HELP_ARTICLES = [
                     "Jika sering terjadi, minta versi ringkas atau pecah tugas.",
                     "Catat teks error jika ada."
                 ]
-            },
-            {
-                "type": "p",
-                "text": "Jika masalah berulang, catat gejala serta teks error. Sara tidak dapat memeriksa akun atau database Anda secara langsung."
             }
         ]
     },
@@ -1063,10 +1019,6 @@ window.HELP_ARTICLES = [
                     "Jangan menganggap logout menghapus data tersimpan.",
                     "Sara tidak dapat memeriksa database atau memulihkan chat."
                 ]
-            },
-            {
-                "type": "p",
-                "text": "Jika masalah berulang, catat gejala serta teks error. Sara tidak dapat memeriksa akun atau database Anda secara langsung."
             }
         ]
     },
@@ -1097,10 +1049,6 @@ window.HELP_ARTICLES = [
                     "Salin teks sebelum memuat ulang halaman.",
                     "Coba lagi satu kali setelah permintaan pertama dipastikan gagal."
                 ]
-            },
-            {
-                "type": "p",
-                "text": "Jika masalah berulang, catat gejala serta teks error. Sara tidak dapat memeriksa akun atau database Anda secara langsung."
             }
         ]
     },
@@ -1131,10 +1079,6 @@ window.HELP_ARTICLES = [
                     "Pilih judul jika tersedia dan lihat apakah pesan dimuat.",
                     "Catat pesan error; Sara tidak dapat memulihkan chat."
                 ]
-            },
-            {
-                "type": "p",
-                "text": "Jika masalah berulang, catat gejala serta teks error. Sara tidak dapat memeriksa akun atau database Anda secara langsung."
             }
         ]
     },
@@ -1164,10 +1108,6 @@ window.HELP_ARTICLES = [
                     "Pastikan jawaban pertama tidak tampil sebelum mencoba lagi.",
                     "Jika berulang, catat waktu, browser, dan gejalanya."
                 ]
-            },
-            {
-                "type": "p",
-                "text": "Jika masalah berulang, catat gejala serta teks error. Sara tidak dapat memeriksa akun atau database Anda secara langsung."
             }
         ]
     },
@@ -1198,10 +1138,6 @@ window.HELP_ARTICLES = [
                     "Coba browser dan profil yang sama.",
                     "Jangan anggap semua preferensi tersinkron antarperangkat."
                 ]
-            },
-            {
-                "type": "p",
-                "text": "Jika masalah berulang, catat gejala serta teks error. Sara tidak dapat memeriksa akun atau database Anda secara langsung."
             }
         ]
     },
@@ -1231,10 +1167,6 @@ window.HELP_ARTICLES = [
                     "Koneksi dan pemrosesan model dapat memengaruhi waktu respons.",
                     "Ketersediaan kontrol mengikuti UI; Sara tidak dapat mengubahnya."
                 ]
-            },
-            {
-                "type": "p",
-                "text": "Jika masalah berulang, catat gejala serta teks error. Sara tidak dapat memeriksa akun atau database Anda secara langsung."
             }
         ]
     },
@@ -1264,10 +1196,6 @@ window.HELP_ARTICLES = [
                     "Simpan perubahan jika UI menyediakan opsi simpan.",
                     "Uji di pesan baru dan jelaskan preferensi langsung jika perlu."
                 ]
-            },
-            {
-                "type": "p",
-                "text": "Jika masalah berulang, catat gejala serta teks error. Sara tidak dapat memeriksa akun atau database Anda secara langsung."
             }
         ]
     },
@@ -1298,10 +1226,6 @@ window.HELP_ARTICLES = [
                     "Satu pesan dapat meminta penjelasan rinci dengan langkah bernomor.",
                     "Keduanya tidak menjamin semua respons mengikuti keinginan tanpa pengecualian."
                 ]
-            },
-            {
-                "type": "p",
-                "text": "Jika masalah berulang, catat gejala serta teks error. Sara tidak dapat memeriksa akun atau database Anda secara langsung."
             }
         ]
     },
@@ -1331,10 +1255,6 @@ window.HELP_ARTICLES = [
                     "Tombol + Memori adalah jalur manual.",
                     "Source juga mencoba ekstraksi otomatis setelah pasangan pesan akun berhasil disimpan; proses dapat gagal dan produksi belum diverifikasi."
                 ]
-            },
-            {
-                "type": "p",
-                "text": "Jika masalah berulang, catat gejala serta teks error. Sara tidak dapat memeriksa akun atau database Anda secara langsung."
             }
         ]
     },
@@ -1365,10 +1285,6 @@ window.HELP_ARTICLES = [
                     "Jika tidak ada informasi yang cocok, hasilnya bisa nol catatan.",
                     "Ini berbeda dari tombol + Memori manual; ekstraksi dapat gagal dan produksi belum diverifikasi penuh."
                 ]
-            },
-            {
-                "type": "p",
-                "text": "Jika masalah berulang, catat gejala serta teks error. Sara tidak dapat memeriksa akun atau database Anda secara langsung."
             }
         ]
     },
@@ -1399,10 +1315,6 @@ window.HELP_ARTICLES = [
                     "Periksa koneksi dan teks error.",
                     "Jika berulang, laporkan teks error dan waktu kejadian. Sara tidak dapat memeriksa database."
                 ]
-            },
-            {
-                "type": "p",
-                "text": "Jika masalah berulang, catat gejala serta teks error. Sara tidak dapat memeriksa akun atau database Anda secara langsung."
             }
         ]
     },
@@ -1433,10 +1345,6 @@ window.HELP_ARTICLES = [
                     "Sebutkan lagi konteks relevan bila perlu.",
                     "Sara tidak dapat melihat isi memori akun."
                 ]
-            },
-            {
-                "type": "p",
-                "text": "Jika masalah berulang, catat gejala serta teks error. Sara tidak dapat memeriksa akun atau database Anda secara langsung."
             }
         ]
     },
@@ -1466,10 +1374,6 @@ window.HELP_ARTICLES = [
                     "Ajukan pertanyaan data melalui kontak resmi yang dipublikasikan.",
                     "Jangan sertakan kata sandi, token sesi, atau API key."
                 ]
-            },
-            {
-                "type": "p",
-                "text": "Jika masalah berulang, catat gejala serta teks error. Sara tidak dapat memeriksa akun atau database Anda secara langsung."
             }
         ]
     },
@@ -1501,10 +1405,6 @@ window.HELP_ARTICLES = [
                     "Hindari data pembayaran, nomor rekening, dokumen identitas, dan rahasia yang tidak diperlukan.",
                     "Samarkan detail pribadi pada tangkapan layar atau laporan error."
                 ]
-            },
-            {
-                "type": "p",
-                "text": "Jika masalah berulang, catat gejala serta teks error. Sara tidak dapat memeriksa akun atau database Anda secara langsung."
             }
         ]
     },
@@ -1535,10 +1435,6 @@ window.HELP_ARTICLES = [
                     "Konteks yang diperlukan dikirim ke layanan model untuk menyusun jawaban.",
                     "Jelaskan gejala tanpa password, token, API key, atau data sensitif."
                 ]
-            },
-            {
-                "type": "p",
-                "text": "Jika masalah berulang, catat gejala serta teks error. Sara tidak dapat memeriksa akun atau database Anda secara langsung."
             }
         ]
     },
@@ -1570,10 +1466,6 @@ window.HELP_ARTICLES = [
                     "Berikan informasi minimum dan jangan sertakan kredensial.",
                     "Sara tidak dapat menjalankan permintaan atau menjanjikan hasilnya."
                 ]
-            },
-            {
-                "type": "p",
-                "text": "Jika masalah berulang, catat gejala serta teks error. Sara tidak dapat memeriksa akun atau database Anda secara langsung."
             }
         ]
     },
@@ -1604,10 +1496,6 @@ window.HELP_ARTICLES = [
                     "Coba browser diperbarui atau nonaktifkan sementara ekstensi.",
                     "Catat waktu kejadian jika masalah tetap ada."
                 ]
-            },
-            {
-                "type": "p",
-                "text": "Jika masalah berulang, catat gejala serta teks error. Sara tidak dapat memeriksa akun atau database Anda secara langsung."
             }
         ]
     },
@@ -1638,10 +1526,6 @@ window.HELP_ARTICLES = [
                     "Coba lagi setelah memastikan halaman tidak memproses permintaan.",
                     "Salin pesan sebelum memuat ulang."
                 ]
-            },
-            {
-                "type": "p",
-                "text": "Jika masalah berulang, catat gejala serta teks error. Sara tidak dapat memeriksa akun atau database Anda secara langsung."
             }
         ]
     },
@@ -1673,10 +1557,6 @@ window.HELP_ARTICLES = [
                     "Coba ulang satu kali jika permintaan pertama gagal.",
                     "Batas Sara berbasis memori instance, bukan kuota global persisten."
                 ]
-            },
-            {
-                "type": "p",
-                "text": "Jika masalah berulang, catat gejala serta teks error. Sara tidak dapat memeriksa akun atau database Anda secara langsung."
             }
         ]
     },
@@ -1707,10 +1587,6 @@ window.HELP_ARTICLES = [
                     "Periksa koneksi serta notifikasi error.",
                     "Sara tidak dapat memeriksa database atau memulihkan riwayat."
                 ]
-            },
-            {
-                "type": "p",
-                "text": "Jika masalah berulang, catat gejala serta teks error. Sara tidak dapat memeriksa akun atau database Anda secara langsung."
             }
         ]
     },
@@ -1740,10 +1616,6 @@ window.HELP_ARTICLES = [
                     "Muat ulang halaman; pada Windows Ctrl + F5 meminta browser memuat ulang aset.",
                     "Catat opsi dan gejalanya jika tetap gagal."
                 ]
-            },
-            {
-                "type": "p",
-                "text": "Jika masalah berulang, catat gejala serta teks error. Sara tidak dapat memeriksa akun atau database Anda secara langsung."
             }
         ]
     },
@@ -1774,10 +1646,6 @@ window.HELP_ARTICLES = [
                     "Jika diminta menunggu, tunggu sebelum mencoba lagi.",
                     "Catat teks error dan waktu tanpa informasi sensitif."
                 ]
-            },
-            {
-                "type": "p",
-                "text": "Jika masalah berulang, catat gejala serta teks error. Sara tidak dapat memeriksa akun atau database Anda secara langsung."
             }
         ]
     },
