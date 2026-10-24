@@ -224,5 +224,33 @@ window.CHOCO_PROJECT_KNOWLEDGE = [
       "KasirKita",
       "dukungan pelanggan"
     ]
+  },
+  {
+    "id": "project-portfolio-index",
+    "title": "Daftar lengkap portofolio proyek Hasby",
+    "summary": "Daftar semua proyek utama yang tercatat di portofolio Hasby.",
+    "details": "Saat ditanya daftar semua proyek, karya, atau produk yang dikembangkan Hasby, sebutkan seluruh proyek yang tercatat, lalu jelaskan proyek spesifik dari referensi detail masing-masing. Proyek yang tercatat: (1) Choco AI/AIKEPRIBADIAN, representasi digital berbasis AI dan aplikasi chat utama, masih beta/pengembangan; (2) Choco AI Help Center dengan Sara, pusat bantuan terpisah; (3) KasirKita Desktop, aplikasi POS lokal Windows yang masih dikembangkan dan belum siap dijual; (4) Chocobot Guardian, utilitas Windows lokal untuk diagnosis/monitoring dan keamanan komputer, masih tahap fondasi; (5) Privacy Guardian Windows, alat bantu analisis dokumen kebijakan, bukan nasihat hukum; (6) Choco Panel Admin, dashboard owner untuk operasi, keamanan, laporan, moderasi dan integrasi, masih tahap fondasi; (7) The Choco Studios Information, situs informasi publik TCS dan katalog proyek; (8) why-me, proyek naratif tentang empati dan dampak penilaian/relasi keluarga, masih konsep dan belum playable. The Choco Studios adalah identitas branding payung, bukan satu produk yang sama dengan semua proyeknya. Projects.co.id merupakan kemungkinan jalur distribusi produk digital, bukan bukti semua produk telah terdaftar atau terjual. Status berdasarkan source/README yang diperiksa tidak membuktikan perilaku produksi kecuali diuji terpisah. Untuk pertanyaan seluruh portofolio, jangan hanya menyebut beberapa hasil retrieval; sebutkan kedelapan entri dan tandai mana yang masih konsep/pengembangan.",
+    "status": "portfolio-index",
+    "repository": "chocoanakbaik/AIKEPRIBADIAN; chocoanakbaik/choco-ai-help-center; chocoanakbaik/KasirKita; chocoanakbaik/chocobot_guardian; chocoanakbaik/privacy_guardian_windows; chocoanakbaik/panel-admin; chocoanakbaik/The-Choco-Studios-Information; chocoanakbaik/why-me",
+    "keywords": [
+      "semua proyek",
+      "daftar proyek",
+      "portofolio lengkap",
+      "karya Hasby",
+      "produk Hasby",
+      "apa saja yang dibuat",
+      "apa aja yang dibuat",
+      "semua produk",
+      "project list",
+      "portfolio index",
+      "Choco AI",
+      "Sara",
+      "KasirKita",
+      "Chocobot Guardian",
+      "Privacy Guardian",
+      "Panel Admin",
+      "TCS Information",
+      "why-me"
+    ]
   }
 ];
