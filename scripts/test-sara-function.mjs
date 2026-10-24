@@ -285,10 +285,10 @@ try {
       })
     }));
     assert.equal(response.statusCode, 200);
-    const sentPrompt = sentBody.messages.map((message) => message.content).join("\\n");
+    const sentPrompt = sentBody.messages.map((message) => message.content).join("\n");
     assert.match(sentPrompt, /REFERENSI PORTOFOLIO DAN HUBUNGAN ASISTEN/);
     assert.match(sentPrompt, /brand-hierarchy-choco-ecosystem/);
-    assert.match(sentPrompt, /The Choco Studios \\(TCS\\) adalah payung utama/);
+    assert.match(sentPrompt, /The Choco Studios \(TCS\) adalah payung utama/);
   });
 
   await test("pembatasan dari layanan model tidak diteruskan sebagai error mentah", async () => {
