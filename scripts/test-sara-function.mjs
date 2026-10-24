@@ -261,6 +261,36 @@ try {
     assert.match(sentBody.messages[0].content, /portofolio proyeknya/);
   });
 
+  await test("pertanyaan payung utama memakai referensi hierarki brand TCS", async () => {
+    process.env.GROQ_API_KEY = "test-key-not-a-real-secret";
+    let sentBody;
+    globalThis.fetch = async (_url, options) => {
+      sentBody = JSON.parse(options.body);
+      return { ok: true, status: 200, json: async () => ({ choices: [{ message: { content: "The Choco Studios (TCS) adalah payung utama ekosistem proyek." } }] }) };
+    };
+    const response = await handler(makeEvent({
+      ip: "192.0.2.30",
+      body: JSON.stringify({
+        question: "Siapa payung utama yang menaungi semua proyek?",
+        projectKnowledge: [{
+          id: "brand-hierarchy-choco-ecosystem",
+          title: "Apa payung utama seluruh proyek dan produk Choco?",
+          summary: "The Choco Studios (TCS) adalah payung utama yang menaungi semua proyek dan produk dalam ekosistem Choco.",
+          details: "The Choco Studios (TCS) adalah payung utama branding internal untuk proyek-proyek Choco.",
+          status: "curated-brand-hierarchy",
+          repository: "multiple project repositories",
+          keywords: ["TCS", "The Choco Studios", "payung utama", "semua proyek", "brand induk", "yang menaungi"]
+        }],
+        features: [], articles: []
+      })
+    }));
+    assert.equal(response.statusCode, 200);
+    const sentPrompt = sentBody.messages.map((message) => message.content).join("\\n");
+    assert.match(sentPrompt, /REFERENSI PORTOFOLIO DAN HUBUNGAN ASISTEN/);
+    assert.match(sentPrompt, /brand-hierarchy-choco-ecosystem/);
+    assert.match(sentPrompt, /The Choco Studios \\(TCS\\) adalah payung utama/);
+  });
+
   await test("pembatasan dari layanan model tidak diteruskan sebagai error mentah", async () => {
     process.env.GROQ_API_KEY = "test-key-not-a-real-secret";
     globalThis.fetch = async () => ({
