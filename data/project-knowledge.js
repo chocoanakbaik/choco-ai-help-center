@@ -6,9 +6,9 @@
 window.CHOCO_PROJECT_KNOWLEDGE = [
   {
     "id": "portfolio-owner-and-brand",
-    "title": "Pengembang dan identitas The Choco Studios",
-    "summary": "Hasby Prasetya Saprudin adalah pengembang mandiri di balik portofolio proyek Choco",
-    "details": "Hasby Prasetya Saprudin adalah pengembang mandiri di balik portofolio proyek Choco. The Choco Studios (TCS) adalah identitas branding payung bagi beberapa proyek, bukan klaim bahwa TCS telah berbadan hukum sebagai perusahaan. Status setiap proyek harus dibedakan antara source code tersedia, sedang dikembangkan, direncanakan, siap rilis, dan terverifikasi berjalan di produksi. Gunakan repository dan README tiap proyek sebagai sumber utama; jangan menambah detail yang tidak tercatat.",
+    "title": "Pengembang dan payung utama The Choco Studios",
+    "summary": "Hasby Prasetya Saprudin adalah pengembang mandiri dan The Choco Studios (TCS) adalah payung brand utama ekosistem proyek",
+    "details": "Hasby Prasetya Saprudin adalah pengembang mandiri di balik portofolio proyek Choco. The Choco Studios (TCS) adalah identitas branding dan payung utama bagi proyek-proyek serta produk dalam ekosistem ini. Ini menjelaskan struktur branding internal, bukan klaim bahwa TCS telah berbadan hukum sebagai perusahaan. Status setiap proyek harus dibedakan antara source code tersedia, sedang dikembangkan, direncanakan, siap rilis, dan terverifikasi berjalan di produksi. Gunakan repository dan README tiap proyek sebagai sumber utama; jangan menambah detail yang tidak tercatat.",
     "status": "curated",
     "repository": "chocoanakbaik/The-Choco-Studios-Information",
     "keywords": [
@@ -22,7 +22,11 @@ window.CHOCO_PROJECT_KNOWLEDGE = [
       "portfolio",
       "portofolio",
       "siapa",
-      "pencipta"
+      "pencipta",
+      "payung utama",
+      "payung brand",
+      "brand induk",
+      "semua proyek"
     ]
   },
   {
@@ -92,7 +96,7 @@ window.CHOCO_PROJECT_KNOWLEDGE = [
     "id": "project-kasirkita",
     "title": "KasirKita Desktop",
     "summary": "KasirKita adalah aplikasi kasir desktop untuk usaha kecil, di repository chocoanakbaik/KasirKita, memakai Python/Tkinter dan SQLite lokal",
-    "details": "KasirKita adalah aplikasi kasir desktop untuk usaha kecil, di repository chocoanakbaik/KasirKita, memakai Python/Tkinter dan SQLite lokal. README menyatakan produk masih dalam pengembangan dan belum siap dijual. Source mencakup alur kasir tunai, produk dan stok, SKU/barcode Code 128, histori transaksi, struk TXT/PDF, laporan CSV/XLSX/PDF, retur, pengeluaran operasional, ringkasan laba berdasarkan harga modal, pajak opsional yang nonaktif secara default, backup/restore, tutorial offline, dan log lokal. Tahap akun mencakup pemilik/pegawai serta data pelanggan/supplier. Data inti dirancang tersimpan lokal di Windows, lokasi default %LOCALAPPDATA%\\KasirKita; alur kasir inti tidak bergantung pada Choco AI, Supabase, atau internet. Target Windows 10/11; Windows 8.1 belum terverifikasi pada perangkat fisik. README menyebut penerbit The Choco Studios, sementara permintaan branding tampilan terpisah menyebut 'KasirKita by The Choco Corporation'; jangan menganggap dua label itu satu entitas legal tanpa keputusan branding lebih lanjut.",
+    "details": "KasirKita adalah aplikasi kasir desktop untuk usaha kecil, di repository chocoanakbaik/KasirKita, memakai Python/Tkinter dan SQLite lokal. README menyatakan produk masih dalam pengembangan dan belum siap dijual. Source mencakup alur kasir tunai, produk dan stok, SKU/barcode Code 128, histori transaksi, struk TXT/PDF, laporan CSV/XLSX/PDF, retur, pengeluaran operasional, ringkasan laba berdasarkan harga modal, pajak opsional yang nonaktif secara default, backup/restore, tutorial offline, dan log lokal. Tahap akun mencakup pemilik/pegawai serta data pelanggan/supplier. Data inti dirancang tersimpan lokal di Windows, lokasi default %LOCALAPPDATA%\\KasirKita; alur kasir inti tidak bergantung pada Choco AI, Supabase, atau internet. Target Windows 10/11; Windows 8.1 belum terverifikasi pada perangkat fisik. Dalam keputusan branding saat ini, KasirKita berada di bawah payung The Choco Studios (TCS). Jangan menyatakan status badan hukum tanpa dasar yang terverifikasi.",
     "status": "in-development-not-ready-to-sell",
     "repository": "chocoanakbaik/KasirKita",
     "keywords": [
@@ -108,7 +112,8 @@ window.CHOCO_PROJECT_KNOWLEDGE = [
       "laporan",
       "pelanggan",
       "supplier",
-      "The Choco Corporation"
+      "The Choco Studios",
+      "TCS"
     ]
   },
   {
@@ -229,7 +234,7 @@ window.CHOCO_PROJECT_KNOWLEDGE = [
     "id": "project-portfolio-index",
     "title": "Daftar lengkap portofolio proyek Hasby",
     "summary": "Daftar semua proyek utama yang tercatat di portofolio Hasby.",
-    "details": "Saat ditanya daftar semua proyek, karya, atau produk yang dikembangkan Hasby, sebutkan seluruh proyek yang tercatat, lalu jelaskan proyek spesifik dari referensi detail masing-masing. Proyek yang tercatat: (1) Choco AI/AIKEPRIBADIAN, representasi digital berbasis AI dan aplikasi chat utama, masih beta/pengembangan; (2) Choco AI Help Center dengan Sara, pusat bantuan terpisah; (3) KasirKita Desktop, aplikasi POS lokal Windows yang masih dikembangkan dan belum siap dijual; (4) Chocobot Guardian, utilitas Windows lokal untuk diagnosis/monitoring dan keamanan komputer, masih tahap fondasi; (5) Privacy Guardian Windows, alat bantu analisis dokumen kebijakan, bukan nasihat hukum; (6) Choco Panel Admin, dashboard owner untuk operasi, keamanan, laporan, moderasi dan integrasi, masih tahap fondasi; (7) The Choco Studios Information, situs informasi publik TCS dan katalog proyek; (8) why-me, proyek naratif tentang empati dan dampak penilaian/relasi keluarga, masih konsep dan belum playable. The Choco Studios adalah identitas branding payung, bukan satu produk yang sama dengan semua proyeknya. Projects.co.id merupakan kemungkinan jalur distribusi produk digital, bukan bukti semua produk telah terdaftar atau terjual. Status berdasarkan source/README yang diperiksa tidak membuktikan perilaku produksi kecuali diuji terpisah. Untuk pertanyaan seluruh portofolio, jangan hanya menyebut beberapa hasil retrieval; sebutkan kedelapan entri dan tandai mana yang masih konsep/pengembangan.",
+    "details": "Saat ditanya daftar semua proyek, karya, atau produk yang dikembangkan Hasby, sebutkan seluruh proyek yang tercatat, lalu jelaskan proyek spesifik dari referensi detail masing-masing. Proyek yang tercatat: (1) Choco AI/AIKEPRIBADIAN, representasi digital berbasis AI dan aplikasi chat utama, masih beta/pengembangan; (2) Choco AI Help Center dengan Sara, pusat bantuan terpisah; (3) KasirKita Desktop, aplikasi POS lokal Windows yang masih dikembangkan dan belum siap dijual; (4) Chocobot Guardian, utilitas Windows lokal untuk diagnosis/monitoring dan keamanan komputer, masih tahap fondasi; (5) Privacy Guardian Windows, alat bantu analisis dokumen kebijakan, bukan nasihat hukum; (6) Choco Panel Admin, dashboard owner untuk operasi, keamanan, laporan, moderasi dan integrasi, masih tahap fondasi; (7) The Choco Studios Information, situs informasi publik TCS dan katalog proyek; (8) why-me, proyek naratif tentang empati dan dampak penilaian/relasi keluarga, masih konsep dan belum playable. The Choco Studios (TCS) adalah payung brand utama yang menaungi seluruh proyek dalam daftar ini, bukan satu produk yang sama dengan semua proyeknya. Ini menjelaskan branding internal, bukan status badan hukum. Projects.co.id merupakan kemungkinan jalur distribusi produk digital, bukan bukti semua produk telah terdaftar atau terjual. Status berdasarkan source/README yang diperiksa tidak membuktikan perilaku produksi kecuali diuji terpisah. Untuk pertanyaan seluruh portofolio, jangan hanya menyebut beberapa hasil retrieval; sebutkan kedelapan entri dan tandai mana yang masih konsep/pengembangan.",
     "status": "portfolio-index",
     "repository": "chocoanakbaik/AIKEPRIBADIAN; chocoanakbaik/choco-ai-help-center; chocoanakbaik/KasirKita; chocoanakbaik/chocobot_guardian; chocoanakbaik/privacy_guardian_windows; chocoanakbaik/panel-admin; chocoanakbaik/The-Choco-Studios-Information; chocoanakbaik/why-me",
     "keywords": [
@@ -251,6 +256,29 @@ window.CHOCO_PROJECT_KNOWLEDGE = [
       "Panel Admin",
       "TCS Information",
       "why-me"
+    ]
+  },
+  {
+    "id": "brand-hierarchy-choco-ecosystem",
+    "title": "Apa payung utama seluruh proyek dan produk Choco?",
+    "summary": "The Choco Studios (TCS) adalah payung utama yang menaungi semua proyek dan produk dalam ekosistem Choco.",
+    "details": "Untuk pertanyaan siapa yang menaungi atau menjadi payung utama seluruh ekosistem, jawaban dalam struktur branding internal adalah The Choco Studios (TCS). Peta sederhananya: The Choco Studios (TCS) → produk dan proyek terkait, termasuk Choco AI, Choco AI Help Center dengan Sara, KasirKita, Chocobot Guardian, Privacy Guardian Windows, Choco Panel Admin, The Choco Studios Information, dan why-me. Struktur ini menjelaskan hierarki branding dan pengelolaan internal, bukan bukti status badan hukum atau struktur legal resmi. Hasby Prasetya Saprudin adalah pengembang mandiri di balik proyek-proyek yang tercatat. Jangan mencampuradukkan payung brand, produk, situs, dan asisten AI.",
+    "status": "curated-brand-hierarchy",
+    "repository": "chocoanakbaik/AIKEPRIBADIAN; chocoanakbaik/choco-ai-help-center; multiple project repositories",
+    "keywords": [
+      "The Choco Studios",
+      "TCS",
+      "payung",
+      "payung utama",
+      "brand induk",
+      "semua proyek",
+      "semua produk",
+      "yang menaungi",
+      "organisasi payung",
+      "umbrella brand",
+      "brand hierarchy",
+      "ekosistem Choco",
+      "Hasby"
     ]
   }
 ];
