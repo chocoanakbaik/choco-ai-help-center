@@ -243,7 +243,7 @@ window.HELP_ARTICLES = [
         content: [
             { type: "p", text: "Saat login, Choco AI mencoba menyimpan pasangan pesan pengguna dan jawaban AI ke database akun." },
             { type: "p", text: "Penyimpanan dapat gagal, misalnya jika konfigurasi atau izin database bermasalah. Dalam kondisi tersebut, aplikasi dapat menampilkan pemberitahuan bahwa jawaban tampil tetapi belum tersimpan." },
-            { type: "p", text: "Setelah login, aplikasi memiliki daftar hingga 30 percakapan terbaru pada bagian Obrolan saat ini di sidebar. Jika daftar berhasil dimuat, pilih judul percakapan untuk mencoba membukanya kembali. Fitur ini bergantung pada koneksi dan izin database; kode yang tersedia bukan jaminan bahwa semua riwayat berhasil tersimpan atau dapat dibuka di setiap sesi. Tanpa login, judul obrolan yang tampil hanya berlaku selama sesi halaman dan tidak dapat dianggap sebagai riwayat akun. Jika daftar tidak muncul atau gagal dibuka, catat pemberitahuan yang tampil dan coba lagi setelah memeriksa koneksi." }
+            { type: "p", text: "Setelah login, aplikasi memiliki daftar hingga 50 percakapan terbaru pada bagian Obrolan saat ini di sidebar. Jika daftar berhasil dimuat, pilih judul percakapan untuk mencoba membukanya kembali. Fitur ini bergantung pada koneksi dan izin database; kode yang tersedia bukan jaminan bahwa semua riwayat berhasil tersimpan atau dapat dibuka di setiap sesi. Tanpa login, judul obrolan yang tampil hanya berlaku selama sesi halaman dan tidak dapat dianggap sebagai riwayat akun. Jika daftar tidak muncul atau gagal dibuka, catat pemberitahuan yang tampil dan coba lagi setelah memeriksa koneksi." }
         ]
     },
 
@@ -476,11 +476,11 @@ window.HELP_ARTICLES = [
         keywords: ["layanan AI eksternal", "penyedia AI", "Groq", "pihak ketiga", "pesan dikirim", "data percakapan", "pemrosesan chat", "privasi chat"],
         popular: false,
         order: 25,
-        updated: "2026-10-17",
+        updated: "2026-10-24",
         content: [
             { type: "p", text: "Ya. Saat Anda memakai chat Choco AI, pesan dan konteks yang relevan dikirim melalui backend ke layanan model AI Groq untuk menghasilkan jawaban. Jika Anda login dan menyimpan catatan melalui tombol + Memori, catatan yang berhasil dimuat juga dapat disertakan sebagai konteks. Preferensi jawaban yang dipilih di aplikasi dapat ikut dikirim sebagai instruksi." },
             { type: "p", text: "Sara di Pusat Bantuan juga mengirim pertanyaan yang Anda tulis, sebagian konteks percakapan sementara, katalog fitur, dan artikel bantuan terpilih ke layanan model Groq untuk menyusun respons." },
-            { type: "p", text: "Kunci API digunakan oleh backend dan tidak semestinya dimasukkan ke pesan atau kode browser. Penyimpanan pesan di database akun adalah proses terpisah; penyimpanan tersebut dapat gagal dan tidak berarti pesan tidak diproses oleh layanan model." },
+            { type: "p", text: "Kunci API digunakan oleh backend dan tidak semestinya dimasukkan ke pesan atau kode browser. Setelah pasangan pesan akun berhasil disimpan, source aplikasi juga mencoba mengirim pasangan itu ke endpoint memori agar layanan model mengekstrak maksimal tiga fakta atau preferensi jangka panjang. Jalur ini terpisah dan dapat gagal. Penyimpanan riwayat juga dapat gagal dan tidak berarti pesan tidak diproses layanan model." },
             { type: "p", text: "Pusat Bantuan ini tidak memverifikasi rincian retensi atau penggunaan data di pihak penyedia layanan. Karena itu, jangan menganggap isi pertanyaan otomatis langsung dihapus atau tidak pernah disimpan oleh penyedia." },
             { type: "p", text: "Jangan masukkan kata sandi, API key, kode verifikasi, informasi pembayaran, data keuangan, atau rahasia pribadi ke chat atau catatan memori. Masukkan hanya informasi yang memang diperlukan untuk mendapatkan jawaban." }
         ]
@@ -493,11 +493,11 @@ window.HELP_ARTICLES = [
         keywords: ["memori permanen", "ingatan", "memory", "konteks", "riwayat chat"],
         popular: false,
         order: 26,
-        updated: "2026-10-17",
+        updated: "2026-10-24",
         content: [
             { type: "p", text: "Konteks percakapan menggunakan pesan dari sesi yang sedang berlangsung; itu berbeda dari catatan yang disimpan lintas sesi." },
-            { type: "p", text: "Menu Memori pada sidebar masih bertanda Soon. Secara terpisah, setelah login Google, antarmuka menyediakan tombol + Memori untuk menyimpan catatan pilihan secara manual. Alur ini bergantung pada konfigurasi Supabase dan dapat gagal." },
-            { type: "p", text: "Catatan yang berhasil tersimpan dicoba dimuat lagi saat login dan dapat dikirim sebagai konteks untuk chat berikutnya. Ini bukan berarti seluruh percakapan otomatis diingat. Panduan lengkap ada pada artikel menyimpan memori secara manual." }
+            { type: "p", text: "Menu Memori pada sidebar masih bertanda Soon. Setelah login, tombol + Memori menyediakan jalur terpisah untuk menyimpan catatan manual." },
+            { type: "p", text: "Source aplikasi juga mencoba ekstraksi memori otomatis setelah pasangan pesan akun berhasil disimpan. Backend mencoba mengambil maksimal tiga fakta atau preferensi jangka panjang yang dinyatakan pengguna. Ini bukan penyimpanan seluruh chat mentah sebagai memori, dapat menghasilkan nol catatan, dan dapat gagal. Perilaku produksi belum diverifikasi penuh." }
         ]
     },
     {
@@ -508,7 +508,7 @@ window.HELP_ARTICLES = [
         keywords: ["simpan memori", "menyimpan memori", "memori manual", "tombol memori", "ingat informasi", "memories"],
         popular: false,
         order: 27,
-        updated: "2026-10-17",
+        updated: "2026-10-24",
         content: [
             { type: "p", text: "Menu Memori pada sidebar masih bertanda Soon. Namun, setelah login, aplikasi menyediakan tombol terpisah bertuliskan + Memori untuk menyimpan catatan secara manual." },
             {
@@ -521,7 +521,7 @@ window.HELP_ARTICLES = [
                 ]
             },
             { type: "p", text: "Catatan yang berhasil disimpan dicoba dimuat kembali saat login dan dapat dikirim sebagai konteks ke chat berikutnya. Proses ini bergantung pada konfigurasi serta izin database Supabase." },
-            { type: "p", text: "Fitur ini hanya menyimpan catatan yang Anda masukkan secara manual. Aplikasi belum menyediakan daftar untuk mengedit atau menghapus catatan satu per satu. Jangan simpan kata sandi, API key, kode verifikasi, informasi keuangan, atau rahasia pribadi." }
+            { type: "p", text: "Tombol + Memori menyimpan catatan pilihan secara manual. Secara terpisah, source aplikasi mencoba mengekstrak fakta atau preferensi tertentu dari pasangan pesan akun yang berhasil disimpan; ini tidak merekam setiap pesan sebagai memori dan prosesnya dapat gagal. Aplikasi belum menyediakan daftar untuk mengedit atau menghapus catatan satu per satu. Jangan simpan kata sandi, API key, kode verifikasi, informasi keuangan, atau rahasia pribadi." }
         ]
     },
     {
@@ -532,9 +532,9 @@ window.HELP_ARTICLES = [
         keywords: ["hapus data", "menghapus akun", "hapus percakapan", "privasi", "data pribadi"],
         popular: false,
         order: 28,
-        updated: "2026-10-17",
+        updated: "2026-10-24",
         content: [
-            { type: "p", text: "Antarmuka Choco AI saat ini belum menyediakan tombol mandiri untuk menghapus akun, riwayat percakapan yang tersimpan, atau catatan memori satu per satu." },
+            { type: "p", text: "Antarmuka Choco AI saat ini belum mendokumentasikan alur mandiri terverifikasi untuk menghapus akun, riwayat percakapan yang tersimpan, atau catatan memori satu per satu." },
             { type: "p", text: "Logout, menghapus riwayat yang terlihat di browser, atau membersihkan cache browser tidak membuktikan bahwa data pada database Supabase telah terhapus." },
             { type: "p", text: "Pusat Bantuan ini belum mendokumentasikan alur penghapusan mandiri yang sudah terverifikasi. Jangan menganggap data sudah dihapus tanpa konfirmasi dari mekanisme resmi yang benar-benar tersedia." }
         ]
@@ -658,6 +658,1128 @@ window.HELP_ARTICLES = [
         order: 36,
         updated: "2026-10-16",
         redirect: "features/unavailable/pencarian-web.html"
+    },
+
+    // ==========================================
+    // KNOWLEDGE SARA TAMBAHAN
+    // ==========================================
+    {
+        "id": "cara-menulis-pertanyaan-jelas",
+        "category": "memulai",
+        "title": "Bagaimana cara menulis pertanyaan yang jelas untuk Choco AI?",
+        "summary": "Beri konteks dan tujuan agar permintaan lebih mudah dipahami.",
+        "keywords": [
+            "prompt",
+            "cara bertanya",
+            "instruksi jelas",
+            "konteks"
+        ],
+        "popular": false,
+        "order": 37,
+        "updated": "2026-10-24",
+        "content": [
+            {
+                "type": "p",
+                "text": "Jelaskan tujuan, konteks yang diperlukan, dan hasil yang diharapkan. Pertanyaan jelas membantu, tetapi tidak menjamin jawaban selalu tepat."
+            },
+            {
+                "type": "ol",
+                "items": [
+                    "Sebutkan tugas secara langsung.",
+                    "Berikan konteks secukupnya dan hindari rahasia pribadi.",
+                    "Sebutkan format yang diinginkan, misalnya daftar atau langkah bernomor."
+                ]
+            },
+            {
+                "type": "p",
+                "text": "Jika masalah berulang, catat gejala serta teks error. Sara tidak dapat memeriksa akun atau database Anda secara langsung."
+            }
+        ]
+    },
+
+    {
+        "id": "cara-meminta-format-jawaban",
+        "category": "memulai",
+        "title": "Bagaimana cara meminta format jawaban tertentu?",
+        "summary": "Minta bentuk jawaban tertentu dan periksa hasil akhirnya.",
+        "keywords": [
+            "format jawaban",
+            "tabel",
+            "daftar",
+            "ringkasan"
+        ],
+        "popular": false,
+        "order": 38,
+        "updated": "2026-10-24",
+        "content": [
+            {
+                "type": "p",
+                "text": "Anda dapat menyebutkan format langsung di pesan, meski Choco AI tetap dapat keliru mengikuti batasan."
+            },
+            {
+                "type": "ol",
+                "items": [
+                    "Minta lima poin singkat, langkah bernomor, atau tabel perbandingan.",
+                    "Sebutkan bagian wajib dan panjang yang diharapkan.",
+                    "Jika hasil belum sesuai, minta revisi bagian tertentu."
+                ]
+            },
+            {
+                "type": "p",
+                "text": "Jika masalah berulang, catat gejala serta teks error. Sara tidak dapat memeriksa akun atau database Anda secara langsung."
+            }
+        ]
+    },
+
+    {
+        "id": "meminta-perbaikan-jawaban",
+        "category": "memulai",
+        "title": "Bagaimana cara meminta Choco AI memperbaiki jawaban?",
+        "summary": "Minta koreksi dengan menunjukkan bagian yang salah atau kurang sesuai.",
+        "keywords": [
+            "revisi",
+            "perbaiki jawaban",
+            "koreksi",
+            "jawaban salah"
+        ],
+        "popular": false,
+        "order": 39,
+        "updated": "2026-10-24",
+        "content": [
+            {
+                "type": "p",
+                "text": "Tunjukkan bagian yang salah, kurang lengkap, atau terlalu panjang. Konteks yang masih relevan tidak harus diulang dari awal."
+            },
+            {
+                "type": "ol",
+                "items": [
+                    "Jelaskan bagian yang perlu diperbaiki.",
+                    "Tambahkan koreksi atau fakta yang benar jika diketahui.",
+                    "Periksa hasil baru, terutama angka, kode, atau keputusan penting."
+                ]
+            },
+            {
+                "type": "p",
+                "text": "Jika masalah berulang, catat gejala serta teks error. Sara tidak dapat memeriksa akun atau database Anda secara langsung."
+            }
+        ]
+    },
+
+    {
+        "id": "apakah-jawaban-ai-selalu-benar",
+        "category": "memulai",
+        "title": "Apakah jawaban Choco AI selalu benar?",
+        "summary": "Pahami keterbatasan AI dan kapan informasi harus diperiksa.",
+        "keywords": [
+            "jawaban benar",
+            "akurasi",
+            "informasi salah",
+            "verifikasi"
+        ],
+        "popular": false,
+        "order": 40,
+        "updated": "2026-10-24",
+        "content": [
+            {
+                "type": "p",
+                "text": "Tidak. Choco AI dapat menghasilkan informasi keliru atau tidak sesuai konteks walau terdengar meyakinkan."
+            },
+            {
+                "type": "ol",
+                "items": [
+                    "Periksa nama, tanggal, angka, kutipan, dan klaim teknis penting.",
+                    "Gunakan sumber resmi untuk keputusan berdampak besar.",
+                    "Choco AI tidak otomatis mencari informasi web langsung."
+                ]
+            },
+            {
+                "type": "p",
+                "text": "Jika masalah berulang, catat gejala serta teks error. Sara tidak dapat memeriksa akun atau database Anda secara langsung."
+            }
+        ]
+    },
+
+    {
+        "id": "apa-yang-bisa-dibantu-sara",
+        "category": "memulai",
+        "title": "Hal apa saja yang bisa dibantu Sara AI?",
+        "summary": "Cakupan Sara di Pusat Bantuan dan hal yang tidak dapat dilakukan.",
+        "keywords": [
+            "Sara",
+            "fungsi Sara",
+            "Help Center",
+            "bantuan"
+        ],
+        "popular": false,
+        "order": 41,
+        "updated": "2026-10-24",
+        "content": [
+            {
+                "type": "p",
+                "text": "Sara membantu menjelaskan penggunaan Choco AI, akun, percakapan, pengaturan, personalisasi, privasi, status fitur, dan pemecahan masalah awal."
+            },
+            {
+                "type": "ol",
+                "items": [
+                    "Sara tidak dapat melihat akun, memeriksa database, atau mengubah pengaturan Anda.",
+                    "Fitur Soon atau perlu verifikasi tidak boleh dijanjikan aktif.",
+                    "Jika informasi belum terdokumentasi, Sara harus menyatakan ketidakpastian."
+                ]
+            },
+            {
+                "type": "p",
+                "text": "Jika masalah berulang, catat gejala serta teks error. Sara tidak dapat memeriksa akun atau database Anda secara langsung."
+            }
+        ]
+    },
+
+    {
+        "id": "beralih-akun-google",
+        "category": "akun",
+        "title": "Bagaimana cara memakai akun Google yang berbeda?",
+        "summary": "Beralih akun tanpa menjanjikan riwayat ikut berpindah.",
+        "keywords": [
+            "ganti akun",
+            "beralih akun Google",
+            "logout",
+            "login ulang"
+        ],
+        "popular": false,
+        "order": 42,
+        "updated": "2026-10-24",
+        "content": [
+            {
+                "type": "p",
+                "text": "Jika Choco AI memakai akun yang salah, keluar melalui Logout lalu pilih Login dan akun Google yang benar."
+            },
+            {
+                "type": "ol",
+                "items": [
+                    "Salin pesan yang belum terkirim.",
+                    "Pilih Logout jika kontrol tersedia.",
+                    "Pilih Login dan akun yang diinginkan.",
+                    "Periksa identitas akun setelah kembali."
+                ]
+            },
+            {
+                "type": "p",
+                "text": "Jika masalah berulang, catat gejala serta teks error. Sara tidak dapat memeriksa akun atau database Anda secara langsung."
+            }
+        ]
+    },
+
+    {
+        "id": "akun-google-tidak-muncul",
+        "category": "akun",
+        "title": "Mengapa akun Google saya tidak muncul saat login?",
+        "summary": "Periksa sesi browser dan jendela autentikasi tanpa membagikan kredensial.",
+        "keywords": [
+            "akun Google tidak muncul",
+            "pemilih akun",
+            "pop up login"
+        ],
+        "popular": false,
+        "order": 43,
+        "updated": "2026-10-24",
+        "content": [
+            {
+                "type": "p",
+                "text": "Pemilih akun Google dapat dipengaruhi sesi browser, pop-up yang diblokir, atau koneksi."
+            },
+            {
+                "type": "ol",
+                "items": [
+                    "Pastikan koneksi berfungsi.",
+                    "Periksa pemblokiran pop-up autentikasi.",
+                    "Gunakan pemilih akun resmi Google untuk memilih akun lain jika tersedia.",
+                    "Catat teks error, jangan kirim password atau kode verifikasi."
+                ]
+            },
+            {
+                "type": "p",
+                "text": "Jika masalah berulang, catat gejala serta teks error. Sara tidak dapat memeriksa akun atau database Anda secara langsung."
+            }
+        ]
+    },
+
+    {
+        "id": "nama-akun-google-berbeda",
+        "category": "akun",
+        "title": "Mengapa nama atau email akun terlihat berbeda?",
+        "summary": "Keterbatasan informasi profil dan belum tersedianya editor mandiri.",
+        "keywords": [
+            "nama akun",
+            "email akun",
+            "profil Google",
+            "ubah nama"
+        ],
+        "popular": false,
+        "order": 44,
+        "updated": "2026-10-24",
+        "content": [
+            {
+                "type": "p",
+                "text": "Choco AI dapat memakai nama atau email dari autentikasi Google. UI saat ini tidak menyediakan halaman Profil atau formulir edit profil."
+            },
+            {
+                "type": "ol",
+                "items": [
+                    "Periksa akun Google yang dipilih.",
+                    "Keluar lalu masuk kembali setelah perubahan profil jika perlu.",
+                    "Sara tidak dapat membaca data profil atau mengganti nama/email."
+                ]
+            },
+            {
+                "type": "p",
+                "text": "Jika masalah berulang, catat gejala serta teks error. Sara tidak dapat memeriksa akun atau database Anda secara langsung."
+            }
+        ]
+    },
+
+    {
+        "id": "jawaban-tidak-sesuai-konteks",
+        "category": "percakapan",
+        "title": "Mengapa jawaban Choco AI tidak sesuai konteks?",
+        "summary": "Perjelas konteks atau pisahkan topik baru.",
+        "keywords": [
+            "tidak sesuai konteks",
+            "salah memahami",
+            "konteks chat",
+            "jawaban melenceng"
+        ],
+        "popular": false,
+        "order": 45,
+        "updated": "2026-10-24",
+        "content": [
+            {
+                "type": "p",
+                "text": "Jawaban dapat melenceng jika permintaan kurang jelas atau konteks dari topik sebelumnya mengganggu."
+            },
+            {
+                "type": "ol",
+                "items": [
+                    "Jelaskan tujuan pertanyaan dalam satu kalimat.",
+                    "Sebutkan detail relevan dan koreksi jawaban sebelumnya bila perlu.",
+                    "Untuk topik berbeda, pilih Obrolan baru."
+                ]
+            },
+            {
+                "type": "p",
+                "text": "Jika masalah berulang, catat gejala serta teks error. Sara tidak dapat memeriksa akun atau database Anda secara langsung."
+            }
+        ]
+    },
+
+    {
+        "id": "jawaban-berulang",
+        "category": "percakapan",
+        "title": "Mengapa Choco AI mengulang jawaban yang sama?",
+        "summary": "Cara mengarahkan jawaban agar tidak mengulang bagian sebelumnya.",
+        "keywords": [
+            "jawaban berulang",
+            "mengulang jawaban",
+            "respons sama"
+        ],
+        "popular": false,
+        "order": 46,
+        "updated": "2026-10-24",
+        "content": [
+            {
+                "type": "p",
+                "text": "Choco AI mungkin mengulang isi karena konteks atau instruksi membuatnya kembali ke jawaban sebelumnya."
+            },
+            {
+                "type": "ol",
+                "items": [
+                    "Tunjukkan bagian yang sudah dijawab dan minta informasi yang belum dibahas.",
+                    "Minta hasil dalam format tertentu, misalnya tiga langkah baru.",
+                    "Pastikan jawaban pertama tidak muncul sebelum mengirim ulang."
+                ]
+            },
+            {
+                "type": "p",
+                "text": "Jika masalah berulang, catat gejala serta teks error. Sara tidak dapat memeriksa akun atau database Anda secara langsung."
+            }
+        ]
+    },
+
+    {
+        "id": "jawaban-terpotong",
+        "category": "percakapan",
+        "title": "Apa yang harus dilakukan jika jawaban Choco AI terpotong?",
+        "summary": "Minta kelanjutan tanpa mengasumsikan adanya tombol khusus.",
+        "keywords": [
+            "jawaban terpotong",
+            "respons terhenti",
+            "jawaban belum lengkap"
+        ],
+        "popular": false,
+        "order": 47,
+        "updated": "2026-10-24",
+        "content": [
+            {
+                "type": "p",
+                "text": "Jawaban dapat berhenti karena gangguan atau batas proses model. Sara tidak dapat memeriksa log permintaan."
+            },
+            {
+                "type": "ol",
+                "items": [
+                    "Pastikan jawaban benar-benar berhenti.",
+                    "Kirim “Lanjutkan dari bagian terakhir tanpa mengulang sebelumnya.”",
+                    "Jika sering terjadi, minta versi ringkas atau pecah tugas.",
+                    "Catat teks error jika ada."
+                ]
+            },
+            {
+                "type": "p",
+                "text": "Jika masalah berulang, catat gejala serta teks error. Sara tidak dapat memeriksa akun atau database Anda secara langsung."
+            }
+        ]
+    },
+
+    {
+        "id": "obrolan-baru-vs-riwayat",
+        "category": "percakapan",
+        "title": "Apa bedanya Obrolan baru dengan riwayat percakapan?",
+        "summary": "Bedakan konteks sesi baru dari daftar percakapan akun.",
+        "keywords": [
+            "obrolan baru",
+            "riwayat chat",
+            "chat lama",
+            "sesi baru"
+        ],
+        "popular": false,
+        "order": 48,
+        "updated": "2026-10-24",
+        "content": [
+            {
+                "type": "p",
+                "text": "Obrolan baru memisahkan konteks dan bukan perintah menghapus percakapan lama. Source meminta daftar hingga 50 percakapan terbaru setelah login; produksi belum diverifikasi penuh."
+            },
+            {
+                "type": "ol",
+                "items": [
+                    "Periksa sidebar dan pilih judul lama jika tersedia.",
+                    "Jangan menganggap logout menghapus data tersimpan.",
+                    "Sara tidak dapat memeriksa database atau memulihkan chat."
+                ]
+            },
+            {
+                "type": "p",
+                "text": "Jika masalah berulang, catat gejala serta teks error. Sara tidak dapat memeriksa akun atau database Anda secara langsung."
+            }
+        ]
+    },
+
+    {
+        "id": "pesan-belum-terkirim",
+        "category": "percakapan",
+        "title": "Apa yang harus dilakukan jika pesan belum terkirim?",
+        "summary": "Langkah awal saat pesan menunggu atau tidak menghasilkan jawaban.",
+        "keywords": [
+            "pesan belum terkirim",
+            "chat pending",
+            "mengirim pesan gagal"
+        ],
+        "popular": false,
+        "order": 49,
+        "updated": "2026-10-24",
+        "content": [
+            {
+                "type": "p",
+                "text": "Jangan kirim pesan yang sama berulang kali saat permintaan pertama masih diproses."
+            },
+            {
+                "type": "ol",
+                "items": [
+                    "Tunggu dan periksa apakah jawaban atau error muncul.",
+                    "Periksa koneksi dan pastikan teks masih ada.",
+                    "Salin teks sebelum memuat ulang halaman.",
+                    "Coba lagi satu kali setelah permintaan pertama dipastikan gagal."
+                ]
+            },
+            {
+                "type": "p",
+                "text": "Jika masalah berulang, catat gejala serta teks error. Sara tidak dapat memeriksa akun atau database Anda secara langsung."
+            }
+        ]
+    },
+
+    {
+        "id": "konteks-setelah-refresh",
+        "category": "percakapan",
+        "title": "Apakah konteks chat tetap ada setelah halaman dimuat ulang?",
+        "summary": "Bedakan konteks aktif dari pemuatan ulang riwayat akun.",
+        "keywords": [
+            "refresh",
+            "reload",
+            "chat hilang",
+            "konteks setelah refresh"
+        ],
+        "popular": false,
+        "order": 50,
+        "updated": "2026-10-24",
+        "content": [
+            {
+                "type": "p",
+                "text": "Konteks browser dan riwayat akun berbeda. Pesan yang belum tersimpan belum tentu kembali setelah refresh."
+            },
+            {
+                "type": "ol",
+                "items": [
+                    "Jika login, periksa sidebar untuk percakapan lama.",
+                    "Pilih judul jika tersedia dan lihat apakah pesan dimuat.",
+                    "Catat pesan error; Sara tidak dapat memulihkan chat."
+                ]
+            },
+            {
+                "type": "p",
+                "text": "Jika masalah berulang, catat gejala serta teks error. Sara tidak dapat memeriksa akun atau database Anda secara langsung."
+            }
+        ]
+    },
+
+    {
+        "id": "permintaan-chat-ganda",
+        "category": "percakapan",
+        "title": "Mengapa satu pertanyaan terkirim atau terjawab lebih dari sekali?",
+        "summary": "Hindari pengiriman berulang saat permintaan pertama belum selesai.",
+        "keywords": [
+            "chat duplikat",
+            "permintaan ganda",
+            "pesan dobel"
+        ],
+        "popular": false,
+        "order": 51,
+        "updated": "2026-10-24",
+        "content": [
+            {
+                "type": "p",
+                "text": "Permintaan ganda bisa terjadi saat tombol ditekan berkali-kali atau pesan dikirim ulang sebelum hasil pertama jelas."
+            },
+            {
+                "type": "ol",
+                "items": [
+                    "Tunggu indikator pemrosesan berhenti.",
+                    "Pastikan jawaban pertama tidak tampil sebelum mencoba lagi.",
+                    "Jika berulang, catat waktu, browser, dan gejalanya."
+                ]
+            },
+            {
+                "type": "p",
+                "text": "Jika masalah berulang, catat gejala serta teks error. Sara tidak dapat memeriksa akun atau database Anda secara langsung."
+            }
+        ]
+    },
+
+    {
+        "id": "preferensi-tidak-tersimpan",
+        "category": "pengaturan",
+        "title": "Mengapa preferensi Choco AI kembali seperti semula?",
+        "summary": "Periksa penyimpanan preferensi dan batasan lintas perangkat.",
+        "keywords": [
+            "preferensi hilang",
+            "pengaturan tidak tersimpan",
+            "setting reset"
+        ],
+        "popular": false,
+        "order": 52,
+        "updated": "2026-10-24",
+        "content": [
+            {
+                "type": "p",
+                "text": "Sebagian preferensi dapat disimpan lokal di browser sehingga berbeda antarperangkat atau hilang setelah data situs dibersihkan."
+            },
+            {
+                "type": "ol",
+                "items": [
+                    "Periksa pilihan Pengaturan atau Personalisasi.",
+                    "Gunakan tombol simpan jika tersedia.",
+                    "Coba browser dan profil yang sama.",
+                    "Jangan anggap semua preferensi tersinkron antarperangkat."
+                ]
+            },
+            {
+                "type": "p",
+                "text": "Jika masalah berulang, catat gejala serta teks error. Sara tidak dapat memeriksa akun atau database Anda secara langsung."
+            }
+        ]
+    },
+
+    {
+        "id": "efek-mengetik-bukan-kecepatan",
+        "category": "pengaturan",
+        "title": "Apakah efek mengetik memengaruhi kecepatan Choco AI?",
+        "summary": "Bedakan animasi tampilan dari waktu pemrosesan model.",
+        "keywords": [
+            "efek mengetik",
+            "animasi mengetik",
+            "respons lambat"
+        ],
+        "popular": false,
+        "order": 53,
+        "updated": "2026-10-24",
+        "content": [
+            {
+                "type": "p",
+                "text": "Efek mengetik mengatur cara teks ditampilkan, bukan waktu layanan AI menghasilkan jawaban."
+            },
+            {
+                "type": "ol",
+                "items": [
+                    "Periksa apakah animasi saja yang lambat atau jawaban belum diterima.",
+                    "Koneksi dan pemrosesan model dapat memengaruhi waktu respons.",
+                    "Ketersediaan kontrol mengikuti UI; Sara tidak dapat mengubahnya."
+                ]
+            },
+            {
+                "type": "p",
+                "text": "Jika masalah berulang, catat gejala serta teks error. Sara tidak dapat memeriksa akun atau database Anda secara langsung."
+            }
+        ]
+    },
+
+    {
+        "id": "personalisasi-tidak-diterapkan",
+        "category": "personalisasi",
+        "title": "Mengapa personalisasi tidak selalu memengaruhi jawaban?",
+        "summary": "Periksa pilihan personalisasi dan batas pengaruhnya.",
+        "keywords": [
+            "personalisasi tidak berfungsi",
+            "gaya bahasa tidak berubah",
+            "preferensi respons"
+        ],
+        "popular": false,
+        "order": 54,
+        "updated": "2026-10-24",
+        "content": [
+            {
+                "type": "p",
+                "text": "Personalisasi membantu memberi preferensi gaya, detail, humor, atau emoji. Pengaruhnya tidak mutlak dan bukan berarti model dilatih ulang."
+            },
+            {
+                "type": "ol",
+                "items": [
+                    "Periksa pilihan yang benar-benar tampil.",
+                    "Simpan perubahan jika UI menyediakan opsi simpan.",
+                    "Uji di pesan baru dan jelaskan preferensi langsung jika perlu."
+                ]
+            },
+            {
+                "type": "p",
+                "text": "Jika masalah berulang, catat gejala serta teks error. Sara tidak dapat memeriksa akun atau database Anda secara langsung."
+            }
+        ]
+    },
+
+    {
+        "id": "bedanya-personalisasi-dan-instruksi",
+        "category": "personalisasi",
+        "title": "Apa bedanya Personalisasi dengan instruksi di chat?",
+        "summary": "Bedakan preferensi umum dari permintaan untuk pesan tertentu.",
+        "keywords": [
+            "personalisasi",
+            "instruksi chat",
+            "prompt khusus",
+            "preferensi umum"
+        ],
+        "popular": false,
+        "order": 55,
+        "updated": "2026-10-24",
+        "content": [
+            {
+                "type": "p",
+                "text": "Personalisasi adalah preferensi umum; instruksi chat merupakan permintaan untuk jawaban atau percakapan tertentu."
+            },
+            {
+                "type": "ol",
+                "items": [
+                    "Preferensi umum dapat meminta jawaban singkat.",
+                    "Satu pesan dapat meminta penjelasan rinci dengan langkah bernomor.",
+                    "Keduanya tidak menjamin semua respons mengikuti keinginan tanpa pengecualian."
+                ]
+            },
+            {
+                "type": "p",
+                "text": "Jika masalah berulang, catat gejala serta teks error. Sara tidak dapat memeriksa akun atau database Anda secara langsung."
+            }
+        ]
+    },
+
+    {
+        "id": "perbedaan-konteks-riwayat-memori",
+        "category": "privasi",
+        "title": "Apa bedanya konteks chat, riwayat percakapan, dan memori?",
+        "summary": "Bedakan tiga jenis informasi yang tidak diproses dengan cara sama.",
+        "keywords": [
+            "konteks chat",
+            "riwayat percakapan",
+            "memori permanen"
+        ],
+        "popular": false,
+        "order": 56,
+        "updated": "2026-10-24",
+        "content": [
+            {
+                "type": "p",
+                "text": "Konteks adalah pesan untuk kesinambungan chat aktif; riwayat adalah percakapan akun yang coba disimpan; memori adalah catatan manual atau hasil ekstraksi fakta/preferensi."
+            },
+            {
+                "type": "ol",
+                "items": [
+                    "Menu Memori sidebar masih bertanda Soon.",
+                    "Tombol + Memori adalah jalur manual.",
+                    "Source juga mencoba ekstraksi otomatis setelah pasangan pesan akun berhasil disimpan; proses dapat gagal dan produksi belum diverifikasi."
+                ]
+            },
+            {
+                "type": "p",
+                "text": "Jika masalah berulang, catat gejala serta teks error. Sara tidak dapat memeriksa akun atau database Anda secara langsung."
+            }
+        ]
+    },
+
+    {
+        "id": "apakah-semua-pesan-menjadi-memori",
+        "category": "privasi",
+        "title": "Apakah semua pesan otomatis disimpan sebagai memori?",
+        "summary": "Bedakan ekstraksi otomatis, catatan manual, dan riwayat percakapan.",
+        "keywords": [
+            "memori otomatis",
+            "semua pesan disimpan",
+            "ekstraksi memori",
+            "catatan manual"
+        ],
+        "popular": false,
+        "order": 57,
+        "updated": "2026-10-24",
+        "content": [
+            {
+                "type": "p",
+                "text": "Tidak semua pesan otomatis menjadi catatan memori. Setelah pasangan pesan dan jawaban berhasil disimpan untuk akun login, source Choco AI mencoba mengekstrak fakta atau preferensi jangka panjang."
+            },
+            {
+                "type": "ol",
+                "items": [
+                    "Backend meminta maksimal tiga catatan singkat dan menghindari kredensial, data sensitif, tebakan, klaim assistant, dan pertanyaan sesaat.",
+                    "Jika tidak ada informasi yang cocok, hasilnya bisa nol catatan.",
+                    "Ini berbeda dari tombol + Memori manual; ekstraksi dapat gagal dan produksi belum diverifikasi penuh."
+                ]
+            },
+            {
+                "type": "p",
+                "text": "Jika masalah berulang, catat gejala serta teks error. Sara tidak dapat memeriksa akun atau database Anda secara langsung."
+            }
+        ]
+    },
+
+    {
+        "id": "memori-gagal-disimpan",
+        "category": "privasi",
+        "title": "Apa yang harus dilakukan jika memori gagal disimpan?",
+        "summary": "Langkah awal untuk catatan manual dan batas Sara dalam memeriksa akun.",
+        "keywords": [
+            "memori gagal disimpan",
+            "notifikasi memori",
+            "simpan catatan"
+        ],
+        "popular": false,
+        "order": 58,
+        "updated": "2026-10-24",
+        "content": [
+            {
+                "type": "p",
+                "text": "Jika Choco AI memberi tahu catatan manual gagal disimpan, jangan menganggapnya sudah tersimpan."
+            },
+            {
+                "type": "ol",
+                "items": [
+                    "Pastikan login masih aktif.",
+                    "Coba catatan singkat tanpa data sensitif.",
+                    "Periksa koneksi dan teks error.",
+                    "Jika berulang, laporkan teks error dan waktu kejadian. Sara tidak dapat memeriksa database."
+                ]
+            },
+            {
+                "type": "p",
+                "text": "Jika masalah berulang, catat gejala serta teks error. Sara tidak dapat memeriksa akun atau database Anda secara langsung."
+            }
+        ]
+    },
+
+    {
+        "id": "memori-tidak-digunakan",
+        "category": "privasi",
+        "title": "Mengapa Choco AI tidak menggunakan memori yang pernah disimpan?",
+        "summary": "Pahami penyebab catatan tidak muncul dalam konteks jawaban.",
+        "keywords": [
+            "memori tidak digunakan",
+            "memori tidak terbaca",
+            "ingatan tidak muncul"
+        ],
+        "popular": false,
+        "order": 59,
+        "updated": "2026-10-24",
+        "content": [
+            {
+                "type": "p",
+                "text": "Catatan membantu hanya jika tersimpan, dimuat, dan relevan dengan pertanyaan. Proses tersebut dapat gagal."
+            },
+            {
+                "type": "ol",
+                "items": [
+                    "Pastikan memakai akun yang sama.",
+                    "Periksa notifikasi penyimpanan atau pemuatan jika tersedia.",
+                    "Sebutkan lagi konteks relevan bila perlu.",
+                    "Sara tidak dapat melihat isi memori akun."
+                ]
+            },
+            {
+                "type": "p",
+                "text": "Jika masalah berulang, catat gejala serta teks error. Sara tidak dapat memeriksa akun atau database Anda secara langsung."
+            }
+        ]
+    },
+
+    {
+        "id": "masa-simpan-data",
+        "category": "privasi",
+        "title": "Berapa lama data dan percakapan saya disimpan?",
+        "summary": "Periode retensi profil, pesan, dan memori belum diverifikasi.",
+        "keywords": [
+            "retensi data",
+            "masa simpan",
+            "hapus otomatis"
+        ],
+        "popular": false,
+        "order": 60,
+        "updated": "2026-10-24",
+        "content": [
+            {
+                "type": "p",
+                "text": "Help Center belum memiliki periode retensi terverifikasi untuk profil, percakapan, pesan, dan memori. Sara tidak boleh menjanjikan penghapusan otomatis setelah jumlah hari tertentu."
+            },
+            {
+                "type": "ol",
+                "items": [
+                    "Logout atau membersihkan cache tidak membuktikan data database terhapus.",
+                    "Ajukan pertanyaan data melalui kontak resmi yang dipublikasikan.",
+                    "Jangan sertakan kata sandi, token sesi, atau API key."
+                ]
+            },
+            {
+                "type": "p",
+                "text": "Jika masalah berulang, catat gejala serta teks error. Sara tidak dapat memeriksa akun atau database Anda secara langsung."
+            }
+        ]
+    },
+
+    {
+        "id": "jangan-kirim-data-sensitif",
+        "category": "privasi",
+        "title": "Informasi apa yang sebaiknya tidak dikirim ke chat?",
+        "summary": "Langkah perlindungan sebelum mengirim pertanyaan.",
+        "keywords": [
+            "data sensitif",
+            "kata sandi",
+            "API key",
+            "kode OTP",
+            "token"
+        ],
+        "popular": false,
+        "order": 61,
+        "updated": "2026-10-24",
+        "content": [
+            {
+                "type": "p",
+                "text": "Kirim hanya informasi yang diperlukan. Pertanyaan dan konteks diproses layanan AI eksternal; retensi pihak penyedia belum diverifikasi penuh."
+            },
+            {
+                "type": "ol",
+                "items": [
+                    "Jangan kirim password, OTP, token sesi, API key, atau kredensial.",
+                    "Hindari data pembayaran, nomor rekening, dokumen identitas, dan rahasia yang tidak diperlukan.",
+                    "Samarkan detail pribadi pada tangkapan layar atau laporan error."
+                ]
+            },
+            {
+                "type": "p",
+                "text": "Jika masalah berulang, catat gejala serta teks error. Sara tidak dapat memeriksa akun atau database Anda secara langsung."
+            }
+        ]
+    },
+
+    {
+        "id": "apakah-sara-melihat-akun",
+        "category": "privasi",
+        "title": "Apakah Sara bisa melihat akun, riwayat, atau memori Choco AI saya?",
+        "summary": "Batas akses Sara terhadap akun dan data tersimpan.",
+        "keywords": [
+            "Sara melihat akun",
+            "lihat riwayat chat",
+            "akses database",
+            "memori akun"
+        ],
+        "popular": false,
+        "order": 62,
+        "updated": "2026-10-24",
+        "content": [
+            {
+                "type": "p",
+                "text": "Tidak. Sara tidak mempunyai akses langsung untuk membuka akun, membaca database, memeriksa riwayat atau memori, ataupun mengubah pengaturan."
+            },
+            {
+                "type": "ol",
+                "items": [
+                    "Sara menerima pertanyaan, konteks sementara, katalog fitur, dan artikel bantuan terpilih.",
+                    "Konteks yang diperlukan dikirim ke layanan model untuk menyusun jawaban.",
+                    "Jelaskan gejala tanpa password, token, API key, atau data sensitif."
+                ]
+            },
+            {
+                "type": "p",
+                "text": "Jika masalah berulang, catat gejala serta teks error. Sara tidak dapat memeriksa akun atau database Anda secara langsung."
+            }
+        ]
+    },
+
+    {
+        "id": "permintaan-koreksi-data",
+        "category": "privasi",
+        "title": "Bagaimana cara mengajukan permintaan koreksi atau penghapusan data?",
+        "summary": "Arahkan permintaan privasi ke kanal resmi tanpa menjanjikan hasil.",
+        "keywords": [
+            "koreksi data",
+            "hapus data",
+            "permintaan privasi",
+            "hubungi dukungan"
+        ],
+        "popular": false,
+        "order": 63,
+        "updated": "2026-10-24",
+        "content": [
+            {
+                "type": "p",
+                "text": "UI Choco AI belum mendokumentasikan alur mandiri terverifikasi untuk menghapus profil, riwayat, atau memori satu per satu."
+            },
+            {
+                "type": "ol",
+                "items": [
+                    "Gunakan kanal kontak resmi yang dipublikasikan The Choco Studios.",
+                    "Jelaskan jenis data dan permintaan secara singkat.",
+                    "Berikan informasi minimum dan jangan sertakan kredensial.",
+                    "Sara tidak dapat menjalankan permintaan atau menjanjikan hasilnya."
+                ]
+            },
+            {
+                "type": "p",
+                "text": "Jika masalah berulang, catat gejala serta teks error. Sara tidak dapat memeriksa akun atau database Anda secara langsung."
+            }
+        ]
+    },
+
+    {
+        "id": "halaman-putih-kosong",
+        "category": "pemecahan-masalah",
+        "title": "Apa yang harus dilakukan jika Choco AI hanya menampilkan halaman putih?",
+        "summary": "Langkah awal saat halaman kosong atau tidak selesai dimuat.",
+        "keywords": [
+            "halaman putih",
+            "layar kosong",
+            "blank page"
+        ],
+        "popular": false,
+        "order": 64,
+        "updated": "2026-10-24",
+        "content": [
+            {
+                "type": "p",
+                "text": "Halaman kosong dapat berasal dari koneksi, aset gagal dimuat, cache, ekstensi, atau masalah aplikasi. Gejala ini saja tidak menentukan penyebab."
+            },
+            {
+                "type": "ol",
+                "items": [
+                    "Periksa apakah situs lain terbuka.",
+                    "Muat ulang setelah menyalin teks belum terkirim.",
+                    "Coba browser diperbarui atau nonaktifkan sementara ekstensi.",
+                    "Catat waktu kejadian jika masalah tetap ada."
+                ]
+            },
+            {
+                "type": "p",
+                "text": "Jika masalah berulang, catat gejala serta teks error. Sara tidak dapat memeriksa akun atau database Anda secara langsung."
+            }
+        ]
+    },
+
+    {
+        "id": "tombol-tidak-merespons",
+        "category": "pemecahan-masalah",
+        "title": "Mengapa tombol atau menu Choco AI tidak merespons?",
+        "summary": "Panduan awal saat tombol tidak berfungsi atau menu tidak terbuka.",
+        "keywords": [
+            "tombol tidak merespons",
+            "menu tidak bisa dibuka",
+            "klik tidak berfungsi"
+        ],
+        "popular": false,
+        "order": 65,
+        "updated": "2026-10-24",
+        "content": [
+            {
+                "type": "p",
+                "text": "Tombol mungkin tidak merespons saat permintaan diproses atau ketika skrip, koneksi, atau tampilan gagal dimuat."
+            },
+            {
+                "type": "ol",
+                "items": [
+                    "Tunggu sampai permintaan selesai.",
+                    "Periksa pesan error dan notifikasi.",
+                    "Coba lagi setelah memastikan halaman tidak memproses permintaan.",
+                    "Salin pesan sebelum memuat ulang."
+                ]
+            },
+            {
+                "type": "p",
+                "text": "Jika masalah berulang, catat gejala serta teks error. Sara tidak dapat memeriksa akun atau database Anda secara langsung."
+            }
+        ]
+    },
+
+    {
+        "id": "layanan-sibuk-atau-batas-permintaan",
+        "category": "pemecahan-masalah",
+        "title": "Apa arti layanan sibuk atau batas permintaan tercapai?",
+        "summary": "Langkah aman saat layanan AI meminta pengguna mencoba lagi nanti.",
+        "keywords": [
+            "layanan sibuk",
+            "rate limit",
+            "HTTP 429",
+            "kuota layanan"
+        ],
+        "popular": false,
+        "order": 66,
+        "updated": "2026-10-24",
+        "content": [
+            {
+                "type": "p",
+                "text": "Pesan layanan sibuk atau permintaan terlalu sering berarti permintaan belum diproses; itu bukan bukti akun bermasalah."
+            },
+            {
+                "type": "ol",
+                "items": [
+                    "Tunggu sebentar.",
+                    "Periksa apakah jawaban sebelumnya sudah muncul.",
+                    "Coba ulang satu kali jika permintaan pertama gagal.",
+                    "Batas Sara berbasis memori instance, bukan kuota global persisten."
+                ]
+            },
+            {
+                "type": "p",
+                "text": "Jika masalah berulang, catat gejala serta teks error. Sara tidak dapat memeriksa akun atau database Anda secara langsung."
+            }
+        ]
+    },
+
+    {
+        "id": "riwayat-tidak-muncul",
+        "category": "pemecahan-masalah",
+        "title": "Mengapa riwayat percakapan tidak muncul setelah login?",
+        "summary": "Pemeriksaan awal saat daftar percakapan kosong atau gagal dimuat.",
+        "keywords": [
+            "riwayat tidak muncul",
+            "chat lama hilang",
+            "daftar percakapan kosong"
+        ],
+        "popular": false,
+        "order": 67,
+        "updated": "2026-10-24",
+        "content": [
+            {
+                "type": "p",
+                "text": "Source meminta daftar hingga 50 percakapan terbaru setelah login, tetapi ini bukan jaminan semua riwayat tersimpan atau termuat di produksi."
+            },
+            {
+                "type": "ol",
+                "items": [
+                    "Login dengan akun Google yang sama.",
+                    "Periksa sidebar dan tunggu daftar selesai dimuat.",
+                    "Periksa koneksi serta notifikasi error.",
+                    "Sara tidak dapat memeriksa database atau memulihkan riwayat."
+                ]
+            },
+            {
+                "type": "p",
+                "text": "Jika masalah berulang, catat gejala serta teks error. Sara tidak dapat memeriksa akun atau database Anda secara langsung."
+            }
+        ]
+    },
+
+    {
+        "id": "tampilan-tidak-memperbarui",
+        "category": "pemecahan-masalah",
+        "title": "Mengapa tampilan Choco AI tidak berubah setelah pengaturan diubah?",
+        "summary": "Cara memeriksa perubahan yang belum terlihat.",
+        "keywords": [
+            "tampilan tidak berubah",
+            "pengaturan tidak berubah",
+            "cache browser"
+        ],
+        "popular": false,
+        "order": 68,
+        "updated": "2026-10-24",
+        "content": [
+            {
+                "type": "p",
+                "text": "Perubahan mungkin belum disimpan, tidak didukung UI, atau halaman masih memakai aset dari cache."
+            },
+            {
+                "type": "ol",
+                "items": [
+                    "Pastikan opsi tersedia dan simpan jika perlu.",
+                    "Muat ulang halaman; pada Windows Ctrl + F5 meminta browser memuat ulang aset.",
+                    "Catat opsi dan gejalanya jika tetap gagal."
+                ]
+            },
+            {
+                "type": "p",
+                "text": "Jika masalah berulang, catat gejala serta teks error. Sara tidak dapat memeriksa akun atau database Anda secara langsung."
+            }
+        ]
+    },
+
+    {
+        "id": "sara-tidak-merespons",
+        "category": "pemecahan-masalah",
+        "title": "Apa yang harus dilakukan jika Sara AI tidak menjawab?",
+        "summary": "Langkah awal jika asisten Pusat Bantuan gagal merespons.",
+        "keywords": [
+            "Sara tidak merespons",
+            "Sara error",
+            "Help Center bot gagal"
+        ],
+        "popular": false,
+        "order": 69,
+        "updated": "2026-10-24",
+        "content": [
+            {
+                "type": "p",
+                "text": "Sara memerlukan koneksi browser dan layanan model. Gangguan jaringan, pembatasan permintaan, konfigurasi backend, atau layanan AI dapat menyebabkan respons gagal."
+            },
+            {
+                "type": "ol",
+                "items": [
+                    "Pastikan koneksi berjalan dan Help Center selesai dimuat.",
+                    "Coba satu pertanyaan singkat terkait Choco AI.",
+                    "Jika diminta menunggu, tunggu sebelum mencoba lagi.",
+                    "Catat teks error dan waktu tanpa informasi sensitif."
+                ]
+            },
+            {
+                "type": "p",
+                "text": "Jika masalah berulang, catat gejala serta teks error. Sara tidak dapat memeriksa akun atau database Anda secara langsung."
+            }
+        ]
     },
 
     // ==========================================

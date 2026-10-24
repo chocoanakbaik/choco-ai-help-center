@@ -85,7 +85,7 @@ check("data kategori, artikel, dan fitur berhasil dimuat", () => {
 
 check("jumlah data inti tidak berkurang tanpa sengaja", () => {
   assert.equal(categories.length, 8, "Jumlah kategori berubah dari 8");
-  assert.equal(articles.length, 36, "Jumlah record artikel harus 36");
+  assert.ok(articles.length >= 60 && articles.length <= 100, "Basis artikel Sara harus berisi 60–100 record; ukuran payload tetap divalidasi");
   assert.equal(features.length, 16, "Jumlah fitur harus 16");
 });
 
@@ -285,6 +285,14 @@ check("fungsi pencarian artikel utama memberi hasil yang masuk akal", () => {
   assert.ok(identityResults.some((article) => article.id === "tentang-choco-ai"), "Pencarian frasa lengkap tidak menemukan artikel identitas");
   const unavailableResults = browserContext.window.searchHelpArticles("unggah file");
   assert.ok(unavailableResults.every((article) => article.id !== "unggah-file"), "Artikel yang menuju 404 masih tampil dalam pencarian");
+  const promptResults = browserContext.window.searchHelpArticles("cara menulis prompt yang jelas");
+  assert.ok(promptResults.some((article) => article.id === "cara-menulis-pertanyaan-jelas"), "Pencarian belum menemukan panduan pertanyaan jelas");
+  const memoryResultsExtended = browserContext.window.searchHelpArticles("apakah semua pesan otomatis menjadi memori");
+  assert.ok(memoryResultsExtended.some((article) => article.id === "apakah-semua-pesan-menjadi-memori"), "Pencarian belum menemukan penjelasan memori otomatis");
+  const saraScopeResults = browserContext.window.searchHelpArticles("apakah Sara bisa melihat akun dan riwayat chat saya");
+  assert.ok(saraScopeResults.some((article) => article.id === "apakah-sara-melihat-akun"), "Pencarian belum menemukan batas akses Sara");
+  const historyResults = browserContext.window.searchHelpArticles("riwayat chat tidak muncul setelah login");
+  assert.ok(historyResults.some((article) => article.id === "riwayat-tidak-muncul"), "Pencarian belum menemukan panduan riwayat hilang");
   const popular = browserContext.window.getPopularHelpArticles();
   assert.ok(popular.every((article) => !article.redirect), "Artikel redirect tidak boleh tampil sebagai artikel populer");
 });
@@ -312,6 +320,14 @@ check("payload browser dengan riwayat maksimal tetap di bawah batas body Sara", 
   const bytes = Buffer.byteLength(JSON.stringify(payload), "utf8");
   assert.ok(bytes < 100 * 1024, "Payload representatif terlalu besar: " + bytes + " byte");
   console.log("INFO payload representatif: " + bytes + " byte");
+});
+
+check("knowledge Sara mencakup privasi, memori, batas akses, dan troubleshooting", () => {
+  for (const id of ["apa-yang-bisa-dibantu-sara", "apakah-semua-pesan-menjadi-memori", "apakah-sara-melihat-akun", "memori-gagal-disimpan", "masa-simpan-data", "jangan-kirim-data-sensitif", "riwayat-tidak-muncul", "sara-tidak-merespons"]) assert.ok(articleIds.has(id), "Artikel knowledge Sara hilang: " + id);
+  const memoryArticle = articles.find((article) => article.id === "apakah-semua-pesan-menjadi-memori");
+  const memoryText = memoryArticle.content.map((block) => [block.text || "", ...(block.items || [])].join(" ")).join(" ");
+  assert.match(memoryText, /maksimal tiga/i);
+  assert.match(memoryText, /tidak semua pesan/i);
 });
 
 check("setiap fitur memiliki dokumen internal yang sesuai status", () => {
@@ -384,7 +400,7 @@ check("panduan riwayat percakapan mencerminkan UI dan tetap memberi batasan", ()
   const articleText = historyArticle.content.map((block) =>
     [block.text, ...(Array.isArray(block.items) ? block.items : [])].filter(Boolean).join(" ")
   ).join(" ");
-  assert.match(articleText, /hingga 30 percakapan terbaru/i,
+  assert.match(articleText, /hingga 50 percakapan terbaru/i,
     "Artikel harus menjelaskan batas daftar riwayat yang benar-benar diimplementasikan");
   assert.match(articleText, /pilih judul percakapan/i,
     "Artikel harus menjelaskan cara mencoba membuka percakapan lama");
@@ -392,7 +408,7 @@ check("panduan riwayat percakapan mencerminkan UI dan tetap memberi batasan", ()
     "Artikel masih menyangkal fitur riwayat yang sudah ada di UI");
   assert.match(articleText, /bergantung pada koneksi dan izin database/i,
     "Artikel harus menyatakan ketidakpastian konfigurasi produksi");
-  assert.match(historyFeature.summary, /hingga 30 percakapan terbaru/i,
+  assert.match(historyFeature.summary, /hingga 50 percakapan terbaru/i,
     "Ringkasan katalog fitur tidak sesuai dengan UI");
   assert.equal(historyFeature.group, "verify",
     "Status produksi tetap perlu diverifikasi meskipun alur UI tersedia");
