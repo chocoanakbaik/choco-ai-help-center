@@ -8,7 +8,7 @@ Konteks percakapan berarti pesan dari sesi aktif dapat digunakan untuk membuat j
 ## Kontrol manual yang sudah tercatat
 Setelah login Google, antarmuka juga menyediakan tombol terpisah **+ Memori** di bagian atas. Tombol ini meminta pengguna memasukkan catatan, lalu mencoba menyimpannya ke Supabase. Catatan yang berhasil disimpan dicoba dimuat saat login dan dikirim sebagai konteks ke permintaan chat berikutnya.
 
-Ini adalah penyimpanan catatan secara manual, bukan kemampuan mengingat semua percakapan otomatis. Keberhasilannya bergantung pada konfigurasi dan kebijakan database; proses dapat gagal.
+Tombol + Memori adalah penyimpanan manual, terpisah dari menu sidebar yang masih Soon. Source aplikasi juga mencoba mengekstrak maksimal tiga fakta atau preferensi jangka panjang dari pasangan pesan akun yang berhasil disimpan. Ini tidak merekam setiap pesan sebagai memori, hasilnya bisa kosong, dan prosesnya bergantung pada konfigurasi serta kebijakan database.
 
 ## Batasan menu Memori
 - Menu sidebar masih bertanda Soon.

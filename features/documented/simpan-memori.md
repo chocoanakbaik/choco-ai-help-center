@@ -17,7 +17,7 @@ Menu **Memori** di sidebar aplikasi masih bertanda Soon. Tombol **+ Memori** ada
 Saat autentikasi berhasil, aplikasi mencoba mengambil maksimal 20 catatan terbaru dari tabel `memories`. Chat berikutnya mengirim catatan yang berhasil dimuat ke layanan AI sebagai konteks. Jika pemuatan gagal, catatan mungkin tidak disertakan pada respons.
 
 ## Privasi dan batasan
-- Catatan manual berbeda dari konteks riwayat chat dan tidak berarti setiap pesan otomatis disimpan sebagai memori.
+- Tombol + Memori adalah jalur manual. Secara terpisah, setelah pasangan pesan akun berhasil disimpan, source aplikasi mencoba mengekstrak maksimal tiga fakta atau preferensi jangka panjang. Tidak semua pesan dijadikan memori; hasilnya dapat kosong atau gagal, dan perilaku produksi belum diverifikasi penuh.
 - Keberhasilan bergantung pada konfigurasi serta izin database Supabase.
 - UI saat ini tidak menyediakan daftar untuk mengedit atau menghapus catatan satu per satu.
 - Jangan simpan kata sandi, API key, kode verifikasi, nomor rekening, informasi pembayaran, atau rahasia pribadi.
