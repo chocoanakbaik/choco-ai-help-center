@@ -503,25 +503,19 @@ window.HELP_ARTICLES = [
     {
         id: "menyimpan-memori",
         category: "privasi",
-        title: "Bagaimana cara menyimpan memori secara manual?",
-        summary: "Simpan catatan pilihan setelah login agar dapat disertakan dalam konteks chat berikutnya.",
-        keywords: ["simpan memori", "menyimpan memori", "memori manual", "tombol memori", "ingat informasi", "memories"],
+        title: "Bisakah saya menyimpan memori secara manual?",
+        summary: "UI saat ini belum menyediakan tombol untuk menambahkan catatan memori secara manual.",
+        keywords: ["memori manual", "tombol + Memori", "catatan manual", "memori otomatis"],
         popular: false,
         order: 27,
         updated: "2026-10-24",
         content: [
-            { type: "p", text: "Menu Memori pada sidebar masih bertanda Soon. Namun, setelah login, aplikasi menyediakan tombol terpisah bertuliskan + Memori untuk menyimpan catatan secara manual." },
-            {
-                type: "ol",
-                items: [
-                    "Buka Choco AI dan login menggunakan Google.",
-                    "Setelah status akun aktif, pilih tombol + Memori pada bagian atas halaman.",
-                    "Tulis satu catatan singkat yang ingin digunakan lagi, lalu konfirmasikan penyimpanan.",
-                    "Tunggu notifikasi. Jika aplikasi menyatakan memori gagal disimpan, jangan menganggap catatan sudah tersimpan."
-                ]
-            },
-            { type: "p", text: "Catatan yang berhasil disimpan dicoba dimuat kembali saat login dan dapat dikirim sebagai konteks ke chat berikutnya. Proses ini bergantung pada konfigurasi serta izin database Supabase." },
-            { type: "p", text: "Tombol + Memori menyimpan catatan pilihan secara manual. Secara terpisah, source aplikasi mencoba mengekstrak fakta atau preferensi tertentu dari pasangan pesan akun yang berhasil disimpan; ini tidak merekam setiap pesan sebagai memori dan prosesnya dapat gagal. Aplikasi belum menyediakan daftar untuk mengedit atau menghapus catatan satu per satu. Jangan simpan kata sandi, API key, kode verifikasi, informasi keuangan, atau rahasia pribadi." }
+            { type: "p", text: "Source Choco AI mendukung pemuatan memori akun dan mencoba mengekstrak fakta atau preferensi tertentu secara otomatis setelah pasangan pesan berhasil disimpan. Namun, UI yang diperiksa saat ini tidak menyediakan tombol + Memori untuk menambahkan catatan secara manual." },
+            { type: "ol", items: [
+                "Login Google dan penyimpanan riwayat adalah bagian terpisah dari proses ekstraksi memori.",
+                "Ekstraksi otomatis hanya mencoba menyimpan beberapa fakta atau preferensi yang relatif stabil; tidak setiap pesan menjadi memori dan prosesnya dapat gagal.",
+                "Karena kontrol penambahan memori manual belum tersedia pada UI saat ini, Sara tidak boleh memberi langkah memakai tombol + Memori atau menjanjikan pengguna dapat mengedit dan menghapus catatan melalui menu."
+            ] }
         ]
     },
     {
@@ -1263,29 +1257,18 @@ window.HELP_ARTICLES = [
         "id": "apakah-semua-pesan-menjadi-memori",
         "category": "privasi",
         "title": "Apakah semua pesan otomatis disimpan sebagai memori?",
-        "summary": "Bedakan ekstraksi otomatis, catatan manual, dan riwayat percakapan.",
-        "keywords": [
-            "memori otomatis",
-            "semua pesan disimpan",
-            "ekstraksi memori",
-            "catatan manual"
-        ],
+        "summary": "Bedakan riwayat percakapan, ekstraksi otomatis, dan kontrol memori manual yang belum tersedia.",
+        "keywords": ["memori otomatis", "semua pesan disimpan", "ekstraksi memori", "catatan manual"],
         "popular": false,
         "order": 57,
         "updated": "2026-10-24",
         "content": [
-            {
-                "type": "p",
-                "text": "Tidak semua pesan otomatis menjadi catatan memori. Setelah pasangan pesan dan jawaban berhasil disimpan untuk akun login, source Choco AI mencoba mengekstrak fakta atau preferensi jangka panjang."
-            },
-            {
-                "type": "ol",
-                "items": [
-                    "Backend meminta maksimal tiga catatan singkat dan menghindari kredensial, data sensitif, tebakan, klaim assistant, dan pertanyaan sesaat.",
-                    "Jika tidak ada informasi yang cocok, hasilnya bisa nol catatan.",
-                    "Ini berbeda dari tombol + Memori manual; ekstraksi dapat gagal dan produksi belum diverifikasi penuh."
-                ]
-            }
+            { "type": "p", "text": "Tidak semua pesan otomatis menjadi catatan memori. Setelah pasangan pesan dan jawaban berhasil disimpan untuk akun login, source Choco AI mencoba mengekstrak fakta atau preferensi jangka panjang. Ini berbeda dari riwayat pesan." },
+            { "type": "ol", "items": [
+                "Backend meminta maksimal tiga catatan singkat dan menghindari kredensial, informasi sensitif, tebakan, klaim assistant, serta pertanyaan sesaat.",
+                "Jika tidak ada informasi yang cocok, hasilnya bisa nol catatan dan ekstraksi dapat gagal.",
+                "UI yang diperiksa belum memiliki tombol + Memori untuk catatan manual. Status produksi penyimpanan dan pemuatan memori tetap perlu diuji."
+            ] }
         ]
     },
 

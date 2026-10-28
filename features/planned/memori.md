@@ -1,20 +1,22 @@
 # Menu Memori
 
-**Status katalog:** Direncanakan; menu Memori di sidebar aplikasi ditandai **Soon**.
+**Status katalog:** Direncanakan; menu Memori di sidebar masih bertanda **Soon**, dan UI yang diperiksa belum menyediakan tombol untuk menambahkan catatan memori manual.
 
-## Bedanya dengan konteks chat
-Konteks percakapan berarti pesan dari sesi aktif dapat digunakan untuk membuat jawaban tetap nyambung. Menu Memori penuh belum tersedia dan tidak boleh dipresentasikan sebagai pengelolaan memori lengkap.
+## Bedanya dengan konteks chat dan riwayat
 
-## Kontrol manual yang sudah tercatat
-Setelah login Google, antarmuka juga menyediakan tombol terpisah **+ Memori** di bagian atas. Tombol ini meminta pengguna memasukkan catatan, lalu mencoba menyimpannya ke Supabase. Catatan yang berhasil disimpan dicoba dimuat saat login dan dikirim sebagai konteks ke permintaan chat berikutnya.
+Konteks percakapan adalah pesan sesi yang ikut digunakan untuk menjaga kesinambungan jawaban. Riwayat adalah data pesan yang tersimpan pada percakapan akun bila penyimpanan berhasil. Memori adalah catatan stabil yang dapat dimuat lagi untuk konteks di masa depan. Ketiganya berbeda dan tidak boleh disebut seolah-olah setiap pesan otomatis tersimpan menjadi memori.
 
-Tombol + Memori adalah penyimpanan manual, terpisah dari menu sidebar yang masih Soon. Source aplikasi juga mencoba mengekstrak maksimal tiga fakta atau preferensi jangka panjang dari pasangan pesan akun yang berhasil disimpan. Ini tidak merekam setiap pesan sebagai memori, hasilnya bisa kosong, dan prosesnya bergantung pada konfigurasi serta kebijakan database.
+## Perilaku memori yang tercatat pada source
 
-## Batasan menu Memori
+Setelah pasangan pesan akun berhasil disimpan, source Choco AI mencoba meminta model mengekstrak maksimal tiga fakta atau preferensi jangka panjang. Hasilnya boleh kosong dan proses ekstraksi atau penyimpanan dapat gagal. Kode juga mendukung pemuatan memori akun yang tersimpan, tetapi itu **bukan** bukti tersedianya tombol input manual di antarmuka.
+
+## Batasan
+
 - Menu sidebar masih bertanda Soon.
-- Tidak ada UI terverifikasi untuk melihat, mengedit, atau menghapus setiap catatan tersimpan.
-- Jangan menjanjikan bahwa seluruh percakapan otomatis diingat atau dipulihkan.
-- Pengguna sebaiknya tidak menyimpan kata sandi, API key, kode verifikasi, data keuangan, atau rahasia pribadi.
+- UI yang diperiksa tidak menampilkan tombol **+ Memori** untuk menambahkan catatan manual.
+- Tidak ada UI terverifikasi untuk meninjau, mengedit, atau menghapus catatan satu per satu.
+- Jangan menjanjikan seluruh percakapan otomatis diingat atau dapat dipulihkan.
+- Jangan masukkan password, OTP, token sesi, API key, data keuangan, atau rahasia pribadi.
+- Sara tidak dapat melihat memori akun atau memeriksa database pengguna.
 
-## Panduan terkait
-Lihat artikel publik `menyimpan-memori` untuk langkah memakai tombol + Memori. Untuk perbedaan konteks dan penyimpanan lintas sesi, lihat `memori-permanen`.
+**Artikel terkait:** `memori-permanen`, `menyimpan-memori`, `apakah-semua-pesan-menjadi-memori`.
